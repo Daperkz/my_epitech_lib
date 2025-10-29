@@ -54,7 +54,7 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ)
 	make -C $(MYPRINTF_M)
-	ar rc $(NAME) $(OBJ)
+	ar -rc $(NAME) $(OBJ)
 	cp $(NAME) ../
 	cp $(HEADER) ../../include/
 
