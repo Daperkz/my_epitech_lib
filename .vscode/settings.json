@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "minilib.h": "c",
+        "my_putchar.h": "c",
+        "my_putnbr.h": "c",
+        "all_parameters.h": "c"
+    }
+}

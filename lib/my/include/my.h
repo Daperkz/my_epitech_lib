@@ -78,6 +78,6 @@ char **my_str_to_word_array(char const *str);
 
 char *convert_base(char const *nbr, char const *base_from, char const *base_to);
 
-int my_printf(const char *format, ...);
+int my_printf(int __fd, const char *format, ...);
 
 #endif

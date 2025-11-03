@@ -9,7 +9,7 @@ NAME	=	libmy.a
 CC	=	epiclang
 INCLUDE	=	./include
 HEADER = include/my.h
-CFLAGS	:=	-I$(INCLUDE)
+CFLAGS	:=	-I$(INCLUDE) -g3
 SRC	=	concat_params.c	\
 		convert_base.c	\
 		my_compute_power_rec.c	\
