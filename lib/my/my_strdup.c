@@ -12,12 +12,16 @@
 char *my_strdup(char const *src)
 {
     char *ptr = malloc(my_strlen(src) + 1);
+    char *origin = ptr;
 
+    if (ptr == NULL) {
+        return NULL;
+    }
     while (*src != '\0') {
         *ptr = *src;
         src++;
         ptr++;
     }
     *ptr = '\0';
-    return ptr;
+    return origin;
 }

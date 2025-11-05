@@ -17,7 +17,7 @@ char *my_strcapitalize(char *str)
                 || (str[i - 1] >= 91 && str[i - 1] <= 96)
                 || (str[i - 1] >= 123 && str[i - 1] <= 126))
             && (str[i] >= 'a' && str[i] <= 'z'))
-            str[i] -= 'a' - 'A';
+            str[i] += ('A' - 'a');
         i++;
     }
     return str;

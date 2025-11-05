@@ -9,6 +9,7 @@
 
 char *my_strncpy(char *dest, char const *src, int n)
 {
+    char *origin = dest;
     int i = 0;
 
     while (i < n) {
@@ -16,5 +17,5 @@ char *my_strncpy(char *dest, char const *src, int n)
         i++;
     }
     i = n;
-    return dest;
+    return origin;
 }
