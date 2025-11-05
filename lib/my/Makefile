@@ -41,6 +41,7 @@ SRC	=	concat_params.c	\
 		my_strlowcase.c	\
 		my_strncat.c	\
 		my_strncpy.c	\
+		my_strncmp.c	\
 		my_strstr.c	\
 		my_strupcase.c	\
 		my_swap.c	\
@@ -54,7 +55,7 @@ all:	$(NAME)
 $(NAME):	$(OBJ)
 	ar -rc $(NAME) $(OBJ)
 	cp $(NAME) ../
-	cp $(HEADER) ../../include/
+	cp $(HEADER) ../include/
 
 clean:
 	rm -f $(OBJ)

@@ -53,7 +53,7 @@ all:	$(NAME)
 $(NAME):	$(OBJ)
 	ar rc $(NAME) $(OBJ)
 	cp $(NAME) ../
-	cp $(HEADER) ../../include
+	cp $(HEADER) ../include
 
 clean:
 	rm -f $(OBJ)
