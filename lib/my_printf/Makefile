@@ -52,7 +52,7 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ)
 	ar rc $(NAME) $(OBJ)
-	mv $(NAME) ../
+	cp $(NAME) ../
 	cp $(HEADER) ../../include
 
 clean:

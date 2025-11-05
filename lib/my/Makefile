@@ -45,7 +45,6 @@ SRC	=	concat_params.c	\
 		my_strupcase.c	\
 		my_swap.c	\
 
-MYPRINTF_M	=	./my_printf/
 OBJ	=	$(SRC:.c=.o)
 
 .PHONY: fclean clean
@@ -53,19 +52,16 @@ OBJ	=	$(SRC:.c=.o)
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	make -C $(MYPRINTF_M)
 	ar -rc $(NAME) $(OBJ)
 	cp $(NAME) ../
 	cp $(HEADER) ../../include/
 
 clean:
 	rm -f $(OBJ)
-	make clean -C $(MYPRINTF_M)
 
 fclean: clean
 	rm -f $(NAME)
 	rm -f ../$(NAME)
-	make fclean -C $(MYPRINTF_M)
 
 re: fclean $(NAME)
 

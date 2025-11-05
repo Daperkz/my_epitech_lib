@@ -1,0 +1,15 @@
+/*
+** EPITECH PROJECT, 2025
+** my_printf.h
+** File description:
+** my_printfs
+*/
+
+#ifndef MY_PRINTF_H
+    #define MY_PRINTF_H
+
+int my_printf(const char *format, ...);
+
+int my_fprintf(int fd, const char *format, ...);
+
+#endif

@@ -3,6 +3,8 @@
         "minilib.h": "c",
         "my_putchar.h": "c",
         "my_putnbr.h": "c",
-        "all_parameters.h": "c"
+        "all_parameters.h": "c",
+        "switch_parameters.h": "c",
+        "flag_to_func.h": "c"
     }
 }
