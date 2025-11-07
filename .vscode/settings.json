@@ -5,6 +5,7 @@
         "my_putnbr.h": "c",
         "all_parameters.h": "c",
         "switch_parameters.h": "c",
-        "flag_to_func.h": "c"
+        "flag_to_func.h": "c",
+        "my_printf.h": "c"
     }
 }
