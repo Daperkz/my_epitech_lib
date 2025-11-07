@@ -9,13 +9,9 @@
 
 char *my_strncpy(char *dest, char const *src, int n)
 {
-    char *origin = dest;
     int i = 0;
 
-    while (i < n) {
+    for (int i = 0; i < n; i++)
         dest[i] = src[i];
-        i++;
-    }
-    i = n;
-    return origin;
+    return dest;
 }
