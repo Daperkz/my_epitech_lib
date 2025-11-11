@@ -51,13 +51,13 @@ int format_gestion(
 )
 {
     flag_to_func_t all_format[22][2] = {
-        {'d', &parameter_d}, {'i', &parameter_d}, {'u', &parameter_u},
-        {'o', &parameter_o}, {'x', &parameter_x}, {'X', &parameter_xx},
-        {'f', &parameter_f}, {'F', &parameter_ff}, {'e', &parameter_e},
-        {'E', &parameter_ee}, {'g', &parameter_g}, {'G', &parameter_gg},
-        {'a', &parameter_a}, {'A', &parameter_aa}, {'c', &parameter_c},
-        {'s', &parameter_s}, {'p', &parameter_p}, {'n', &parameter_n},
-        {'%', &parameter_percent}, 0};
+        {{'d', &parameter_d}}, {{'i', &parameter_d}}, {{'u', &parameter_u}},
+        {{'o', &parameter_o}}, {{'x', &parameter_x}}, {{'X', &parameter_xx}},
+        {{'f', &parameter_f}}, {{'F', &parameter_ff}}, {{'e', &parameter_e}},
+        {{'E', &parameter_ee}}, {{'g', &parameter_g}}, {{'G', &parameter_gg}},
+        {{'a', &parameter_a}}, {{'A', &parameter_aa}}, {{'c', &parameter_c}},
+        {{'s', &parameter_s}}, {{'p', &parameter_p}}, {{'n', &parameter_n}},
+        {{'%', &parameter_percent}}, {0}};
     int i = 0;
 
     while (all_format[i] != 0) {

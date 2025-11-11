@@ -6,10 +6,6 @@
 ** passed as parameter
 */
 
-#include "time.h"
-
-#include "my_printf.h"
-
 int my_strlen(char const *str)
 {
     const char *start = str;

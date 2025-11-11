@@ -7,7 +7,7 @@
 
 char *convert_base(char const *nbr, char const *base_from, char const *base_to)
 {
-    char *result;
+    char *result = "0";
 
     return result;
 }
