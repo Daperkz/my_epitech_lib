@@ -8,19 +8,29 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "my_strcat.h"
 #include "my_putnbr.h"
+#include "my_strlen.h"
 
 char *my_put_adress(void *a)
 {
     unsigned long addr = (unsigned long) a;
-    char *str = malloc(sizeof(char) * 1);
+    char *str = NULL;
+    char *nbr = NULL;
 
-    str[0] = '\0';
     if (a == NULL) {
-        return my_strcat(str, "(nil)");
+        str = malloc(sizeof(char) * 6);
+        if (str == NULL)
+            return NULL;
+        return my_strcpy(str, "(nil)");
     }
-    my_strcat(str, "0x");
-    my_strcat(str, my_put_long_base(addr, "0123456789abcdef"));
+    nbr = my_put_long_base(addr, "0123456789abcdef");
+    str = malloc(sizeof(char) * (2 + my_strlen(nbr) + 1));
+    if (str == NULL)
+        return NULL;
+    my_strcpy(str, "0x");
+    my_strcat(str, nbr);
+    free(nbr);
     return str;
 }

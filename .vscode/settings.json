@@ -6,7 +6,8 @@
     "all_parameters.h": "c",
     "switch_parameters.h": "c",
     "flag_to_func.h": "c",
-    "my_printf.h": "c"
+    "my_printf.h": "c",
+    "stdlib.h": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
