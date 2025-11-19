@@ -12,18 +12,18 @@
 
 static int intlen(int nb, int base_size)
 {
+    unsigned int abs_nb = (nb < 0) ?
+        (unsigned int)-(nb + 1) + 1 : (unsigned int)nb;
     int len = 0;
 
     if (nb == 0) {
         return 1;
-    }
-    if (nb < 0) {
+    } else if (nb < 0) {
         len++;
-        nb *= -1;
     }
-    while (nb >= 1) {
+    while (abs_nb > 0) {
         len++;
-        nb /= base_size;
+        abs_nb /= base_size;
     }
     return len;
 }
@@ -33,21 +33,20 @@ char *my_put_nbr_base(int nb, char *base)
     int base_size = my_strlen(base);
     int nblen = intlen(nb, base_size);
     char *str = malloc(sizeof(char) * (nblen + 1));
-    int i = nblen - 1;
+    unsigned int abs_nb = (nb < 0) ?
+        (unsigned int)-(nb + 1) + 1 : (unsigned int)nb;
 
+    if (!str)
+        return NULL;
     str[nblen] = '\0';
     if (nb == 0) {
         str[0] = base[0];
         return str;
-    }
-    if (nb < 0) {
+    } else if (nb < 0)
         str[0] = '-';
-        nb *= -1;
-    }
-    while (nb >= 1) {
-        str[i] = base[nb % base_size];
-        nb /= base_size;
-        i--;
+    for (int i = nblen - 1; abs_nb > 0; i--) {
+        str[i] = base[abs_nb % base_size];
+        abs_nb /= base_size;
     }
     return str;
 }

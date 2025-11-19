@@ -7,9 +7,13 @@
 
 int my_strlen(char const *str)
 {
-    int i = 0;
+    const char *start = str;
 
-    while (str[i] != 0)
-        i++;
-    return i;
+    if (!str) {
+        return -1;
+    }
+    while (*str) {
+        str++;
+    }
+    return str - start;
 }

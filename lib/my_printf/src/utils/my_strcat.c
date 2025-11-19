@@ -5,19 +5,18 @@
 **  concatenates two strings.
 */
 
-char *my_strcat(char *dest, char *src)
+char *my_strcat(char *dest, char const *src)
 {
-    int i = 0;
-    int j = 0;
+    char *origin = dest;
 
-    while (dest[i] != '\0') {
-        i++;
+    while (*dest != '\0') {
+        dest++;
     }
-    while (src[j] != '\0') {
-        dest[i] = src[j];
-        i++;
-        j++;
+    while (*src != '\0') {
+        *dest = *src;
+        dest++;
+        src++;
     }
-    dest[i] = '\0';
-    return dest;
+    *dest = '\0';
+    return origin;
 }

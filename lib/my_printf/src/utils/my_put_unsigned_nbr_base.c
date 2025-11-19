@@ -6,7 +6,6 @@
 */
 
 #include <stdlib.h>
-#include "my_strcat.h"
 #include "my_strlen.h"
 
 static int intlen(unsigned int nb, int base_size)
@@ -30,6 +29,8 @@ char *my_put_unsigned_nbr_base(unsigned int nb, char *base)
     char *str = malloc(sizeof(char) * (nblen + 1));
     int i = nblen - 1;
 
+    if (!str)
+        return NULL;
     if (nb == 0) {
         str[0] = base[0];
         str[nblen] = '\0';
