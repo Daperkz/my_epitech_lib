@@ -30,4 +30,3 @@ fclean: clean
 	rm -f libmyprintf.a
 
 re: fclean $(NAME)
-

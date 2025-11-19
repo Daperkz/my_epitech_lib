@@ -7,12 +7,15 @@
 
 #include <unistd.h>
 
-void my_putstr(char const *str)
+int my_putstr(char const *str)
 {
-    int i = 0;
+    const char *start = str;
 
-    while (str[i] != '\0') {
-        i++;
+    if (!str) {
+        return -1;
     }
-    write(1, str, i);
+    while (*str) {
+        str++;
+    }
+    return write(1, start, (str - start));
 }

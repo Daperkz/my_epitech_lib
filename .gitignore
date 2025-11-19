@@ -3,3 +3,5 @@ main.c
 a.out
 *.a
 .vscode
+test_mylib
+test_my

@@ -10,6 +10,9 @@ int my_strlen(char const *str)
 {
     const char *start = str;
 
+    if (!str) {
+        return -1;
+    }
     while (*str) {
         str++;
     }
