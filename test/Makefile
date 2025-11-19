@@ -15,7 +15,7 @@ CFLAGS	=	-I$(INCLUDE)
 LDFLAGS	=	-lcriterion -L$(LIB_F) -lmy
 
 SRC_F	=	./src/
-SRC	=	test.c
+SRC	=	test_my.c
 
 BIN	=	./bin/
 
