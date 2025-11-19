@@ -51,6 +51,7 @@ SRC	=	$(SRC_F)concat_params.c	\
 		$(SRC_F)my_strstr.c	\
 		$(SRC_F)my_strupcase.c	\
 		$(SRC_F)my_swap.c	\
+		$(SRC_F)my_itoab.c	\
 
 OBJ	=	$(addprefix $(BIN), $(notdir $(SRC:.c=.o)))
 

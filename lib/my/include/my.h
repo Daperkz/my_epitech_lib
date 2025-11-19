@@ -78,4 +78,6 @@ char **my_str_to_word_array(char const *str);
 
 char *convert_base(char const *nbr, char const *base_from, char const *base_to);
 
+char *my_itoab(int nb, char *base);
+
 #endif
