@@ -29,7 +29,7 @@ static char *my_put_mantissa(long x, char *base)
     return str;
 }
 
-long static extract_mantissa_inbin(double nb, int *power2)
+static long extract_mantissa_inbin(double nb, int *power2)
 {
     double_t deconstructed_float = {.f = nb};
     unsigned long long bits = deconstructed_float.bits;

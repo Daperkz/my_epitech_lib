@@ -84,7 +84,7 @@ static char *remove_excess_e(char *str, int cap)
 void parameter_g(int fd, va_list args, cot_err_t *coterr)
 {
     double nb = va_arg(args, double);
-    char *str = remove_excess(my_put_float(nb));
+    char *str = remove_excess(my_put_float(nb, 6));
     char *str2 = my_put_scientific(nb, "0123456789");
 
     if (my_strlen(str) <= my_strlen(str2)) {
@@ -99,7 +99,7 @@ void parameter_g(int fd, va_list args, cot_err_t *coterr)
 void parameter_gg(int fd, va_list args, cot_err_t *coterr)
 {
     double nb = va_arg(args, double);
-    char *str = remove_excess(my_put_float(nb));
+    char *str = remove_excess(my_put_float(nb, 6));
     char *str2 = my_put_scientific_capitalize(nb, "0123456789");
 
     if (my_strlen(str) <= my_strlen(str2)) {

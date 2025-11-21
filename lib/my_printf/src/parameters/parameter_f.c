@@ -11,7 +11,7 @@
 void parameter_f(int fd, va_list args, cot_err_t *coterr)
 {
     double nb = va_arg(args, double);
-    char *str = my_put_float(nb);
+    char *str = my_put_float(nb, 6);
 
     my_putstr(fd, str, coterr);
     free(str);
@@ -20,7 +20,7 @@ void parameter_f(int fd, va_list args, cot_err_t *coterr)
 void parameter_ff(int fd, va_list args, cot_err_t *coterr)
 {
     double nb = va_arg(args, double);
-    char *str = my_put_float(nb);
+    char *str = my_put_float(nb, 6);
 
     my_putstr(fd, str, coterr);
     free(str);
