@@ -17,7 +17,7 @@ static int number_of_number(char *str, int *nb_count)
     if (str[i] == '+' || str[i] == '-') {
         i++;
     }
-    while (str[i] != '\0' && (str[i] != '.') ||
+    while ((str[i] != '\0' && str[i] != '.') ||
         (str[i] >= '0' && str[i] <= '9')) {
         i++;
         (*nb_count)++;

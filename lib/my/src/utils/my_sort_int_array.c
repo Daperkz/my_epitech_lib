@@ -4,8 +4,7 @@
 ** File description:
 ** sorts an integer array in ascending order
 */
-
-#include "tools.h"
+#include "utils.h"
 
 int min_in_array(int *arr, int size, int i)
 {

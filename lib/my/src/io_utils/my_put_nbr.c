@@ -6,9 +6,9 @@
 ** It must be able to display all the possible values of an int
 */
 
-#include "tools.h"
+#include "io_utils.h"
 
-void my_put_nbr(int nb)
+int my_put_nbr(int nb)
 {
     if (nb < 0) {
         my_putchar('-');
@@ -20,4 +20,5 @@ void my_put_nbr(int nb)
     } else {
         my_putchar(nb + '0');
     }
+    return 0;
 }

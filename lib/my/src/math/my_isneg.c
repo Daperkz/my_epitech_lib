@@ -6,9 +6,7 @@
 ** is negative or P, if positive or null.
 */
 
-#include "tools.h"
-
 int my_isneg(int n)
 {
-    return (n < 0);
+    return (n << 31);
 }

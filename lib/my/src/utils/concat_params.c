@@ -8,9 +8,7 @@
 
 #include <stdlib.h>
 
-#include "strprint.h"
-
-#include "tools.h"
+#include "string_utils.h"
 
 char *concat_params(int argc, char **argv)
 {

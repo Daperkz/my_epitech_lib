@@ -14,7 +14,7 @@
 
 #include <stdlib.h>
 
-#include "my_str_to_word_array_tools.h"
+#include "string_utils.h"
 
 static int is_alphanumeric(char c)
 {

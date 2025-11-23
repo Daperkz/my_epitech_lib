@@ -5,21 +5,12 @@
 ** searches for a str in a str
 */
 
-#include "tools.h"
-
-static int len(char const *str)
-{
-    int result = 0;
-
-    while (str[result] != '\0')
-        result++;
-    return result - 1;
-}
+#include "string_utils.h"
 
 char *my_strstr(char *str, char const *to_find)
 {
     int i = 0;
-    int pat_size = len(to_find);
+    int pat_size = my_strlen(to_find);
 
     while (str[i] != '\0') {
         if (my_strncmp(&str[i], to_find, pat_size) == 0) {

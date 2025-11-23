@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 
-#include "my_strdup_tools.h"
+#include "string_utils.h"
 
 char *my_strdup(char const *src)
 {

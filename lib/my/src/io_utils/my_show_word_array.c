@@ -9,13 +9,10 @@
 
 #include <stdlib.h>
 
-#include "tools.h"
+#include "string_utils.h"
+#include "utils.h"
 
-#include "my_concparam.h"
-
-#include "strprint.h"
-
-int my_show_word_array(char *const *tab)
+int my_show_word_array(char **tab)
 {
     int count = 0;
     char *str = NULL;

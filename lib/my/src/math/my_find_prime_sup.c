@@ -6,7 +6,7 @@
 ** the number given as a parameter.
 */
 
-#include "tools.h"
+#include "my_math.h"
 
 int my_find_prime_sup(int nb)
 {

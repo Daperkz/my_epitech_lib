@@ -7,7 +7,8 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "my_strlen.h"
+
+#include "string_utils.h"
 
 static int intlen(int nb, int base_size)
 {
