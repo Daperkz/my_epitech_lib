@@ -18,7 +18,7 @@ MY_PRINTF_INCLUDE	=	$(ROOT_DIR)src/my_printf/include
 
 CFLAGS	=	-I$(INCLUDE) -I$(MY_PRINTF_INCLUDE) -g3 -Wall -Wextra
 
-BIN	=	$(ROOT_DIR)bin/
+BIN_F	=	$(ROOT_DIR)bin/
 
 SRC_F	=	$(ROOT_DIR)src/
 
@@ -113,23 +113,26 @@ SRC	=	$(patsubst %.c, $(IO_UTILS_F)%.c, $(IO_UTILS)) 	\
 		$(patsubst %.c, $(UTILS_F)%.c, $(UTILS))	\
 		$(patsubst %.c, $(MY_PRINTF_F)%.c, $(MY_PRINTF))	\
 
-OBJ	=	$(addprefix $(BIN), $(notdir $(SRC:.c=.o)))
+OBJ	=	$(addprefix $(BIN_F), $(notdir $(SRC:.c=.o)))
 
 VPATH	=	$(SRC_F) $(IO_UTILS_F) $(STRING_UTILS_F) $(MATH_F) $(UTILS_F) $(MY_PRINTF_F) $(MY_PRINTF_F)$(MY_PRINTF_UTILS_F) $(MY_PRINTF_F)$(MY_PRINTF_PARAM_F)
 
 .PHONY:	fclean	clean	re
 
-all:	$(NAME)
+all:	$(BIN_F)	$(NAME)
 
 $(NAME):	$(OBJ)
 	ar -rc $@ $^
 
-$(BIN)%.o:	%.c
-	mkdir -p $(BIN)
+$(BIN_F):
+	mkdir -p $(BIN_F)
+
+$(BIN_F)%.o:	%.c
 	$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
 	rm -f $(OBJ)
+	-rmdir $(BIN_F)
 
 fclean: clean
 	rm -f $(NAME)
