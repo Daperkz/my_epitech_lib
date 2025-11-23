@@ -46,25 +46,14 @@ int *parse_all_flag(const char *format)
 }
 */
 
-int format_gestion(
-    int fd, va_list args, const char *format, cot_err_t *coterr
-)
+int format_gestion(int fd, va_list args, const char *format, cot_err_t *coterr)
 {
     int written;
     char *str = NULL;
-    flag_to_func_t all_format[22][2] = {
-        {{'d', &parameter_d}}, {{'i', &parameter_d}}, {{'u', &parameter_u}},
-        {{'o', &parameter_o}}, {{'x', &parameter_x}}, {{'X', &parameter_xx}},
-        {{'f', &parameter_f}}, {{'F', &parameter_ff}}, {{'e', &parameter_e}},
-        {{'E', &parameter_ee}}, {{'g', &parameter_g}}, {{'G', &parameter_gg}},
-        {{'a', &parameter_a}}, {{'A', &parameter_aa}}, {{'c', &parameter_c}},
-        {{'s', &parameter_s}}, {{'p', &parameter_p}}, {{'n', &parameter_n}},
-        {{'%', &parameter_percent}}, {{0, NULL}}
-    };
 
-    for (int i = 0; all_format[i] != 0; i++) {
-        if (*format == all_format[i]->flag) {
-            str = all_format[i]->func(args, coterr);
+    for (int i = 0; ALL_FORMAT[i]->flag != 0; i++) {
+        if (*format == ALL_FORMAT[i]->flag) {
+            str = ALL_FORMAT[i]->func(args, coterr);
             written = my_putstr_fd(fd, str);
             coterr->error = (written == -1) ? 1 : coterr->error;
             coterr->count += (written == -1) ? 0 : written;
@@ -80,18 +69,10 @@ int sformat_gestion(
 )
 {
     char *str = NULL;
-    flag_to_func_t all_format[22][2] = {
-        {{'d', &parameter_d}}, {{'i', &parameter_d}}, {{'u', &parameter_u}},
-        {{'o', &parameter_o}}, {{'x', &parameter_x}}, {{'X', &parameter_xx}},
-        {{'f', &parameter_f}}, {{'F', &parameter_ff}}, {{'e', &parameter_e}},
-        {{'E', &parameter_ee}}, {{'g', &parameter_g}}, {{'G', &parameter_gg}},
-        {{'a', &parameter_a}}, {{'A', &parameter_aa}}, {{'c', &parameter_c}},
-        {{'s', &parameter_s}}, {{'p', &parameter_p}}, {{'n', &parameter_n}},
-        {{'%', &parameter_percent}}, {{'\0', NULL}} };
 
-    for (int i = 0; all_format[i]->flag != '\0'; i++) {
-        if (*format == all_format[i]->flag) {
-            str = all_format[i]->func(args, coterr);
+    for (int i = 0; ALL_FORMAT[i]->flag != '\0'; i++) {
+        if (*format == ALL_FORMAT[i]->flag) {
+            str = ALL_FORMAT[i]->func(args, coterr);
             my_strappend(str_ptr, str);
             coterr->count += my_strlen(str);
             free(str);

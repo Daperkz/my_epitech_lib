@@ -69,7 +69,8 @@ MATH	=	my_isneg.c	\
 			my_compute_square_root.c	\
 			my_is_prime.c	\
 			my_find_prime_sup.c	\
-			my_ipow.c
+			my_ipow.c	\
+			my_nbrlen.c
 
 # --- Files located in $(UTILS_F) = ./src/utils/ ---
 UTILS	=	my_swap.c	\
@@ -131,7 +132,7 @@ clean:
 	rm -f $(OBJ)
 
 fclean: clean
-	rm -f ../$(NAME)
+	rm -f $(NAME)
 
 re: fclean $(NAME)
 
