@@ -30,6 +30,7 @@ MINILIB_SRC	=	$(UTILS_F)my_putchar.c \
 				$(UTILS_F)my_put_scientific.c \
 				$(UTILS_F)my_put_adress.c \
 				$(UTILS_F)my_strcpy.c \
+				$(UTILS_F)my_strappend.c \
 				$(UTILS_F)my_strcat.c
 
 PARAM_F	=	$(SRC_F)parameters/

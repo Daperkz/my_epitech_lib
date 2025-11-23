@@ -60,7 +60,7 @@ static void sign_case_x_decimal_calc(
     double *nb, char **str_ptr, int *decimal_ptr, int decimal_precision)
 {
     if (*nb < 0.0 || (
-            *nb == 0.0 && 1.0 / *nb < 0.0)) {
+            *nb == 0.0 && (1.0 / *nb < 0.0))) {
         my_strcat((*str_ptr), "-");
         (*nb) *= -1.0;
     }
