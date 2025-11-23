@@ -9,6 +9,8 @@
     #define STRING_UTILS_H_
 
 int my_putstr(char const *str);
+int my_putstr_fd(int fd, char const *str);
+
 int my_strlen(char const *str);
 int my_getnbr(char const *str);
 char *my_strcpy(char *dest, char const *src);

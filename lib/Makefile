@@ -5,28 +5,38 @@
 ## lib makefile
 ##
 
-NAME	=	mylibs
+NAME	=	libmy
 CC	=	epiclang
 
-LIB_MY	=	./my/
-LIB_MY_PRINTF	=	./my_printf/
+ROOT_DIR	=	./
+LIB_DIR	=	$(ROOT_DIR)my/
+
+INCLUDE	=	$(ROOT_DIR)include/
+LIB_INCLUDE	=	$(LIB_DIR)include/
+
+HEADERS	=	$(LIB_INCLUDE)io_utils.h	\
+			$(LIB_INCLUDE)string_utils.h	\
+			$(LIB_INCLUDE)my_math.h	\
+			$(LIB_INCLUDE)utils.h	\
+			$(LIB_INCLUDE)my_printf.h	\
+			$(LIB_INCLUDE)my.h	\
+
+STATIC_LIB	=	$(LIB_DIR)$(NAME).a
 
 .PHONY: fclean clean	re
 
 all:	$(NAME)
 
 $(NAME):
-	make -C $(LIB_MY)
-	make -C $(LIB_MY_PRINTF)
+	make -C $(LIB_DIR)
+	cp $(HEADERS) $(INCLUDE)
+	cp $(STATIC_LIB) $(ROOT_DIR)
 
 clean:
-	make clean -C $(LIB_MY)
-	make clean -C $(LIB_MY_PRINTF)
+	make clean -C $(LIB_DIR)
 
 fclean: clean
-	make fclean -C $(LIB_MY)
+	make fclean -C $(LIB_DIR)
 	rm -f libmy.a
-	make fclean -C $(LIB_MY_PRINTF)
-	rm -f libmyprintf.a
 
 re: fclean $(NAME)

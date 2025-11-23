@@ -69,7 +69,7 @@ static void sign_case_x_decimal_calc(
     }
 }
 
-char *ftoa(double nb, int precision)
+char *my_ftoa(double nb, int precision)
 {
     int float_len = floatlen(nb, precision);
     int decimal;
