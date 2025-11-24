@@ -11,8 +11,8 @@
     #define DECONSTRUCT_FLOAT_H
 
 typedef union {
-  double f;
-  unsigned long long bits;
+    double f;
+    unsigned long long bits;
 } double_t;
 
 #endif

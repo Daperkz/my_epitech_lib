@@ -71,7 +71,7 @@ static void calculate_scientific(
     *decimal_ptr = (int)((nb - *entier_ptr) * 1000000 + 0.00005);
 }
 
-static char * special_case(double nb)
+static char *special_case(double nb)
 {
     char *str;
 
