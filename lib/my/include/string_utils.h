@@ -12,11 +12,18 @@ int my_putstr(char const *str);
 int my_putstr_fd(int fd, char const *str);
 
 int my_strlen(char const *str);
+int my_strlen_d(char const *str, char delim);
+
 int my_getnbr(char const *str);
+double my_getfnbrspe(char *str, int *error_ptr);
+int my_getnbrspe(char *str, int *error_ptr);
+
 char *my_strcpy(char *dest, char const *src);
 char *my_strncpy(char *dest, char const *src, int n);
 char *my_revstr(char *str);
-char *my_strstr(char *str, char const *to_find);
+
+int my_strstr(char *str, char const *to_find);
+
 int my_strcmp(char const *s1, char const *s2);
 int my_strncmp(char const *s1, char const *s2, int n);
 char *my_strupcase(char *str);
