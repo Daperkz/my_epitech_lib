@@ -25,3 +25,18 @@ char *my_strdup(char const *src)
     *ptr = '\0';
     return origin;
 }
+
+char *my_strndup(char const *src, int n)
+{
+    char *str = malloc(sizeof(char) * n + 1);
+    int i = 0;
+
+    if (!str)
+        return NULL;
+    while (src[i] != '\0' && i < n) {
+        str[i] = src[i];
+        i++;
+    }
+    str[i] = '\0';
+    return str;
+}
