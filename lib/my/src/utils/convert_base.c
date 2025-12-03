@@ -5,9 +5,16 @@
 ** converts
 */
 
+#include <unistd.h>
+
+#include "utils.h"
+
 char *convert_base(char const *nbr, char const *base_from, char const *base_to)
 {
-    char *result = "0";
+    char *result = NULL;
 
+    UNUSED(nbr);
+    UNUSED(base_from);
+    UNUSED(base_to);
     return result;
 }

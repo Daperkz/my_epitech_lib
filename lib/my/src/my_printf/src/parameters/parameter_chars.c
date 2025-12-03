@@ -8,6 +8,7 @@
 #include <stdarg.h>
 
 #include "string_utils.h"
+#include "utils.h"
 
 #include "my_printf_utils.h"
 #include "modifiers.h"

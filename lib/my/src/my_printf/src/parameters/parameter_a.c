@@ -7,6 +7,8 @@
 
 #include <stdarg.h>
 
+#include "utils.h"
+
 #include "my_printf_utils.h"
 #include "flag_to_func.h"
 

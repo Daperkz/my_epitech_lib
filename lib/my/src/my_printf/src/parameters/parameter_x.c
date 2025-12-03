@@ -7,9 +7,9 @@
 
 #include <stdarg.h>
 
-#include "my_printf_utils.h"
-
 #include "utils.h"
+
+#include "my_printf_utils.h"
 
 char *parameter_x(va_list args, cot_err_t *coterr)
 {

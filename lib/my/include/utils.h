@@ -8,6 +8,8 @@
 #ifndef UTILS_H_
     #define UTILS_H_
 
+    #define UNUSED(arg) ((void)arg)
+
 void my_swap(int *a, int *b);
 void my_sort_int_array(int *tab, int size);
 char *concat_params(int argc, char **argv);

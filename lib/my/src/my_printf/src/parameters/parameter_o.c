@@ -7,10 +7,10 @@
 
 #include <stdarg.h>
 
+#include "utils.h"
+
 #include "my_printf_utils.h"
 #include "flag_to_func.h"
-
-#include "utils.h"
 
 char *parameter_o(va_list args, cot_err_t *coterr)
 {
