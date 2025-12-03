@@ -7,7 +7,18 @@
 ** with a backslash before the given value.
 */
 
+#include "io_utils.h"
+
 int my_showstr(char const *str)
 {
+    while (*str) {
+        if (*str < 32) {
+            my_putchar('\\');
+            my_put_nbr_base(*str, "0123456789abcdef");
+        } else {
+            my_putchar(*str);
+        }
+        str++;
+    }
     return 0;
 }

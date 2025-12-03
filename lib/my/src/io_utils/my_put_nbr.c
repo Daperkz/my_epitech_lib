@@ -7,6 +7,7 @@
 */
 
 #include "io_utils.h"
+#include "string_utils.h"
 
 int my_put_nbr(int nb)
 {
@@ -19,6 +20,23 @@ int my_put_nbr(int nb)
         my_put_nbr(nb % 10);
     } else {
         my_putchar(nb + '0');
+    }
+    return 0;
+}
+
+int my_put_nbr_base(int nb, char *base)
+{
+    int base_size = my_strlen(base);
+
+    if (nb < 0) {
+        my_putchar('-');
+        nb *= -1;
+    }
+    if (nb >= base_size) {
+        my_put_nbr_base(nb / base_size, base);
+        my_put_nbr_base(nb % base_size, base);
+    } else {
+        my_putchar(base[nb]);
     }
     return 0;
 }
