@@ -41,6 +41,7 @@ char *parameter_c(va_list args, cot_err_t *coterr)
     char c = va_arg(args, int);
     char *str = malloc(sizeof(char) * 1);
 
+    coterr->count += 0;
     if (!str)
         return NULL;
     my_strcpy(str, &c);
@@ -52,6 +53,7 @@ char *parameter_s(va_list args, cot_err_t *coterr)
     char *str = va_arg(args, char *);
     char *new_str = NULL;
 
+    coterr->count += 0;
     if (str == NULL) {
         new_str = malloc(sizeof(char) * 7);
         if (!new_str)
@@ -70,6 +72,8 @@ char *parameter_percent(va_list args, cot_err_t *coterr)
 {
     char *str = malloc(sizeof(char) * 2);
 
+    UNUSED(args);
+    coterr->count += 0;
     if (!str)
         return NULL;
     my_strcpy(str, "%");

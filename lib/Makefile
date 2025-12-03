@@ -28,7 +28,7 @@ HEADERS	=	$(LIB_INCLUDE)io_utils.h	\
 
 CFLAGS	=	-I$(LIB_INCLUDE) -I$(MY_PRINTF_INCLUDE) -g3 -Wall -Wextra
 
-BIN_F	=	$(LIB_DIR)bin/
+OBJ_F	=	$(LIB_DIR)obj/
 
 SRC_F	=	$(LIB_DIR)src/
 
@@ -126,7 +126,7 @@ SRC	=	$(patsubst %.c, $(IO_UTILS_F)%.c, $(IO_UTILS)) 	\
 		$(patsubst %.c, $(MY_PRINTF_F)%.c, $(MY_PRINTF))	\
 
 # -_- puts all .c files wherever they come from into the bin folder as a .o -_-
-OBJ	=	$(addprefix $(BIN_F), $(notdir $(SRC:.c=.o)))
+OBJ	=	$(addprefix $(OBJ_F), $(notdir $(SRC:.c=.o)))
 
 # -_- All src files directories (where to find them) -_-
 VPATH	=	$(SRC_F)	\
@@ -145,16 +145,16 @@ $(NAME):	$(OBJ)
 	cp $(HEADERS) $(INCLUDE)
 
 # -_- Creates the bin dir if non existent (only once) -_-
-$(BIN_F):
+$(OBJ_F):
 	mkdir -p $@
 
 # -_- Compiles .o files into bin folder from all c files in the VPATH directories -_-
-$(BIN_F)%.o:	%.c | $(BIN_F)
+$(OBJ_F)%.o:	%.c | $(OBJ_F)
 	$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
 	rm -f $(OBJ)
-	-rmdir $(BIN_F)
+	-rmdir $(OBJ_F)
 
 fclean: clean
 	rm -f $(NAME)

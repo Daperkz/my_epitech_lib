@@ -36,7 +36,10 @@ int my_str_isupper(char const *str);
 int my_str_isprintable(char const *str);
 char *my_strcat(char *dest, char const *src);
 char *my_strncat(char *dest, char const *src, int nb);
+
 char *my_strdup(char const *src);
+char *my_strndup(char const *src, int n);
+
 char **my_str_to_word_array(char const *str);
 char *my_strappend(char **dest_ptr, char *src);
 

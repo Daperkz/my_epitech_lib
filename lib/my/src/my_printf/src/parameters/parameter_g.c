@@ -91,6 +91,7 @@ char *parameter_g(va_list args, cot_err_t *coterr)
     char *str = remove_excess(my_ftoa(nb, 6));
     char *str2 = my_put_scientific(nb, "0123456789", 0);
 
+    coterr->count += 0;
     if (my_strlen(str) <= my_strlen(str2)) {
         free(str2);
         if (!str)
@@ -109,6 +110,7 @@ char *parameter_gg(va_list args, cot_err_t *coterr)
     char *str = remove_excess(my_ftoa(nb, 6));
     char *str2 = my_put_scientific(nb, "0123456789", 1);
 
+    coterr->count += 0;
     if (my_strlen(str) <= my_strlen(str2)) {
         free(str2);
         if (!str)
