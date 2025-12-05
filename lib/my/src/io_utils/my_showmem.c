@@ -14,8 +14,6 @@
 ** 00000040: 2e00 0102 0304 0506 0708 090e 0f1b 7f    ...............$
 */
 
-
-
 #include "string_utils.h"
 #include "utils.h"
 

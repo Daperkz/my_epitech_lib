@@ -37,6 +37,7 @@ IO_UTILS_F	=	$(SRC_F)io_utils/
 STRING_UTILS_F	=	$(SRC_F)string_utils/
 MATH_F	=	$(SRC_F)math/
 UTILS_F	=	$(SRC_F)utils/
+FILE_UTILS_F	=	$(SRC_F)file_utils/
 MY_PRINTF_F	=	$(MY_PRINTF_DIR)src/
 
 # -_- Directories located in $(MY_PRINTF_F) = ./my/src/my_printf/src/ -_-
@@ -94,6 +95,11 @@ UTILS	=	my_swap.c	\
 			my_ltoab.c	\
 			my_ftoa.c
 
+# -_- Files located in $(FILE_UTILS_F) = ./my/src/file_utils/ -_-
+FILE_UTILS	=	open_file.c	\
+				get_file_size.c	\
+				get_file_content.c	\
+				read_file.c
 
 # -_- Files located in $(MY_PRINT_UTILS_F) = ./my/src/my_printf/src/utils/ -_-
 MY_PRINTF_UTILS	=	my_put_float_hex.c \
@@ -123,6 +129,7 @@ SRC	=	$(patsubst %.c, $(IO_UTILS_F)%.c, $(IO_UTILS)) 	\
 		$(patsubst %.c, $(STRING_UTILS_F)%.c, $(STRING_UTILS))	\
 		$(patsubst %.c, $(MATH_F)%.c, $(MATH))	\
 		$(patsubst %.c, $(UTILS_F)%.c, $(UTILS))	\
+		$(patsubst %.c, $(FILE_UTILS_F)%.c, $(FILE_UTILS))	\
 		$(patsubst %.c, $(MY_PRINTF_F)%.c, $(MY_PRINTF))	\
 
 # -_- puts all .c files wherever they come from into the bin folder as a .o -_-
@@ -130,7 +137,7 @@ OBJ	=	$(addprefix $(OBJ_F), $(notdir $(SRC:.c=.o)))
 
 # -_- All src files directories (where to find them) -_-
 VPATH	=	$(SRC_F)	\
-			$(IO_UTILS_F) $(STRING_UTILS_F) $(MATH_F) $(UTILS_F) \
+			$(IO_UTILS_F) $(STRING_UTILS_F) $(MATH_F) $(UTILS_F) $(FILE_UTILS_F) \
 			$(MY_PRINTF_F) \
 			$(MY_PRINTF_F)$(MY_PRINTF_UTILS_F) $(MY_PRINTF_F)$(MY_PRINTF_PARAM_F)
 
