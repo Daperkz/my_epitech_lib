@@ -61,7 +61,7 @@ int my_fprintf(int fd, const char *format, ...)
 static int internal_sprintf(char **str_ptr, char *format, va_list args)
 {
     cot_err_t coterr = {0, 0};
-    char *one_char = malloc(sizeof(char) * 2);
+    char one_char[2];
 
     one_char[1] = '\0';
     while ((*format)) {
@@ -76,7 +76,6 @@ static int internal_sprintf(char **str_ptr, char *format, va_list args)
         (coterr.count)++;
         format++;
     }
-    free(one_char);
     return coterr.error ? -1 : coterr.count;
 }
 

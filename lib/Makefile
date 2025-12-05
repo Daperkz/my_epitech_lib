@@ -23,6 +23,7 @@ HEADERS	=	$(LIB_INCLUDE)io_utils.h	\
 			$(LIB_INCLUDE)string_utils.h	\
 			$(LIB_INCLUDE)my_math.h	\
 			$(LIB_INCLUDE)utils.h	\
+			$(LIB_INCLUDE)file_utils.h	\
 			$(LIB_INCLUDE)my_printf.h	\
 			$(LIB_INCLUDE)my.h	\
 

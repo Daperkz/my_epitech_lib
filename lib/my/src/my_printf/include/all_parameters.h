@@ -9,8 +9,8 @@
     #define ALL_PARAMETERS_H_
 
     #include <stdarg.h>
+
     #include "flag_to_func.h"
-    #include "modifiers.h"
     #include "count_error.h"
 
 char *parameter_d(va_list args, cot_err_t *coterr);
