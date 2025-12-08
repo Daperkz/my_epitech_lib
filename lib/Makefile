@@ -84,6 +84,8 @@ MATH	=	my_isneg.c	\
 			my_is_prime.c	\
 			my_find_prime_sup.c	\
 			my_ipow.c	\
+			my_factorial.c	\
+			my_rounds.c	\
 			my_nbrlen.c
 
 # -_- Files located in $(UTILS_F) = ./my/src/utils/ -_-

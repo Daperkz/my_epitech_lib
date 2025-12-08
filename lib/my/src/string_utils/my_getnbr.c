@@ -53,7 +53,7 @@ double my_getfnbrspe(char *str, int *error_ptr)
     }
     if ((!is_num(str[i]) && str[i] != '\0') || !is_num(str[start]))
         (*error_ptr) = 1;
-    result /= pow(10, rev);
+    result /= my_ipow(10, rev);
     if (start - 1 < 0)
         return result;
     return (str[start - 1] == '-') ? -result : result;
