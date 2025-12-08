@@ -12,65 +12,61 @@ static int is_num(char c)
     return ('0' <= c && c <= '9');
 }
 
-static int find_num(char *str, int *i)
+static int find_num(char *str)
 {
-    while (str[*i] == '-' && str[*i] != '\0')
-        (*i)++;
-    return *i;
+    int i = 0;
+
+    while (str[i] == '-' && !is_num(str[i]) && str[i] != '\0')
+        i++;
+    return i;
 }
 
-int my_getnbr(char const *str)
+int my_getnbr(char *str)
 {
-    int start;
-    int i = 0;
+    int i;
+    int start = find_num(str);
     int result = 0;
 
-    while (!is_num(str[i])) {
-        i++;
-    }
-    start = i;
-    while (is_num(str[i])) {
+    for (i = start; is_num(str[i]); i++) {
         result = ((result * 10) + (str[i] - '0'));
-        i++;
     }
-    if (str[start - 1] == '-')
-        return -result;
-    return result;
+    if (start - 1 < 0)
+        return result;
+    return (str[start - 1] == '-') ? -result : result;
 }
 
 double my_getfnbrspe(char *str, int *error_ptr)
 {
-    int i = 0;
-    int start = find_num(str, &i);
+    int i;
+    int start = find_num(str);
     double result = 0;
     int count = 0;
     int rev = 0;
 
-    while ((is_num(str[i]) || str[i] == '.') && str[i] != '\0') {
+    for (i = start; (is_num(str[i]) || str[i] == '.') && str[i] != '\0'; i++) {
         if (str[i] == '.') {
             count = 1;
-            i++;
             continue;
         }
         result = ((result * 10) + (str[i] - '0'));
         rev += count ? 1 : 0;
-        i++;
     }
     if ((!is_num(str[i]) && str[i] != '\0') || !is_num(str[start]))
         (*error_ptr) = 1;
-    result /= my_ipow(10, rev);
-    return str[start - 1] == '-' ? -result : result;
+    result /= pow(10, rev);
+    if (start - 1 < 0)
+        return result;
+    return (str[start - 1] == '-') ? -result : result;
 }
 
 int my_getnbrspe(char *str, int *error_ptr)
 {
     int i = 0;
-    int start = find_num(str, &i);
+    int start = find_num(str);
     int result = 0;
 
-    while (is_num(str[i])) {
+    for (i = start; is_num(str[i]); i++) {
         result = ((result * 10) + (str[i] - '0'));
-        i++;
     }
     if ((!is_num(str[start]) && str[start] != '-') ||
         (!is_num(str[i]) && str[i] != '\0')) {
