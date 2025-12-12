@@ -13,7 +13,8 @@
     #define BASE2 "01"
     #define BASE7 "01234567"
     #define BASE10 "0123456789"
-    #define BASE15 "0123456789ABCDEF"
+    #define BASE15CAP "0123456789ABCDEF"
+    #define BASE15LOW "0123456789abcdef"
 
 void my_swap(int *a, int *b);
 void my_sort_int_array(int *tab, int size);
