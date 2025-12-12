@@ -35,6 +35,29 @@ int my_getnbr(char *str)
     return (str[start - 1] == '-') ? -result : result;
 }
 
+double my_getfnbr(char *str)
+{
+    int i;
+    int start = find_num(str);
+    double result = 0;
+    int rev10 = 0;
+
+    for (i = start; (is_num(str[i]) || str[i] == '.') && str[i] != '\0'; i++) {
+        if (str[i] == '.') {
+            rev10 = 1;
+            continue;
+        }
+        if (rev10 > 0) {
+            result += ((double)(str[i] - '0')) / ((double)my_ipow(10, rev10));
+            rev10++;
+        } else
+            result = ((result * 10) + (str[i] - '0'));
+    }
+    if (start - 1 < 0)
+        return result;
+    return (str[start - 1] == '-') ? -result : result;
+}
+
 double my_getfnbrspe(char *str, int *error_ptr)
 {
     int i;
