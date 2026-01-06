@@ -11,6 +11,8 @@
     #define PI 3.14159265359
     #define E 2.71828
 
+    #define RAND_F (rand() / (RAND_MAX + 1.0))
+
     // Calculates the absolute value
     #define ABS(x) ((x) < 0 ? -x : x)
     // Returns the sign of x
