@@ -41,7 +41,11 @@ char *my_strncat(char *dest, char const *src, int nb);
 char *my_strdup(char const *src);
 char *my_strndup(char const *src, int n);
 
-char **my_str_to_word_array(char const *str);
+char **my_str_to_word_array(char const *str, char const *seps);
+long my_word_array_len(char **word_array);
+void my_print_word_array(char **word_array, char sep);
+void my_free_word_array(char **word_array);
+
 char *my_strappend(char **dest_ptr, char *src);
 
 #endif /* !STRING_UTILS_H_ */
