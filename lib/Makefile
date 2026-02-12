@@ -83,6 +83,7 @@ STRING_UTILS_F	=	my_putstr.c	\
 WORD_ARRAY_F	=	my_str_to_word_array.c	\
 					my_print_word_array.c	\
 					my_word_array_len.c	\
+					my_copy_word_array.c	\
 					my_free_word_array.c
 
 # -_- Files located in $(MATH_D) = ./my/src/math/ -_-
