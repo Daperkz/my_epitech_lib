@@ -8,7 +8,7 @@
 
 int my_str_isprintable(char const *str)
 {
-    while (*str != '\0') {
+    while (*str) {
         if (*str <= 31) {
             return 0;
         }

@@ -9,7 +9,7 @@ char *my_strcapitalize(char *str)
 {
     int i = 0;
 
-    while (str[i] != '\0') {
+    while (str[i]) {
         if (str[i] >= 'A' && str[i] <= 'Z')
             str[i] += 'a' - 'A';
         if ((i == 0 || (str[i - 1] >= 32 && str[i - 1] <= 47)

@@ -17,7 +17,7 @@ char *my_strdup(char const *src)
     if (ptr == NULL) {
         return NULL;
     }
-    while (*src != '\0') {
+    while (*src) {
         *ptr = *src;
         src++;
         ptr++;

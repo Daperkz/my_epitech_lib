@@ -10,7 +10,7 @@ char *my_strcpy(char *dest, char const *src)
 {
     char *origin = dest;
 
-    while (*src != '\0') {
+    while (*src) {
         *dest = *src;
         dest++;
         src++;
