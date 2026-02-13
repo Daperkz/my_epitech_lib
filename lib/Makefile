@@ -64,6 +64,7 @@ STRING_UTILS_F	=	my_putstr.c	\
 					my_strncpy.c	\
 					my_revstr.c	\
 					my_strstr.c	\
+					my_strchr.c	\
 					my_strcmp.c	\
 					my_strncmp.c	\
 					my_strupcase.c	\
