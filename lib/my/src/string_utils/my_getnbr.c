@@ -21,7 +21,7 @@ static int find_num(char *str)
     return i;
 }
 
-int my_getnbr(char *str)
+int my_atoi(char *str)
 {
     int i;
     int start = find_num(str);
@@ -35,7 +35,7 @@ int my_getnbr(char *str)
     return (str[start - 1] == '-') ? -result : result;
 }
 
-double my_getfnbr(char *str)
+double my_atof(char *str)
 {
     int i;
     int start = find_num(str);

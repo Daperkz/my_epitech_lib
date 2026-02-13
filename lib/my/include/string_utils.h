@@ -14,8 +14,8 @@ int my_putstr_fd(int fd, char const *str);
 int my_strlen(char const *str);
 int my_strlen_d(char const *str, char delim);
 
-int my_getnbr(char const *str);
-double my_getfnbr(char *str);
+int my_atoi(char const *str);
+double my_atof(char *str);
 double my_getfnbrspe(char *str, int *error_ptr);
 int my_getnbrspe(char *str, int *error_ptr);
 
