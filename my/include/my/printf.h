@@ -8,6 +8,10 @@
 #ifndef MY_PRINTF_H
     #define MY_PRINTF_H
 
+    #define STDIN 0
+    #define STDOUT 1
+    #define STDERR 2
+
 int my_printf(const char *format, ...);
 
 int my_fprintf(int fd, const char *format, ...);
