@@ -8,7 +8,7 @@
 
 int my_str_isnum(char const *str)
 {
-    while (*str != '\0') {
+    while (*str) {
         if (!(*str >= '0' && *str <= '9')) {
             return 0;
         }
