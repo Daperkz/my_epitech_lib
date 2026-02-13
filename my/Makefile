@@ -22,51 +22,51 @@ OBJ_D	=	$(ROOT_DIR)obj/
 SRC_D	=	$(ROOT_DIR)src/
 
 # -_- Directories located in $(SRC_D) = ./src/ -_-
-IO_UTILS_D	=	$(SRC_D)io/
-STRING_UTILS_D	=	$(SRC_D)string/
+IO_D	=	$(SRC_D)io/
+STRING_D	=	$(SRC_D)string/
 MATH_D	=	$(SRC_D)math/
 UTILS_D	=	$(SRC_D)utils/
-FILE_UTILS_D	=	$(SRC_D)file/
+FILE_D	=	$(SRC_D)file/
 MY_PRINTF_D	=	$(SRC_D)printf/
 
-# -_- Directories located in $(STRING_UTILS_D) = ./src/string/ -_-
-WORD_ARRAY_D	=	$(STRING_UTILS_D)word_array/
+# -_- Directories located in $(STRING_D) = ./src/string/ -_-
+WORD_ARRAY_D	=	$(STRING_D)word_array/
 
 # -_- Directories located in $(MY_PRINTF_D) = ./src/printf/ -_-
 MY_PRINTF_UTILS_D	=	$(MY_PRINTF_D)utils/
 MY_PRINTF_PARAM_D	=	$(MY_PRINTF_D)parameters/
 
-# -_- Files located in $(IO_UTILS_D) = ./src/io/ -_-
-IO_UTILS_F	=	my_putchar.c	\
-				my_put_nbr.c	\
-				my_put_float.c	\
-				my_showstr.c	\
-				my_showmem.c	\
-				my_show_word_array.c
+# -_- Files located in $(IO_D) = ./src/io/ -_-
+IO_F	=	my_putchar.c	\
+			my_put_nbr.c	\
+			my_put_float.c	\
+			my_showstr.c	\
+			my_showmem.c	\
+			my_show_word_array.c
 
-# -_- Files located in $(STRING_UTILS_D) = ./src/string/ -_-
-STRING_UTILS_F	=	my_putstr.c	\
-					my_strlen.c	\
-					my_getnbr.c	\
-					my_strcpy.c	\
-					my_strncpy.c	\
-					my_revstr.c	\
-					my_strstr.c	\
-					my_strchr.c	\
-					my_strcmp.c	\
-					my_strncmp.c	\
-					my_strupcase.c	\
-					my_strlowcase.c	\
-					my_strcapitalize.c	\
-					my_str_isalpha.c	\
-					my_str_isnum.c	\
-					my_str_islower.c	\
-					my_str_isupper.c	\
-					my_str_isprintable.c	\
-					my_strcat.c	\
-					my_strncat.c	\
-					my_strdup.c	\
-					my_strappend.c
+# -_- Files located in $(STRING_D) = ./src/string/ -_-
+STRING_F	=	my_putstr.c	\
+				my_strlen.c	\
+				my_getnbr.c	\
+				my_strcpy.c	\
+				my_strncpy.c	\
+				my_revstr.c	\
+				my_strstr.c	\
+				my_strchr.c	\
+				my_strcmp.c	\
+				my_strncmp.c	\
+				my_strupcase.c	\
+				my_strlowcase.c	\
+				my_strcapitalize.c	\
+				my_str_isalpha.c	\
+				my_str_isnum.c	\
+				my_str_islower.c	\
+				my_str_isupper.c	\
+				my_str_isprintable.c	\
+				my_strcat.c	\
+				my_strncat.c	\
+				my_strdup.c	\
+				my_strappend.c
 
 # -_- Files located in $(WORD_ARRAY_D) = ./src/string/word_array/ -_-
 WORD_ARRAY_F	=	my_str_to_word_array.c	\
@@ -96,11 +96,11 @@ UTILS_F	=	my_swap.c	\
 			my_ltoab.c	\
 			my_ftoa.c
 
-# -_- Files located in $(FILE_UTILS_D) = ./src/file/ -_-
-FILE_UTILS_F	=	open_file.c	\
-					get_file_size.c	\
-					get_file_content.c	\
-					read_file.c
+# -_- Files located in $(FILE_D) = ./src/file/ -_-
+FILE_F	=	open_file.c	\
+			get_file_size.c	\
+			get_file_content.c	\
+			read_file.c
 
 # -_- Files located in $(MY_PRINTF_D) = ./src/printf/ -_-
 MY_PRINTF_F	=	my_printf.c	\
@@ -124,12 +124,12 @@ MY_PRINTF_PARAM_F	=	parameter_int.c \
 						parameter_n.c
 
 # -_- Files located in $(SRC_D) = ./src/ -_-
-SRC	=	$(addprefix $(IO_UTILS_D), $(IO_UTILS_F)) 	\
-		$(addprefix $(STRING_UTILS_D), $(STRING_UTILS_F))	\
+SRC	=	$(addprefix $(IO_D), $(IO_F)) 	\
+		$(addprefix $(STRING_D), $(STRING_F))	\
 		$(addprefix $(WORD_ARRAY_D), $(WORD_ARRAY_F))	\
 		$(addprefix $(MATH_D), $(MATH_F))	\
 		$(addprefix $(UTILS_D), $(UTILS_F))	\
-		$(addprefix $(FILE_UTILS_D), $(FILE_UTILS_F))	\
+		$(addprefix $(FILE_D), $(FILE_F))	\
 		$(addprefix $(MY_PRINTF_D), $(MY_PRINTF_F))	\
 		$(addprefix $(MY_PRINTF_UTILS_D), $(MY_PRINTF_UTILS_F))	\
 		$(addprefix $(MY_PRINTF_PARAM_D), $(MY_PRINTF_PARAM_F))	\
