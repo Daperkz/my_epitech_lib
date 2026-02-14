@@ -55,6 +55,7 @@ STRING_F	=	my_putstr.c	\
 				my_strstr.c	\
 				my_strchr.c	\
 				my_strrchr.c	\
+				my_strsep.c	\
 				my_strcmp.c	\
 				my_strncmp.c	\
 				my_strupcase.c	\

@@ -26,6 +26,7 @@ char *my_revstr(char *str);
 char *my_strstr(char *str, char const *to_find);
 char *my_strchr(char *str, char target);
 char *my_strrchr(char *str, char target);
+char *my_strsep(char **str_ptr, const char *sep);
 
 int my_strcmp(char const *s1, char const *s2);
 int my_strncmp(char const *s1, char const *s2, int n);
