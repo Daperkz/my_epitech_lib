@@ -54,26 +54,13 @@ static void compute_good_suffix(char const *pattern, int m, int *good_suffix)
         good_suffix[m - 1 - suffix[i]] = m - 1 - i;
 }
 
-/**
-** @brief Locates the first occurrence the pattern in the str
-** Boyer-Moore algorithm
-** BC : O(N/M)
-** WC : O(N + M)
-** @return A pointer the located pattern, NULL if pattern was not found.
-*/
-char *my_strstr(char *str, char const *pattern)
+static char *compute(char *str, int n, char const *pattern, int m)
 {
-    int n = my_strlen(str);
-    int m = my_strlen(pattern);
-    int bad_char[256];
-    int good_suffix[m];
     int j = 0;
     int i = 0;
+    int bad_char[256];
+    int good_suffix[m];
 
-    if (m == 0)
-        return str;
-    if (m > n)
-        return NULL;
     compute_bad_char(pattern, m, bad_char);
     compute_good_suffix(pattern, m, good_suffix);
     while (i <= n - m) {
@@ -86,4 +73,23 @@ char *my_strstr(char *str, char const *pattern)
             bad_char[(unsigned char)str[i + j]] - m + 1 + j);
     }
     return NULL;
+}
+
+/**
+** @brief Locates the first occurrence the pattern in the str
+** Boyer-Moore algorithm
+** BC : O(N/M)
+** WC : O(N + M)
+** @return A pointer the located pattern, NULL if pattern was not found.
+*/
+char *my_strstr(char *str, char const *pattern)
+{
+    int n = my_strlen(str);
+    int m = my_strlen(pattern);
+
+    if (m == 0)
+        return str;
+    if (m > n)
+        return NULL;
+    return compute(str, n, pattern, m);
 }
