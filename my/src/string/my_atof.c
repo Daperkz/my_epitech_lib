@@ -21,20 +21,6 @@ static int find_num(char *str)
     return i;
 }
 
-int my_atoi(char *str)
-{
-    int i;
-    int start = find_num(str);
-    int result = 0;
-
-    for (i = start; is_num(str[i]); i++) {
-        result = ((result * 10) + (str[i] - '0'));
-    }
-    if (start - 1 < 0)
-        return result;
-    return (str[start - 1] == '-') ? -result : result;
-}
-
 double my_atof(char *str)
 {
     int i;
@@ -80,22 +66,4 @@ double my_getfnbrspe(char *str, int *error_ptr)
     if (start - 1 < 0)
         return result;
     return (str[start - 1] == '-') ? -result : result;
-}
-
-int my_getnbrspe(char *str, int *error_ptr)
-{
-    int i = 0;
-    int start = find_num(str);
-    int result = 0;
-
-    for (i = start; is_num(str[i]); i++) {
-        result = ((result * 10) + (str[i] - '0'));
-    }
-    if ((!is_num(str[start]) && str[start] != '-') ||
-        (!is_num(str[i]) && str[i])) {
-        (*error_ptr) = 1;
-    }
-    if (str[start - 1] == '-')
-        return -result;
-    return result;
 }

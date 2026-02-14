@@ -47,12 +47,14 @@ IO_F	=	my_putchar.c	\
 # -_- Files located in $(STRING_D) = ./src/string/ -_-
 STRING_F	=	my_putstr.c	\
 				my_strlen.c	\
-				my_getnbr.c	\
+				my_atoi.c	\
+				my_atof.c	\
 				my_strcpy.c	\
 				my_strncpy.c	\
 				my_revstr.c	\
 				my_strstr.c	\
 				my_strchr.c	\
+				my_strrchr.c	\
 				my_strcmp.c	\
 				my_strncmp.c	\
 				my_strupcase.c	\

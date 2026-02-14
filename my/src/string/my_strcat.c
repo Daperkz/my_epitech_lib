@@ -9,9 +9,8 @@ char *my_strcat(char *dest, char const *src)
 {
     char *origin = dest;
 
-    while (*dest) {
+    while (*dest)
         dest++;
-    }
     while (*src) {
         *dest = *src;
         dest++;

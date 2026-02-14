@@ -10,9 +10,8 @@ char *my_strncat(char *dest, char const *src, int nb)
     int i = 0;
     int j = 0;
 
-    while (dest[i]) {
+    while (dest[i])
         i++;
-    }
     while (src[j] && j < nb) {
         dest[i] = src[j];
         i++;

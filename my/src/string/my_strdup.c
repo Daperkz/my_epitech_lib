@@ -11,32 +11,31 @@
 
 char *my_strdup(char const *src)
 {
-    char *ptr = malloc(my_strlen(src) + 1);
-    char *origin = ptr;
+    char *dest = malloc(my_strlen(src) + 1);
+    char *origin = dest;
 
-    if (ptr == NULL) {
+    if (dest == NULL)
         return NULL;
-    }
     while (*src) {
-        *ptr = *src;
+        *dest = *src;
         src++;
-        ptr++;
+        dest++;
     }
-    *ptr = '\0';
+    *dest = '\0';
     return origin;
 }
 
 char *my_strndup(char const *src, int n)
 {
-    char *str = malloc(sizeof(char) * n + 1);
+    char *dest = malloc(sizeof(char) * n + 1);
     int i = 0;
 
-    if (!str)
+    if (!dest)
         return NULL;
     while (src[i] != '\0' && i < n) {
-        str[i] = src[i];
+        dest[i] = src[i];
         i++;
     }
-    str[i] = '\0';
-    return str;
+    dest[i] = '\0';
+    return dest;
 }

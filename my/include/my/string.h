@@ -23,8 +23,9 @@ char *my_strcpy(char *dest, char const *src);
 char *my_strncpy(char *dest, char const *src, int n);
 char *my_revstr(char *str);
 
-int my_strstr(char *str, char const *to_find);
+char *my_strstr(char *str, char const *to_find);
 char *my_strchr(char *str, char target);
+char *my_strrchr(char *str, char target);
 
 int my_strcmp(char const *s1, char const *s2);
 int my_strncmp(char const *s1, char const *s2, int n);

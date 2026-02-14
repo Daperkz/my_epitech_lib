@@ -7,6 +7,7 @@
 
 #include <unistd.h>
 
+// returns first occurence of the target char
 char *my_strchr(char *str, char target)
 {
     while (*str) {
