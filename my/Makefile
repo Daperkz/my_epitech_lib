@@ -30,6 +30,10 @@ FILE_D	=	$(SRC_D)file/
 MY_PRINTF_D	=	$(SRC_D)printf/
 
 # -_- Directories located in $(STRING_D) = ./src/string/ -_-
+COMPARAISON_D	=	$(STRING_D)comparaison/
+CONVERT_D	=	$(STRING_D)convert/
+MANIPULATION_D	=	$(STRING_D)manipulation/
+SEARCH_D	=	$(STRING_D)search/
 WORD_ARRAY_D	=	$(STRING_D)word_array/
 
 # -_- Directories located in $(MY_PRINTF_D) = ./src/printf/ -_-
@@ -45,31 +49,37 @@ IO_F	=	my_putchar.c	\
 			my_show_word_array.c
 
 # -_- Files located in $(STRING_D) = ./src/string/ -_-
-STRING_F	=	my_putstr.c	\
-				my_strlen.c	\
-				my_atoi.c	\
-				my_atof.c	\
-				my_strcpy.c	\
-				my_strncpy.c	\
-				my_revstr.c	\
-				my_strstr.c	\
-				my_strchr.c	\
+STRING_F	=	
+
+# -_- Files located in $(COMPARAISON_D) = ./src/string/comparaison/ -_-
+COMPARAISON_F	=	my_str_isalpha.c	\
+					my_str_islower.c	\
+					my_str_isnum.c	\
+					my_str_isprintable.c	\
+					my_str_isupper.c	\
+					my_strcmp.c	\
+
+# -_- Files located in $(CONVERT_D) = ./src/string/convert/ -_-
+CONVERT_F	=	my_atoi.c	\
+				my_atof.c
+
+# -_- Files located in $(COMPARAISON_D) = ./src/string/comparaison/ -_-
+MANIPULATION_F	=	my_putstr.c	\
+					my_revstr.c	\
+					my_strappend.c	\
+					my_strcapitalize.c	\
+					my_strcat.c	\
+					my_strcpy.c	\
+					my_strdup.c	\
+					my_strlen.c	\
+					my_strlowcase.c	\
+					my_strupcase.c
+
+# -_- Files located in $(SEARCH_D) = ./src/string/search/ -_-
+SEARCH_F	=	my_strchr.c	\
 				my_strrchr.c	\
 				my_strsep.c	\
-				my_strcmp.c	\
-				my_strncmp.c	\
-				my_strupcase.c	\
-				my_strlowcase.c	\
-				my_strcapitalize.c	\
-				my_str_isalpha.c	\
-				my_str_isnum.c	\
-				my_str_islower.c	\
-				my_str_isupper.c	\
-				my_str_isprintable.c	\
-				my_strcat.c	\
-				my_strncat.c	\
-				my_strdup.c	\
-				my_strappend.c
+				my_strstr.c
 
 # -_- Files located in $(WORD_ARRAY_D) = ./src/string/word_array/ -_-
 WORD_ARRAY_F	=	my_str_to_word_array.c	\
@@ -128,7 +138,10 @@ MY_PRINTF_PARAM_F	=	parameter_int.c \
 
 # -_- Files located in $(SRC_D) = ./src/ -_-
 SRC	=	$(addprefix $(IO_D), $(IO_F)) 	\
-		$(addprefix $(STRING_D), $(STRING_F))	\
+		$(addprefix $(COMPARAISON_D), $(COMPARAISON_F))	\
+		$(addprefix $(CONVERT_D), $(CONVERT_F))	\
+		$(addprefix $(MANIPULATION_D), $(MANIPULATION_F))	\
+		$(addprefix $(SEARCH_D), $(SEARCH_F))	\
 		$(addprefix $(WORD_ARRAY_D), $(WORD_ARRAY_F))	\
 		$(addprefix $(MATH_D), $(MATH_F))	\
 		$(addprefix $(UTILS_D), $(UTILS_F))	\
