@@ -20,9 +20,7 @@ void ll_destroy(ll_t *list, void (*free_data)(void *))
     for (int i = 0; i < list->len; i++) {
         next = current->next;
         list->head = current->next;
-        if (free_data != NULL && current->data != NULL)
-            free_data(current->data);
-        free(current);
+        destroy_node(current, free_data);
         current = next;
     }
     free(list);
