@@ -178,27 +178,52 @@ SRC	=	$(addprefix $(IO_D), $(IO_F)) 	\
 # -_- puts all .c files wherever they come from into the bin folder as a .o -_-
 OBJ	=	$(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)
 
+
+##	## --__-- PROGRESS BAR LOGIC --__--
+##	
+##	# -_- Count total files to compile -_-
+##	TOTAL_FILES	=	$(words $(SRC))
+##	# -_- 2side of the progress bar -_-
+##	HASHES	=	"########################################"
+##	DASHES	=	"----------------------------------------""
+##	
+##	CUR_COUNT = 0
+##	
+##	define draw_bar
+##		@$(eval CUR_COUNT=$(shell expr $(CUR_COUNT) + 1))
+##		@PERCENT=$(shell expr $(CUR_COUNT) \* 100 / $(TOTAL_FILES)); \
+##		DONE=$(shell expr $(CUR_COUNT) \* 40 / $(TOTAL_FILES)); \
+##		TODO=$(shell expr 40 - $$DONE); \
+##		printf "\r\033[1;36m[%3d%%]\033[0m \033[1;32m[%.*s%.*s]\033[0m Compiling: \033[0;33m%s\033[0m\033[K" \
+##			$$PERCENT $$DONE $(HASHES) $$TODO $(DASHES) "$1"
+##	endef
+##	
+
+
 ## --__-- RULES --__--
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	ar -rc $@ $^
+	@ar -rc $@ $^
+	@printf "\033[1;32mBuild Complete!\033[0m\n"
 
 # -_- Creates the bin dir if non existent (only once) -_-
 $(OBJ_D):
-	mkdir -p $@
+	@mkdir -p $@
 
 # -_- Compiles .o files into bin folder from all c files in the VPATH directories -_-
 $(OBJ_D)%.o:	$(SRC_D)%.c | $(OBJ_D)
 	@mkdir -p $(dir $@)
-	$(CC) -o $@ -c $< $(CFLAGS)
+	@$(CC) -o $@ -c $< $(CFLAGS)
 
 clean:
-	rm -rf $(OBJ_D)
+	@rm -rf $(OBJ_D)
+	@printf "\033[1;31mObjects cleaned.\033[0m\n"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@printf "\033[1;31mBinary cleaned.\033[0m\n"
 
 re: fclean $(NAME)
 
