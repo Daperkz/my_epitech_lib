@@ -180,25 +180,22 @@ OBJ	=	$(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)
 
 
 ##	## --__-- PROGRESS BAR LOGIC --__--
-##	
-##	# -_- Count total files to compile -_-
-##	TOTAL_FILES	=	$(words $(SRC))
-##	# -_- 2side of the progress bar -_-
-##	HASHES	=	"########################################"
-##	DASHES	=	"----------------------------------------""
-##	
-##	CUR_COUNT = 0
-##	
+##	TOTAL_FILES := $(words $(SRC))
+##	CUR_FILE := .cur_file
+##	BAR_WIDTH   := 40
+##
 ##	define draw_bar
-##		@$(eval CUR_COUNT=$(shell expr $(CUR_COUNT) + 1))
-##		@PERCENT=$(shell expr $(CUR_COUNT) \* 100 / $(TOTAL_FILES)); \
-##		DONE=$(shell expr $(CUR_COUNT) \* 40 / $(TOTAL_FILES)); \
-##		TODO=$(shell expr 40 - $$DONE); \
-##		printf "\r\033[1;36m[%3d%%]\033[0m \033[1;32m[%.*s%.*s]\033[0m Compiling: \033[0;33m%s\033[0m\033[K" \
-##			$$PERCENT $$DONE $(HASHES) $$TODO $(DASHES) "$1"
+##		@if [ ! -f $(CUR_FILE) ]; then echo 0 > $(CUR_FILE); fi
+##		@COUNT=$$(($$(cat $(CUR_FILE)) + 1)); \
+##		echo $$COUNT > $(CUR_FILE); \
+##		PERCENT=$$(($$COUNT * 100 / $(TOTAL_FILES))); \
+##		FILLED=$$(($$COUNT * $(BAR_WIDTH) / $(TOTAL_FILES))); \
+##		EMPTY=$$(($(BAR_WIDTH) - $$FILLED)); \
+##		printf "\r\033[1;36m[%3d%%]\033[0m \033[1;32m[" $$PERCENT; \
+##		printf '%.0s#' $$(seq 1 $$FILLED); \
+##		printf '%.0s-' $$(seq 1 $$EMPTY); \
+##		printf "]\033[0m Compiling: \033[0;33m%s\033[0m\033[K" "$$PERCENT" "$1"
 ##	endef
-##	
-
 
 ## --__-- RULES --__--
 
@@ -206,6 +203,7 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ)
 	@ar -rc $@ $^
+#	@rm -f $(CUR_FILE)
 	@printf "\033[1;32mBuild Complete!\033[0m\n"
 
 # -_- Creates the bin dir if non existent (only once) -_-
@@ -216,9 +214,11 @@ $(OBJ_D):
 $(OBJ_D)%.o:	$(SRC_D)%.c | $(OBJ_D)
 	@mkdir -p $(dir $@)
 	@$(CC) -o $@ -c $< $(CFLAGS)
+#	$(call draw_bar, $<)
 
 clean:
 	@rm -rf $(OBJ_D)
+#	@rm -f $(CUR_FILE)
 	@printf "\033[1;31mObjects cleaned.\033[0m\n"
 
 fclean: clean
