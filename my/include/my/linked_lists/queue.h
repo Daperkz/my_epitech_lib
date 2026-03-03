@@ -12,10 +12,10 @@
 
 typedef dll_t queue_t;
 
-#define QUEUE_CREATE() dll_create()
-#define QUEUE_ENQUEUE(q, data) dll_insert(q, data)
-#define QUEUE_DEQUEUE(q) dll_pop_tail(q)
-#define QUEUE_IS_EMPTY(q) ((q)->len == 0)
+    #define QUEUE_CREATE() dll_create()
+    #define QUEUE_ENQUEUE(q, data) dll_insert(q, data)
+    #define QUEUE_DEQUEUE(q) dll_pop_tail(q)
+    #define QUEUE_IS_EMPTY(q) ((q)->len == 0)
 
 
 #endif /* !QUEUE_H_ */
