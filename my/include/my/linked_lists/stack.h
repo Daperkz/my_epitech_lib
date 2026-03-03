@@ -12,9 +12,9 @@
 
 typedef ll_t stack_t;
 
-#define stack_create() ll_create()
-#define stack_push(s, data) ll_insert(s, data)
-#define stack_pop(s) ll_pop_head(s)
-#define stack_is_empty(s) ((s)->len == 0)
+#define STACK_CREATE() ll_create()
+#define STACK_PUSH(s, data) ll_insert(s, data)
+#define STACK_POP(s) ll_pop_head(s)
+#define STACK_IS_EMPTY(s) ((s)->len == 0)
 
 #endif /* !STACK_H_ */
