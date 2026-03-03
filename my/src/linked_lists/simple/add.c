@@ -38,7 +38,7 @@ int ll_append(ll_t *list, void *data)
         list->head = new_node;
     } else {
         tmp = list->head;
-        while (!tmp->next)
+        while (tmp->next)
             tmp = tmp->next;
         list->head->next = new_node;
     }
