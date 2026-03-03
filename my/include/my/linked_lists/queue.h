@@ -8,13 +8,13 @@
 #ifndef QUEUE_H_
     #define QUEUE_H_
 
-    #include "simple_linked_list.h"
+    #include "double_linked_list.h"
 
-typedef ll_t queue_t;
+typedef dll_t queue_t;
 
-#define queue_create() ll_create()
-#define queue_enqueue(q, data) ll_append(q, data)
-#define queue_dequeue(q) ll_pop_front(q)
+#define queue_create() dll_create()
+#define queue_enqueue(q, data) dll_insert(q, data)
+#define queue_dequeue(q) dll_pop_queue(q)
 #define queue_is_empty(q) ((q)->len == 0)
 
 
