@@ -22,7 +22,7 @@ int dll_append(dll_t *list, void *data);
 int dll_insert(dll_t *list, void *data);
 
 void *dll_pop_head(dll_t *list);
-void *dll_pop_queue(dll_t *list);
+void *dll_pop_tail(dll_t *list);
 
 void *dll_get(dll_t *list, void *ref, int (*cmp)(void *, void *));
 void *dll_pop(dll_t *list, void *ref, int (*cmp)(void *, void *));
