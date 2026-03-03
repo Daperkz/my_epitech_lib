@@ -28,6 +28,7 @@ MATH_D	=	$(SRC_D)math/
 UTILS_D	=	$(SRC_D)utils/
 FILE_D	=	$(SRC_D)file/
 MY_PRINTF_D	=	$(SRC_D)printf/
+LINKED_LISTS_D	=	$(SRC_D)linked_lists/
 
 # -_- Directories located in $(STRING_D) = ./src/string/ -_-
 COMPARAISON_D	=	$(STRING_D)comparaison/
@@ -39,6 +40,12 @@ WORD_ARRAY_D	=	$(STRING_D)word_array/
 # -_- Directories located in $(MY_PRINTF_D) = ./src/printf/ -_-
 MY_PRINTF_UTILS_D	=	$(MY_PRINTF_D)utils/
 MY_PRINTF_PARAM_D	=	$(MY_PRINTF_D)parameters/
+
+# -_- Directories located in $(LINKED_LISTS_D) = ./src/linked_lists/ -_-
+NODE_LL_D	=	$(LINKED_LISTS_D)node/
+SIMPLE_LL_D	=	$(LINKED_LISTS_D)simple/
+DOUBLE_LL_D	=	$(LINKED_LISTS_D)double/
+
 
 # -_- Files located in $(IO_D) = ./src/io/ -_-
 IO_F	=	my_putchar.c	\
@@ -136,6 +143,21 @@ MY_PRINTF_PARAM_F	=	parameter_int.c \
 						parameter_p.c \
 						parameter_n.c
 
+NODE_LL_F	=	create.c	\
+				destroy.c
+
+SIMPLE_LL_F	=	create.c	\
+				add.c	\
+				get.c	\
+				pop.c	\
+				destroy.c
+
+DOUBLE_LL_F	=	create.c	\
+				add.c	\
+				get.c	\
+				pop.c	\
+				destroy.c
+
 # -_- Files located in $(SRC_D) = ./src/ -_-
 SRC	=	$(addprefix $(IO_D), $(IO_F)) 	\
 		$(addprefix $(COMPARAISON_D), $(COMPARAISON_F))	\
@@ -149,6 +171,9 @@ SRC	=	$(addprefix $(IO_D), $(IO_F)) 	\
 		$(addprefix $(MY_PRINTF_D), $(MY_PRINTF_F))	\
 		$(addprefix $(MY_PRINTF_UTILS_D), $(MY_PRINTF_UTILS_F))	\
 		$(addprefix $(MY_PRINTF_PARAM_D), $(MY_PRINTF_PARAM_F))	\
+		$(addprefix $(NODE_LL_D), $(NODE_LL_F))	\
+		$(addprefix $(SIMPLE_LL_D), $(SIMPLE_LL_F))	\
+		$(addprefix $(DOUBLE_LL_D), $(DOUBLE_LL_F))	\
 
 # -_- puts all .c files wherever they come from into the bin folder as a .o -_-
 OBJ	=	$(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)

@@ -19,4 +19,3 @@ ll_t *ll_create(void)
     list->len = 0;
     return (list);
 }
-

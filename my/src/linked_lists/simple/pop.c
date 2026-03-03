@@ -5,7 +5,7 @@
 ** pop
 */
 
-#include "my/macro.h"
+#include <stdlib.h>
 
 #include "my/linked_lists/simple_linked_list.h"
 
