@@ -149,12 +149,14 @@ NODE_LL_F	=	create.c	\
 SIMPLE_LL_F	=	create.c	\
 				add.c	\
 				get.c	\
+				dump.c	\
 				pop.c	\
 				destroy.c
 
 DOUBLE_LL_F	=	create.c	\
 				add.c	\
 				get.c	\
+				dump.c	\
 				pop.c	\
 				destroy.c
 

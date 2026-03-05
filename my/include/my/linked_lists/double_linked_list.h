@@ -24,6 +24,8 @@ int dll_insert(dll_t *list, void *data);
 void *dll_pop_head(dll_t *list);
 void *dll_pop_tail(dll_t *list);
 
+void dll_dump(dll_t *list, void (*dump_data)(void *));
+
 void *dll_get(dll_t *list, void *ref, int (*cmp)(void *, void *));
 void *dll_pop(dll_t *list, void *ref, int (*cmp)(void *, void *));
 

@@ -23,6 +23,8 @@ int ll_insert(ll_t *list, void *data);
 
 void *ll_get(ll_t *list, void *ref, int (*cmp)(void *, void *));
 
+void ll_dump(ll_t *list, void (*dump_data)(void *));
+
 void *ll_pop_head(ll_t *list);
 void *ll_pop(ll_t *list, void *ref, int (*cmp)(void *, void *));
 
