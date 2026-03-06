@@ -29,6 +29,7 @@ UTILS_D	=	$(SRC_D)utils/
 FILE_D	=	$(SRC_D)file/
 MY_PRINTF_D	=	$(SRC_D)printf/
 LINKED_LISTS_D	=	$(SRC_D)linked_lists/
+HASHTABLE_D	=	$(SRC_D)hashtable/
 
 # -_- Directories located in $(STRING_D) = ./src/string/ -_-
 COMPARAISON_D	=	$(STRING_D)comparaison/
@@ -143,9 +144,11 @@ MY_PRINTF_PARAM_F	=	parameter_int.c \
 						parameter_p.c \
 						parameter_n.c
 
+# -_- Files located in $(NODE_LL_D) = ./src/linked_lists/node/ -_-
 NODE_LL_F	=	create.c	\
 				destroy.c
 
+# -_- Files located in $(SIMPLE_LL_D) = ./src/linked_lists/simple/ -_-
 SIMPLE_LL_F	=	create.c	\
 				add.c	\
 				get.c	\
@@ -153,11 +156,21 @@ SIMPLE_LL_F	=	create.c	\
 				pop.c	\
 				destroy.c
 
+# -_- Files located in $(DOUBLE_LL_D) = ./src/linked_lists/double/ -_-
 DOUBLE_LL_F	=	create.c	\
 				add.c	\
 				get.c	\
 				dump.c	\
 				pop.c	\
+				destroy.c
+
+# -_- Files located in $(HASHTABLE_D) = ./src/hashtable/ -_-
+HASHTABLE_F	=	create.c	\
+				insert.c	\
+				pop.c	\
+				get.c	\
+				dump.c	\
+				hash.c	\
 				destroy.c
 
 # -_- Files located in $(SRC_D) = ./src/ -_-
@@ -176,6 +189,7 @@ SRC	=	$(addprefix $(IO_D), $(IO_F)) 	\
 		$(addprefix $(NODE_LL_D), $(NODE_LL_F))	\
 		$(addprefix $(SIMPLE_LL_D), $(SIMPLE_LL_F))	\
 		$(addprefix $(DOUBLE_LL_D), $(DOUBLE_LL_F))	\
+		$(addprefix $(HASHTABLE_D), $(HASHTABLE_F))
 
 # -_- puts all .c files wherever they come from into the bin folder as a .o -_-
 OBJ	=	$(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)
