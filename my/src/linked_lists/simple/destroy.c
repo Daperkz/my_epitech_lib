@@ -17,7 +17,7 @@ void ll_destroy(ll_t *list, void (*free_data)(void *))
     if (!list)
         return;
     current = list->head;
-    for (int i = 0; i < list->len; i++) {
+    while (current) {
         next = current->next;
         destroy_node(current, free_data);
         current = next;

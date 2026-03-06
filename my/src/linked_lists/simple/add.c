@@ -40,7 +40,7 @@ int ll_append(ll_t *list, void *data)
         tmp = list->head;
         while (tmp->next)
             tmp = tmp->next;
-        list->head->next = new_node;
+        tmp->next = new_node;
     }
     list->len++;
     return (EXIT_SUCCESS);

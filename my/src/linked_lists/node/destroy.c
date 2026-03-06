@@ -13,7 +13,7 @@ void destroy_node(node_t *node, void (*free_data)(void *))
 {
     if (!node)
         return;
-    if (!free_data && !node->data)
+    if (free_data && node->data)
         free_data(node->data);
     free(node);
 }
