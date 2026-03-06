@@ -18,5 +18,6 @@
     #include "my/utils.h"
 
     #include "my/linked_lists.h"
+    #include "my/hashtable.h"
 
 #endif /* !MY_H_ */
