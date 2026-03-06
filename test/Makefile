@@ -2,47 +2,52 @@
 ## EPITECH PROJECT, 2025
 ## Makefile
 ## File description:
-## lib makefile
+## test Lakefile
 ##
 
 NAME	=	test_mylib
 CC	=	epiclang
 
-LIB_F	=	../lib/
-INCLUDE	=	$(LIB_F)include/
+ROOT_DIR	=	./
+LIB_DIR	=	../my/
 
-CFLAGS	=	-I$(INCLUDE)
-LDFLAGS	=	-lcriterion -L$(LIB_F) -lmy
+INCLUDE	=	$(LIB_DIR)include/
 
-SRC_F	=	./src/
-SRC	=	test_my.c
+CFLAGS	=	-I$(INCLUDE) -g3
+LDFLAGS	=	-lcriterion -L$(LIB_DIR) -lmy
 
-BIN	=	./bin/
+SRC_D	=	$(ROOT_DIR)src/
+OBJ_D	=	$(ROOT_DIR)obj/
 
-OBJ	=	$(addprefix $(BIN), $(notdir $(SRC:.c=.o)))
 
-VPATH	=	$(SRC_F)
+SRC	=	$(addprefix $(SRC_D), test_io.c)	\
 
-.PHONY: fclean clean	re	run_tests
+OBJ	=	$(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)
 
 all:	$(NAME)
 
-
 $(NAME):	$(OBJ)
-	$(CC) $(OBJ) -o $(NAME) $(CFLAGS) $(LDFLAGS)
+	$(MAKE) -C $(LIB_DIR)
+	$(CC) $^ -o $(NAME) $(CFLAGS) $(LDFLAGS)
 
-$(BIN)%.o:	%.c
-	mkdir -p $(BIN)
+$(OBJ_D):
+	@mkdir -p $(OBJ_D)
+
+$(OBJ_D)%.o:	$(SRC_D)%.c	|	$(OBJ_D)
 	$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
-	rm -f $(OBJ)
-	rmdir $(BIN)
+	$(MAKE) clean -C $(LIB_DIR)
+	rm -rf $(OBJ_D)
 
-fclean: clean
+fclean:
+	$(MAKE) fclean -C $(LIB_DIR)
+	rm -rf $(OBJ_D)
 	rm -f $(NAME)
 
 re: fclean $(NAME)
 
-run_tests:	$(NAME)
+run:	$(NAME)
 	./$(NAME)
+
+.PHONY: all	fclean clean	re	run
