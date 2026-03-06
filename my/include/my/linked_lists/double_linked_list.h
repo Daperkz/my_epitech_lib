@@ -9,6 +9,7 @@
     #define DOUBLE_LINKED_LIST_H_
 
     #include "node.h"
+
 typedef struct double_linked_list_s {
     dnode_t *head;
     dnode_t *tail;

@@ -21,6 +21,10 @@ OBJ_D	=	$(ROOT_DIR)obj/
 
 
 SRC	=	$(addprefix $(SRC_D), test_io.c)	\
+		$(addprefix $(SRC_D), test_string.c)	\
+		$(addprefix $(SRC_D), test_utils.c)	\
+		$(addprefix $(SRC_D), test_math.c)	\
+		$(addprefix $(SRC_D), test_file.c)	\
 
 OBJ	=	$(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)
 

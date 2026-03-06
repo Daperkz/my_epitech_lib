@@ -10,12 +10,12 @@
 
     #include "my/macro.h"
 
-    #include "my/file.h"
     #include "my/io.h"
-    #include "my/math.h"
-    #include "my/printf.h"
     #include "my/string.h"
     #include "my/utils.h"
+    #include "my/math.h"
+    #include "my/file.h"
+    #include "my/printf.h"
 
     #include "my/linked_lists.h"
     #include "my/hashtable.h"

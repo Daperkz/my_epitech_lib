@@ -105,7 +105,8 @@ MATH_F	=	my_isneg.c	\
 			my_ipow.c	\
 			my_factorial.c	\
 			my_rounds.c	\
-			my_nbrlen.c
+			my_nbrlen.c	\
+			my_sign.c
 
 # -_- Files located in $(UTILS_D) = ./src/utils/ -_-
 UTILS_F	=	my_swap.c	\
@@ -180,8 +181,8 @@ SRC	=	$(addprefix $(IO_D), $(IO_F)) 	\
 		$(addprefix $(MANIPULATION_D), $(MANIPULATION_F))	\
 		$(addprefix $(SEARCH_D), $(SEARCH_F))	\
 		$(addprefix $(WORD_ARRAY_D), $(WORD_ARRAY_F))	\
-		$(addprefix $(MATH_D), $(MATH_F))	\
 		$(addprefix $(UTILS_D), $(UTILS_F))	\
+		$(addprefix $(MATH_D), $(MATH_F))	\
 		$(addprefix $(FILE_D), $(FILE_F))	\
 		$(addprefix $(MY_PRINTF_D), $(MY_PRINTF_F))	\
 		$(addprefix $(MY_PRINTF_UTILS_D), $(MY_PRINTF_UTILS_F))	\
