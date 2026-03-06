@@ -29,16 +29,19 @@ int my_put_nbr(int nb)
 int my_put_nbr_base(int nb, char *base)
 {
     int base_size = my_strlen(base);
+    long n = nb;
 
-    if (nb < 0) {
+    if (base_size <= 1)
+        return 0;
+    if (n < 0) {
         my_putchar('-');
-        nb *= -1;
+        n *= -1;
     }
-    if (nb >= base_size) {
-        my_put_nbr_base(nb / base_size, base);
-        my_put_nbr_base(nb % base_size, base);
+    if (n >= base_size) {
+        my_put_nbr_base((int)(n / base_size), base);
+        my_put_nbr_base((int)(n % base_size), base);
     } else {
-        my_putchar(base[nb]);
+        my_putchar(base[n]);
     }
     return 0;
 }

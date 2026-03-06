@@ -46,6 +46,12 @@ Test(my_put_nbr, limits, .init = cr_redirect_stdout)
     cr_assert_stdout_eq_str("-2147483647");
 }
 
+Test(my_put_nbr, zero_case, .init = cr_redirect_stdout)
+{
+    my_put_nbr(0);
+    cr_assert_stdout_eq_str("0");
+}
+
 Test(my_put_nbr_base, hex_base, .init = cr_redirect_stdout)
 {
     my_put_nbr_base(255, "0123456789ABCDEF");
@@ -58,6 +64,12 @@ Test(my_put_nbr_base, binary_base, .init = cr_redirect_stdout)
     cr_assert_stdout_eq_str("1010");
 }
 
+Test(my_put_nbr_base, invalid_base, .init = cr_redirect_stdout)
+{
+    int ret = my_put_nbr_base(42, "0");
+    cr_assert_eq(ret, 0);
+}
+
 Test(my_show_word_array, basic, .init = cr_redirect_stdout)
 {
     char *tab[] = {"Hello", "World", NULL};
@@ -65,9 +77,42 @@ Test(my_show_word_array, basic, .init = cr_redirect_stdout)
     cr_assert_stdout_eq_str("Hello\nWorld\n");
 }
 
+Test(my_show_word_array, single_element, .init = cr_redirect_stdout)
+{
+    char *tab[] = {"OnlyOne", NULL};
+    my_show_word_array(tab);
+    cr_assert_stdout_eq_str("OnlyOne\n");
+}
+
+Test(my_show_word_array, null_element, .init = cr_redirect_stdout)
+{
+    char **tab = NULL;
+    my_show_word_array(tab);
+    cr_assert_stdout_eq_str("");
+}
+
 Test(my_showstr, non_printable, .init = cr_redirect_stdout)
 {
     char str[] = {27, 'a', 0};
     my_showstr(str);
     cr_assert_stdout_eq_str("\\1ba");
+}
+
+Test(my_showstr, null_pointer, .init = cr_redirect_stdout)
+{
+    my_showstr(NULL);
+    cr_assert_stdout_eq_str("");
+}
+
+Test(my_showmem, basic_content_check, .init = cr_redirect_stdout)
+{
+    char *test_str = "Hello";
+    my_showmem(test_str, 5);
+    cr_assert_stdout_eq_str("^[0-9a-f]{8}:.*4865 6c6c 6f.*Hello.*");
+}
+
+Test(my_showmem, null_handling, .init = cr_redirect_stdout)
+{
+    my_showmem(NULL, 10);
+    cr_assert_stdout_eq_str("");
 }

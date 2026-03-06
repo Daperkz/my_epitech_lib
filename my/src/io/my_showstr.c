@@ -7,6 +7,7 @@
 ** with a backslash before the given value.
 */
 
+#include "my/macro.h"
 #include "my/io.h"
 
 static void leading_zero(char c)
@@ -17,6 +18,8 @@ static void leading_zero(char c)
 
 int my_showstr(char const *str)
 {
+    if (!str)
+        return (EXIT_FAILURE);
     while (*str) {
         if (*str < 32 || *str > 126) {
             my_putchar('\\');
@@ -27,5 +30,5 @@ int my_showstr(char const *str)
         }
         str++;
     }
-    return 0;
+    return (EXIT_SUCCESS);
 }
