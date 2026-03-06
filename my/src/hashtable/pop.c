@@ -14,7 +14,6 @@ static int compare_keys(void *data, void *ref)
     return my_strcmp(((ht_buckets_t *)data)->key, (char *)ref);
 }
 
-// checking the whole array if it is more than one
 void *ht_pop(ht_t *ht, char *key)
 {
     int index = 0;
