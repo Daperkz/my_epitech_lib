@@ -6,7 +6,7 @@
 ##
 
 NAME	=	libmy.a
-CC	?=	epiclang
+CC	=	epiclang
 
 ROOT_DIR	=	./
 
@@ -15,7 +15,7 @@ INCLUDE	=	$(ROOT_DIR)include/
 # -_- Internal / Private include for my_printf = ./src/printf/private -_-
 MY_PRINTF_INCLUDE	=	$(ROOT_DIR)src/printf/private
 
-CFLAGS	=	-I$(INCLUDE) -I$(MY_PRINTF_INCLUDE) -Wall -Wextra -g3 -MMD -MP
+override CFLAGS	+=	-I$(INCLUDE) -I$(MY_PRINTF_INCLUDE) -g3 -Wall -Wextra -MMD -MP
 
 OBJ_D	=	$(ROOT_DIR)obj/
 

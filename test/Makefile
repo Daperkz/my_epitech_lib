@@ -8,12 +8,15 @@
 NAME	=	test_mylib
 CC	=	epiclang
 
+REPO_DIR	=	../
 ROOT_DIR	=	./
-LIB_DIR	=	../my/
+LIB_DIR	=	$(REPO_DIR)my/
+TEST_DIR	=	$(REPO_DIR)test/
 
 INCLUDE	=	$(LIB_DIR)include/
 
-CFLAGS	=	-I$(INCLUDE) -Wall -Wextra -g3 --coverage -fprofile-arcs -ftest-coverage -MMD -MP
+FLAGS_LIB	=	--coverage -fprofile-arcs -ftest-coverage
+CFLAGS	=	-I$(INCLUDE) -Wall -Wextra -g3 -MMD -MP
 LDFLAGS	=	-lcriterion -L$(LIB_DIR) -lmy --coverage
 
 SRC_D	=	$(ROOT_DIR)src/
@@ -33,7 +36,7 @@ DEP	=	$(OBJ:.o=.d)
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	$(MAKE) -C $(LIB_DIR)
+	$(MAKE) CFLAGS+="$(FLAGS_LIB)" -C $(LIB_DIR)
 	$(CC) $^ -o $(NAME) $(CFLAGS) $(LDFLAGS)
 
 $(OBJ_D):
@@ -55,8 +58,7 @@ run:	$(NAME)
 	-./$(NAME)
 
 coverage:	run
-	@gcovr --root $(LIB_DIR) --object-directory $(OBJ_D) --exclude $(SRC_D)
-	@gcovr --root $(LIB_DIR) --object-directory $(OBJ_D) --exclude $(SRC_D) --branches
+	@gcovr --gcov-executable "llvm-cov gcov" --root $(REPO_DIR) --print-summary --filter $(LIB_DIR)src/ --exclude $(TEST_DIR)
 
 -include $(DEP)
 
