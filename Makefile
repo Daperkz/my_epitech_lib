@@ -27,7 +27,10 @@ re: fclean all
 test:
 	@$(MAKE) -C $(TEST_D)
 
-test_run:	test
+test_run:
 	@$(MAKE) run -C $(TEST_D)
+
+test_coverage:
+	@$(MAKE) coverage -C $(TEST_D)
 
 .PHONY:	all	clean	fclean	re	test	test_run

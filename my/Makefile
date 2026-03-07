@@ -6,7 +6,7 @@
 ##
 
 NAME	=	libmy.a
-CC	=	epiclang
+CC	?=	epiclang
 
 ROOT_DIR	=	./
 
@@ -15,7 +15,7 @@ INCLUDE	=	$(ROOT_DIR)include/
 # -_- Internal / Private include for my_printf = ./src/printf/private -_-
 MY_PRINTF_INCLUDE	=	$(ROOT_DIR)src/printf/private
 
-CFLAGS	=	-I$(INCLUDE) -I$(MY_PRINTF_INCLUDE) -g3 -Wall -Wextra
+CFLAGS	=	-I$(INCLUDE) -I$(MY_PRINTF_INCLUDE) -Wall -Wextra -g3 -MMD -MP
 
 OBJ_D	=	$(ROOT_DIR)obj/
 
@@ -203,6 +203,7 @@ SRC	=	$(addprefix $(IO_D), $(IO_F)) 	\
 # -_- puts all .c files wherever they come from into the bin folder as a .o -_-
 OBJ	=	$(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)
 
+DEP	=	$(OBJ:.o=.d)
 
 ##	## --__-- PROGRESS BAR LOGIC --__--
 ##	TOTAL_FILES := $(words $(SRC))
@@ -253,7 +254,9 @@ fclean: clean
 re: fclean $(NAME)
 
 bestre:
-	make fclean
-	make -j4
+	$(MAKE) fclean
+	$(MAKE) -j$$(nproc)
+
+-include $(DEP)
 
 .PHONY:	all	clean	fclean	re	bestre

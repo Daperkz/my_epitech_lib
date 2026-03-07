@@ -1,7 +1,11 @@
-*.o
-main.c
-a.out
-*.a
 .vscode
-test_mylib
+obj/
+main.c
 hand_test.c
+*.o
+*.d
+*.gcno
+*.gcda
+*.a
+*.out
+test_mylib
