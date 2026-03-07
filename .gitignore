@@ -8,4 +8,5 @@ hand_test.c
 *.gcda
 *.a
 *.out
+gcov_result.txt
 test_mylib

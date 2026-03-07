@@ -19,9 +19,10 @@ FLAGS_LIB	=	--coverage -fprofile-arcs -ftest-coverage
 CFLAGS	=	-I$(INCLUDE) -Wall -Wextra -g3 -MMD -MP
 LDFLAGS	=	-lcriterion -L$(LIB_DIR) -lmy --coverage
 
+COVERAGE_F	=	gcov_result.txt
+
 SRC_D	=	$(ROOT_DIR)src/
 OBJ_D	=	$(ROOT_DIR)obj/
-
 
 SRC	=	$(addprefix $(SRC_D), test_io.c)	\
 		$(addprefix $(SRC_D), test_string.c)	\
@@ -51,6 +52,7 @@ clean:
 fclean:
 	rm -rf $(OBJ_D)
 	rm -f $(NAME)
+	rm -f $(COVERAGE_F)
 
 re: fclean $(NAME)
 
@@ -58,7 +60,8 @@ run:	$(NAME)
 	-./$(NAME)
 
 coverage:	run
-	@gcovr --gcov-executable "llvm-cov gcov" --root $(REPO_DIR) --print-summary --filter $(LIB_DIR)src/ --exclude $(TEST_DIR)
+	@touch $(COVERAGE_F)
+	@gcovr --gcov-executable "llvm-cov gcov" --root $(REPO_DIR) --print-summary --filter $(LIB_DIR)src/ --exclude $(TEST_DIR) --branches > $(COVERAGE_F)
 
 -include $(DEP)
 
