@@ -52,7 +52,7 @@ fclean:
 re: fclean $(NAME)
 
 run:	$(NAME)
-	./$(NAME)
+	-./$(NAME)
 
 coverage:	run
 	@gcovr --root $(LIB_DIR) --object-directory $(OBJ_D) --exclude $(SRC_D)
