@@ -9,7 +9,6 @@
     #define MINILIB_H
 
     #include <stdlib.h>
-    #include "count_error.h"
 
 char *my_put_float_hex(double nb, char *base);
 char *my_put_scientific(double nb, char *base, int cap);

@@ -41,6 +41,7 @@ WORD_ARRAY_D	=	$(STRING_D)word_array/
 # -_- Directories located in $(MY_PRINTF_D) = ./src/printf/ -_-
 MY_PRINTF_UTILS_D	=	$(MY_PRINTF_D)utils/
 MY_PRINTF_PARAM_D	=	$(MY_PRINTF_D)parameters/
+MY_PRINTF_MODIFIER_D	=	$(MY_PRINTF_D)modifiers/
 
 # -_- Directories located in $(LINKED_LISTS_D) = ./src/linked_lists/ -_-
 NODE_LL_D	=	$(LINKED_LISTS_D)node/
@@ -126,7 +127,7 @@ FILE_F	=	open_file.c	\
 
 # -_- Files located in $(MY_PRINTF_D) = ./src/printf/ -_-
 MY_PRINTF_F	=	my_printf.c	\
-				switch_base_flag.c
+				parser.c
 
 # -_- Files located in $(MY_PRINTF_UTILS_D) = ./src/printf/utils/ -_-
 MY_PRINTF_UTILS_F	=	my_put_float_hex.c \
@@ -144,6 +145,12 @@ MY_PRINTF_PARAM_F	=	parameter_int.c \
 						parameter_chars.c \
 						parameter_p.c \
 						parameter_n.c
+
+# -_- Files located in $(MY_PRINTF_MODIFIER_D) = ./src/printf/src/modifiers/ -_-
+MY_PRINTF_MODIFIER_F	=	precision.c \
+							width.c	\
+							signs.c	\
+							sharp.c
 
 # -_- Files located in $(NODE_LL_D) = ./src/linked_lists/node/ -_-
 NODE_LL_F	=	create.c	\
@@ -187,6 +194,7 @@ SRC	=	$(addprefix $(IO_D), $(IO_F)) 	\
 		$(addprefix $(MY_PRINTF_D), $(MY_PRINTF_F))	\
 		$(addprefix $(MY_PRINTF_UTILS_D), $(MY_PRINTF_UTILS_F))	\
 		$(addprefix $(MY_PRINTF_PARAM_D), $(MY_PRINTF_PARAM_F))	\
+		$(addprefix $(MY_PRINTF_MODIFIER_D), $(MY_PRINTF_MODIFIER_F))	\
 		$(addprefix $(NODE_LL_D), $(NODE_LL_F))	\
 		$(addprefix $(SIMPLE_LL_D), $(SIMPLE_LL_F))	\
 		$(addprefix $(DOUBLE_LL_D), $(DOUBLE_LL_F))	\
