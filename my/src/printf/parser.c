@@ -71,7 +71,7 @@ static int parse_info(const char *format, pf_info_t *info, va_list args)
             info->zero = 1;
         i++;
     }
-    i += parse_width_precision(format, info, args);
+    i += parse_width_precision(format + i, info, args);
     return (i);
 }
 

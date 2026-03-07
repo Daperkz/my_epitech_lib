@@ -14,6 +14,7 @@
 static void fill_padding(char *new, char *str, pf_info_t *info, int pad)
 {
     int len = my_strlen(str);
+    int is_neg = (str[0] == '-' && info->zero && !info->left);
     char c = (info->zero && !info->left) ? '0' : ' ';
 
     if (info->left) {
@@ -21,9 +22,11 @@ static void fill_padding(char *new, char *str, pf_info_t *info, int pad)
         for (int i = len; i < info->width; i++)
             new[i] = ' ';
     } else {
+        if (is_neg)
+            new[0] = '-';
         for (int i = 0; i < pad; i++)
-            new[i] = c;
-        my_strcpy(new + pad, str);
+            new[i + is_neg] = c;
+        my_strcpy(new + pad + is_neg, str + is_neg);
     }
 }
 
