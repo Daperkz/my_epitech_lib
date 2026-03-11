@@ -58,10 +58,12 @@ re: fclean $(NAME)
 
 run:	$(NAME)
 	-./$(NAME)
+	@printf "\033[1;32m%s\033[0m\n" "Test ran."
 
 coverage:	run
 	@touch $(COVERAGE_F)
 	@gcovr --gcov-executable "llvm-cov gcov" --root $(REPO_DIR) --print-summary --filter $(LIB_DIR)src/ --exclude $(TEST_DIR) --branches > $(COVERAGE_F)
+	@printf "\033[1;32m%s\033[0m\n" "Coverage Calculated."
 
 -include $(DEP)
 
