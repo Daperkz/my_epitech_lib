@@ -30,6 +30,7 @@ FILE_D	=	$(SRC_D)file/
 MY_PRINTF_D	=	$(SRC_D)printf/
 LINKED_LISTS_D	=	$(SRC_D)linked_lists/
 HASHTABLE_D	=	$(SRC_D)hashtable/
+CONFIG_D	=	$(SRC_D)config/
 
 # -_- Directories located in $(STRING_D) = ./src/string/ -_-
 COMPARAISON_D	=	$(STRING_D)comparaison/
@@ -181,6 +182,8 @@ HASHTABLE_F	=	create.c	\
 				hash.c	\
 				destroy.c
 
+CONFIG_F	=	create.c
+
 # -_- Files located in $(SRC_D) = ./src/ -_-
 SRC	=	$(addprefix $(IO_D), $(IO_F)) 	\
 		$(addprefix $(COMPARAISON_D), $(COMPARAISON_F))	\
@@ -198,7 +201,8 @@ SRC	=	$(addprefix $(IO_D), $(IO_F)) 	\
 		$(addprefix $(NODE_LL_D), $(NODE_LL_F))	\
 		$(addprefix $(SIMPLE_LL_D), $(SIMPLE_LL_F))	\
 		$(addprefix $(DOUBLE_LL_D), $(DOUBLE_LL_F))	\
-		$(addprefix $(HASHTABLE_D), $(HASHTABLE_F))
+		$(addprefix $(HASHTABLE_D), $(HASHTABLE_F))	\
+		$(addprefix $(CONFIG_D), $(CONFIG_F))
 
 # -_- puts all .c files wherever they come from into the bin folder as a .o -_-
 OBJ	=	$(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)
