@@ -27,13 +27,13 @@ re: fclean all
 bestre:
 	@$(MAKE) bestre -C $(LIB_D) --no-print-directory
 
-test:
+test:	fclean
 	@$(MAKE) -C $(TEST_D) --no-print-directory
 
-test_run:
+test_run:	fclean
 	@$(MAKE) run -C $(TEST_D) --no-print-directory
 
-test_coverage:
+test_coverage:	fclean
 	@$(MAKE) coverage -C $(TEST_D) --no-print-directory
 
 .PHONY:	all	clean	fclean	re	bestre	test	test_run
