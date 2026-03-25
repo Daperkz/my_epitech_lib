@@ -12,28 +12,28 @@ LIB_D	=	$(ROOT_DIR)my/
 TEST_D	=	$(ROOT_DIR)test/
 
 all:
-	@$(MAKE) --no-print-directory -C $(LIB_D)
+	@$(MAKE) -C $(LIB_D) --no-print-directory
 
 clean:
-	@$(MAKE) --no-print-directory -C $(LIB_D) clean
-	@$(MAKE) --no-print-directory -C $(TEST_D) clean
+	@$(MAKE) -C $(LIB_D) clean --no-print-directory
+	@$(MAKE) -C $(TEST_D) clean --no-print-directory
 
 fclean:
-	@$(MAKE) --no-print-directory -C $(LIB_D) fclean
-	@$(MAKE) --no-print-directory -C $(TEST_D) fclean
+	@$(MAKE) -C $(LIB_D) fclean --no-print-directory
+	@$(MAKE) -C $(TEST_D) fclean --no-print-directory
 
 re: fclean all
 
 bestre:
-	@$(MAKE) bestre --no-print-directory -C $(LIB_D)
+	@$(MAKE) bestre -C $(LIB_D) --no-print-directory
 
 test:
-	@$(MAKE) --no-print-directory -C $(TEST_D)
+	@$(MAKE) -C $(TEST_D) --no-print-directory
 
 test_run:
-	@$(MAKE) run --no-print-directory -C $(TEST_D)
+	@$(MAKE) run -C $(TEST_D) --no-print-directory
 
 test_coverage:
-	@$(MAKE) coverage --no-print-directory -C $(TEST_D)
+	@$(MAKE) coverage -C $(TEST_D) --no-print-directory
 
 .PHONY:	all	clean	fclean	re	bestre	test	test_run
