@@ -18,7 +18,9 @@ static int process_line(config_t *config, char *line)
     if (!line || *line == '#' || *line == ';' || *line == '\0')
         return (EXIT_SUCCESS);
     key = my_strsep(&line, "=");
-    value = line;
+    value = my_strdup(line);
+    if (!value)
+        return (EXIT_FAILURE);
     if (key && value) {
         if (ht_insert(config, key, value) == EXIT_FAILURE)
             return (EXIT_FAILURE);

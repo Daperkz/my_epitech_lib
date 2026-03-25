@@ -33,9 +33,10 @@ void conf_cleanup(void)
 Test(config, basic_parsing, .fini = conf_cleanup)
 {
     char const *content = "key=value\nport=8080\npi=3.14\n";
-    config_t *conf = config_create("test_basic.conf", 10);
+    config_t *conf;
 
     create_test_config("test_basic.conf", content);
+    conf = config_create("test_basic.conf", 10);
     cr_assert_not_null(conf, "Config should not be NULL");
     cr_assert_str_eq(CONFIG_GET(conf, "key"), "value");
     cr_assert_eq(CONFIG_GET_INT(conf, "port"), 8080);
@@ -49,9 +50,10 @@ Test(config, comments_and_empty_lines, .fini = conf_cleanup)
     char const *content = (
         "# This is a comment\n\n  \nname=daperkz\n; Another comment\nversion=3"
     );
-    config_t *conf = config_create("test_noise.conf", 10);
+    config_t *conf = NULL;
 
     create_test_config("test_noise.conf", content);
+    conf = config_create("test_noise.conf", 10);
     cr_assert_not_null(conf);
     cr_assert_str_eq(CONFIG_GET(conf, "name"), "daperkz");
     cr_assert_eq(CONFIG_GET_INT(conf, "version"), 3);
