@@ -42,7 +42,7 @@ COMPARAISON_D	=	$(STRING_D)comparaison/
 CONVERT_D	=	$(STRING_D)convert/
 MANIPULATION_D	=	$(STRING_D)manipulation/
 SEARCH_D	=	$(STRING_D)search/
-STRING_ARRAY_D	=	$(STRING_D)string_array/
+STRING_ARRAY_D	=	$(STRING_D)array/
 
 # -_- Directories located in $(MY_PRINTF_D) = ./src/printf/ -_-
 MY_PRINTF_UTILS_D	=	$(MY_PRINTF_D)utils/

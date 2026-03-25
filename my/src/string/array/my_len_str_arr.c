@@ -7,13 +7,12 @@
 
 long my_len_str_arr(char **str_arr)
 {
-    long len = 0;
+    char **start;
 
     if (!str_arr)
         return (0);
-    while (*str_arr) {
-        len++;
+    start = str_arr;
+    while (*str_arr)
         str_arr++;
-    }
-    return (len);
+    return (str_arr - start);
 }
