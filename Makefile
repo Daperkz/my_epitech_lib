@@ -12,25 +12,28 @@ LIB_D	=	$(ROOT_DIR)my/
 TEST_D	=	$(ROOT_DIR)test/
 
 all:
-	@$(MAKE) -C $(LIB_D)
+	@$(MAKE) --no-print-directory -C $(LIB_D)
 
 clean:
-	@$(MAKE) -C $(LIB_D) clean
-	@$(MAKE) -C $(TEST_D) clean
+	@$(MAKE) --no-print-directory -C $(LIB_D) clean
+	@$(MAKE) --no-print-directory -C $(TEST_D) clean
 
 fclean:
-	@$(MAKE) -C $(LIB_D) fclean
-	@$(MAKE) -C $(TEST_D) fclean
+	@$(MAKE) --no-print-directory -C $(LIB_D) fclean
+	@$(MAKE) --no-print-directory -C $(TEST_D) fclean
 
 re: fclean all
 
+bestre:
+	@$(MAKE) bestre --no-print-directory -C $(LIB_D)
+
 test:
-	@$(MAKE) -C $(TEST_D)
+	@$(MAKE) --no-print-directory -C $(TEST_D)
 
 test_run:
-	@$(MAKE) run -C $(TEST_D)
+	@$(MAKE) run --no-print-directory -C $(TEST_D)
 
 test_coverage:
-	@$(MAKE) coverage -C $(TEST_D)
+	@$(MAKE) coverage --no-print-directory -C $(TEST_D)
 
-.PHONY:	all	clean	fclean	re	test	test_run
+.PHONY:	all	clean	fclean	re	bestre	test	test_run

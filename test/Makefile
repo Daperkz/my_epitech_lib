@@ -41,7 +41,7 @@ DEP	=	$(OBJ:.o=.d)
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	$(MAKE) CFLAGS+="$(FLAGS_LIB)" -C $(LIB_DIR)
+	$(MAKE) CFLAGS+="$(FLAGS_LIB)" -C $(LIB_DIR) --no-print-directory
 	$(CC) $^ -o $(NAME) $(CFLAGS) $(LDFLAGS)
 
 $(OBJ_D)%.o:	$(SRC_D)%.c
