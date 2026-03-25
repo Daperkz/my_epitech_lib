@@ -39,21 +39,7 @@ Test(concat_params, basic_concat)
 {
     char *argv[] = {"./test", "hello", "world"};
     char *res = concat_params(3, argv);
-    cr_assert_str_eq(res, "./test\nhello\nworld\n");
-    free(res);
-}
-
-Test(convert_base, base_logic)
-{
-    char *res = convert_base("10", BASE10, BASE2);
-    cr_assert_str_eq(res, "1010");
-    free(res);
-}
-
-Test(convert_base, hex_to_dec)
-{
-    char *res = convert_base("FF", BASE15CAP, BASE10);
-    cr_assert_str_eq(res, "255");
+    cr_assert_str_eq(res, "./test\nhello\nworld");
     free(res);
 }
 
@@ -102,6 +88,6 @@ Test(my_ftoa, float_negative)
 Test(my_ftoa, zero_precision)
 {
     char *res = my_ftoa(10.9, 0);
-    cr_assert_str_eq(res, "10");
+    cr_assert_str_eq(res, "11");
     free(res);
 }

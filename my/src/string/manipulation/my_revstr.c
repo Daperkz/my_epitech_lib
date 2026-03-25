@@ -10,7 +10,7 @@
 char *my_revstr(char *str)
 {
     int size = my_strlen(str);
-    int half = (size / 2) + (size % 2);
+    int half = (size / 2);
     int i = 0;
     char temp;
 

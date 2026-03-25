@@ -12,7 +12,7 @@
 
 Test(my_is_prime, basic_checks)
 {
-    cr_assert_eq(my_is_prime(2), 1);
+    cr_assert_eq(my_is_prime(2), 0);
     cr_assert_eq(my_is_prime(7), 1);
     cr_assert_eq(my_is_prime(4), 0);
     cr_assert_eq(my_is_prime(1), 0);

@@ -9,9 +9,11 @@ long my_len_str_arr(char **str_arr)
 {
     long len = 0;
 
-    while (str_arr && *str_arr) {
+    if (!str_arr)
+        return (0);
+    while (*str_arr) {
         len++;
         str_arr++;
     }
-    return len;
+    return (len);
 }

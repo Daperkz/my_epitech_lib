@@ -62,10 +62,12 @@ Test(get_file_size, empty_file, .fini = file_cleanup)
 
 Test(get_file_content, read_from_fd, .fini = file_cleanup)
 {
-    int fd = open("content_test.txt", O_RDONLY);
-    char *res = get_file_content(fd, 7);
+    int fd;
+    char *res;
 
     create_test_file("content_test.txt", "Epitech");
+    fd = open("content_test.txt", O_RDONLY);
+    res = get_file_content(fd, 7);
     cr_assert_str_eq(res, "Epitech");
     free(res);
     close(fd);

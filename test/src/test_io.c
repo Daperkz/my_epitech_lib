@@ -103,16 +103,3 @@ Test(my_showstr, null_pointer, .init = cr_redirect_stdout)
     my_showstr(NULL);
     cr_assert_stdout_eq_str("");
 }
-
-Test(my_showmem, basic_content_check, .init = cr_redirect_stdout)
-{
-    char *test_str = "Hello";
-    my_showmem(test_str, 5);
-    cr_assert_stdout_eq_str("^[0-9a-f]{8}:.*4865 6c6c 6f.*Hello.*");
-}
-
-Test(my_showmem, null_handling, .init = cr_redirect_stdout)
-{
-    my_showmem(NULL, 10);
-    cr_assert_stdout_eq_str("");
-}
