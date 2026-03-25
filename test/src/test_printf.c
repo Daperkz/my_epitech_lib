@@ -8,6 +8,7 @@
 #include <criterion/criterion.h>
 #include <criterion/redirect.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <fcntl.h>
 
 #include "my/printf.h"
@@ -34,7 +35,7 @@ Test(my_printf, percent_literal, .init = cr_redirect_stdout)
 
 Test(my_fprintf, stderr_check, .init = cr_redirect_stderr)
 {
-    my_fprintf(STDERR, "Error: %d", 404);
+    my_fprintf(STDERR_FD, "Error: %d", 404);
     cr_assert_stderr_eq_str("Error: 404");
 }
 

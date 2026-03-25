@@ -133,41 +133,41 @@ Test(my_strstr, edge_cases)
     cr_assert_str_eq(my_strstr(NULL, "Hello"), NULL);
 }
 
-Test(my_str_to_word_array, separator_only)
+Test(my_str_to_str_arr, separator_only)
 {
-    char **res = my_str_to_word_array(":::::", ":");
+    char **res = my_str_to_str_arr(":::::", ":");
     cr_assert(res != NULL);
     cr_assert(res[0] == NULL);
-    my_free_word_array(res);
+    my_free_str_arr(res);
 }
 
-Test(my_str_to_word_array, split_logic)
+Test(my_str_to_str_arr, split_logic)
 {
-    char **res = my_str_to_word_array("hello:world;test", ":;");
+    char **res = my_str_to_str_arr("hello:world;test", ":;");
 
     cr_assert_str_eq(res[0], "hello");
     cr_assert_str_eq(res[1], "world");
     cr_assert_str_eq(res[2], "test");
     cr_assert_eq(res[3], NULL);
-    my_free_word_array(res);
+    my_free_str_arr(res);
 }
 
-Test(my_word_array_len, null_safety)
+Test(my_len_str_arr, null_safety)
 {
     char *empty[] = {NULL};
 
-    cr_assert_eq(my_word_array_len(NULL), -1);
-    cr_assert_eq(my_word_array_len(empty), 0);
+    cr_assert_eq(my_len_str_arr(NULL), -1);
+    cr_assert_eq(my_len_str_arr(empty), 0);
 }
 
-Test(my_word_array_len, array_logic)
+Test(my_len_str_arr, array_logic)
 {
     char *arr1[] = {"a", "b", "c", NULL};
     char *arr2[] = {NULL};
 
-    cr_assert_eq(my_word_array_len(arr1), 3);
-    cr_assert_eq(my_word_array_len(arr2), 0);
-    cr_assert_eq(my_word_array_len(NULL), -1);
+    cr_assert_eq(my_len_str_arr(arr1), 3);
+    cr_assert_eq(my_len_str_arr(arr2), 0);
+    cr_assert_eq(my_len_str_arr(NULL), -1);
 }
 
 Test(my_atoi, conversion)

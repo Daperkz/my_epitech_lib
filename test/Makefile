@@ -29,6 +29,10 @@ SRC	=	$(addprefix $(SRC_D), test_io.c)	\
 		$(addprefix $(SRC_D), test_utils.c)	\
 		$(addprefix $(SRC_D), test_math.c)	\
 		$(addprefix $(SRC_D), test_file.c)	\
+		$(addprefix $(SRC_D), test_printf.c)	\
+		$(addprefix $(SRC_D), test_linked_list.c)	\
+		$(addprefix $(SRC_D), test_hashtable.c)	\
+		$(addprefix $(SRC_D), test_config.c)
 
 OBJ	=	$(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)
 
@@ -40,10 +44,8 @@ $(NAME):	$(OBJ)
 	$(MAKE) CFLAGS+="$(FLAGS_LIB)" -C $(LIB_DIR)
 	$(CC) $^ -o $(NAME) $(CFLAGS) $(LDFLAGS)
 
-$(OBJ_D):
-	@mkdir -p $(OBJ_D)
-
-$(OBJ_D)%.o:	$(SRC_D)%.c	|	$(OBJ_D)
+$(OBJ_D)%.o:	$(SRC_D)%.c
+	@mkdir -p $(dir $@)
 	$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:

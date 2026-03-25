@@ -25,10 +25,10 @@ Test(ll_t, basic_flow)
 {
     ll_t *list = ll_create();
     int *val = malloc(sizeof(int));
-    *val = 42;
     int *found = NULL;
     int *popped = NULL;
 
+    *val = 42;
     cr_assert_not_null(list);
     ll_insert(list, val);
     cr_assert_eq(list->len, 1);
@@ -44,11 +44,12 @@ Test(ll_t, basic_flow)
 Test(dll_t, tail_operations)
 {
     dll_t *list = dll_create();
-    int a = 1, b = 2;
+    int a = 1;
+    int b = 2;
     void *data = NULL;
 
-    dll_append(list, &a); // 1
-    dll_append(list, &b); // 1 -> 2
+    dll_append(list, &a);
+    dll_append(list, &b);
     cr_assert_eq(list->len, 2);
     cr_assert_eq(*(int *)list->tail->data, 2);
     data = dll_pop_tail(list);
@@ -60,7 +61,8 @@ Test(dll_t, tail_operations)
 Test(stack_t, lifo_logic)
 {
     stack_t *s = STACK_CREATE();
-    int v1 = 10, v2 = 20;
+    int v1 = 10;
+    int v2 = 20;
 
     STACK_PUSH(s, &v1);
     STACK_PUSH(s, &v2);
@@ -73,7 +75,8 @@ Test(stack_t, lifo_logic)
 Test(queue_t, fifo_logic)
 {
     queue_t *q = QUEUE_CREATE();
-    int v1 = 10, v2 = 20;
+    int v1 = 10;
+    int v2 = 20;
 
     QUEUE_ENQUEUE(q, &v1);
     QUEUE_ENQUEUE(q, &v2);

@@ -175,6 +175,7 @@ DOUBLE_LL_F	=	create.c	\
 
 # -_- Files located in $(HASHTABLE_D) = ./src/hashtable/ -_-
 HASHTABLE_F	=	create.c	\
+				bucket.c	\
 				insert.c	\
 				pop.c	\
 				get.c	\
@@ -236,12 +237,8 @@ $(NAME):	$(OBJ)
 #	@rm -f $(CUR_FILE)
 	@printf "\033[1;32m%s\033[0m\n" "Build Complete!"
 
-# -_- Creates the bin dir if non existent (only once) -_-
-$(OBJ_D):
-	@mkdir -p $@
-
 # -_- Compiles .o files into bin folder from all c files in the VPATH directories -_-
-$(OBJ_D)%.o:	$(SRC_D)%.c | $(OBJ_D)
+$(OBJ_D)%.o:	$(SRC_D)%.c
 	@mkdir -p $(dir $@)
 	@$(CC) -o $@ -c $< $(CFLAGS)
 #	$(call draw_bar, $<)
