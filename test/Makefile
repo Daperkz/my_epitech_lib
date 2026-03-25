@@ -41,20 +41,20 @@ DEP	=	$(OBJ:.o=.d)
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	$(MAKE) CFLAGS+="$(FLAGS_LIB)" -C $(LIB_DIR) --no-print-directory
-	$(CC) $^ -o $(NAME) $(CFLAGS) $(LDFLAGS)
+	@$(MAKE) CFLAGS+="$(FLAGS_LIB)" -C $(LIB_DIR) --no-print-directory
+	@$(CC) $^ -o $(NAME) $(CFLAGS) $(LDFLAGS)
 
 $(OBJ_D)%.o:	$(SRC_D)%.c
 	@mkdir -p $(dir $@)
-	$(CC) -c $< -o $@ $(CFLAGS)
+	@$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
-	rm -rf $(OBJ_D)
+	@rm -rf $(OBJ_D)
 
 fclean:
-	rm -rf $(OBJ_D)
-	rm -f $(NAME)
-	rm -f $(COVERAGE_F)
+	@rm -rf $(OBJ_D)
+	@rm -f $(NAME)
+	@rm -f $(COVERAGE_F)
 
 re: fclean $(NAME)
 
