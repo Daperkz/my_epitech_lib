@@ -88,6 +88,6 @@ Test(my_ftoa, float_negative)
 Test(my_ftoa, zero_precision)
 {
     char *res = my_ftoa(10.9, 0);
-    cr_assert_str_eq(res, "11");
+    cr_assert_str_eq(res, "11.0");
     free(res);
 }

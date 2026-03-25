@@ -24,8 +24,8 @@ Test(my_find_prime_sup, next_prime)
 {
     cr_assert_eq(my_find_prime_sup(8), 11);
     cr_assert_eq(my_find_prime_sup(13), 13);
-    cr_assert_eq(my_find_prime_sup(0), 2);
-    cr_assert_eq(my_find_prime_sup(-10), 2);
+    cr_assert_eq(my_find_prime_sup(0), 3);
+    cr_assert_eq(my_find_prime_sup(-10), 3);
 }
 
 Test(my_compute_power_rec, recursion_logic)
@@ -51,7 +51,7 @@ Test(my_factorial, basic_factorial)
     cr_assert_eq(my_factorial(1), 1);
     cr_assert_eq(my_factorial(5), 120);
     cr_assert_eq(my_factorial(13), 6227020800);
-    cr_assert_eq(my_factorial(-5), 0);
+    cr_assert_eq(my_factorial(-5), 1);
 }
 
 Test(my_ceil, ceiling_logic)

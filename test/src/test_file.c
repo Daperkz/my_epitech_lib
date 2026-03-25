@@ -34,9 +34,10 @@ void file_cleanup(void)
 
 Test(open_file, existing_file, .fini = file_cleanup)
 {
-    int fd = open_file("test_open.txt");
+    int fd;
 
     create_test_file("test_open.txt", "data");
+    fd = open_file("test_open.txt");
     cr_assert(fd != -1);
     close(fd);
 }
@@ -75,9 +76,10 @@ Test(get_file_content, read_from_fd, .fini = file_cleanup)
 
 Test(read_file, full_path, .fini = file_cleanup)
 {
-    char *res = read_file("full_read.txt");
+    char *res;
 
     create_test_file("full_read.txt", "Hello World");
+    res = read_file("full_read.txt");
     cr_assert_str_eq(res, "Hello World");
     free(res);
 }

@@ -125,12 +125,13 @@ Test(my_strchr, find_char)
     cr_assert_eq(my_strchr(str, 'z'), NULL);
     cr_assert_eq(my_strchr(str, '\0'), str + 7);
 }
+
 Test(my_strstr, edge_cases)
 {
     cr_assert_str_eq(my_strstr("Hello", ""), "Hello");
-    cr_assert_str_eq(my_strstr("", "Hello"), NULL);
-    cr_assert_str_eq(my_strstr("Hello", "z"), NULL);
-    cr_assert_str_eq(my_strstr(NULL, "Hello"), NULL);
+    cr_assert_null(my_strstr("", "Hello"));
+    cr_assert_null(my_strstr("Hello", "z"));
+    cr_assert_null(my_strstr(NULL, "Hello"));
 }
 
 Test(my_str_to_str_arr, separator_only)
