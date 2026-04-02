@@ -2,7 +2,7 @@
 ## EPITECH PROJECT, 2025
 ## Makefile
 ## File description:
-## test Lakefile
+## test Makefile
 ##
 
 NAME	=	test_mylib
