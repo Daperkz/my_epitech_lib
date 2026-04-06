@@ -10,3 +10,4 @@ hand_test.c
 *.out
 gcov_result.txt
 test_mylib
+todo
