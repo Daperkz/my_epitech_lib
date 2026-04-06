@@ -15,7 +15,7 @@ TEST_DIR	=	$(REPO_DIR)test/
 
 INCLUDE	=	$(LIB_DIR)include/
 
-CPPFLAGS	=	-I(INCLUDE) -g3
+CPPFLAGS	=	-I$(INCLUDE) -g3
 CFLAGS	=	-Wall -Wextra
 FLAGS_LIB	=	--coverage -fprofile-arcs -ftest-coverage
 LDFLAGS	=	-lcriterion -L$(LIB_DIR) -lmy --coverage

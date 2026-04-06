@@ -8,6 +8,8 @@
 #ifndef MY_STRING_H_
     #define MY_STRING_H_
 
+    #define WHITESPACES " \t\r\n"
+
 
 /* --- string array --- */
 
@@ -39,7 +41,7 @@ char *my_strdup(char const *src);
 char *my_strndup(char const *src, int n);
 char *my_revstr(char *str);
 char *my_strappend(char **dest_ptr, char *src);
-char *my_strtrim(char *str, char *sep);
+char *my_strtrim(char *str, char *seps);
 
 char *my_strupcase(char *str);
 char *my_strlowcase(char *str);

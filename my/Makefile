@@ -88,7 +88,8 @@ MANIPULATION_F	=	my_putstr.c	\
 					my_strdup.c	\
 					my_strlen.c	\
 					my_strlowcase.c	\
-					my_strupcase.c
+					my_strupcase.c	\
+					my_strtrim.c
 
 # -_- Files located in $(SEARCH_D) = ./src/string/search/ -_-
 SEARCH_F	=	my_strchr.c	\
@@ -221,7 +222,7 @@ $(NAME):	$(OBJ)
 	@$(AR) $(ARFLAGS) $@ $^
 	@printf "\033[1;32m%s\033[0m\n" "Build Complete!"
 
-# -_- Compiles .o files into bin folder from all c files in the VPATH directories -_-
+# -_- Compiles .o files into obj folder from all c files in the VPATH directories -_-
 $(OBJ_D)%.o:	$(SRC_D)%.c
 	@mkdir -p $(dir $@)
 	@$(CC) -o $@ -c $< $(CPPFLAGS) $(CFLAGS)

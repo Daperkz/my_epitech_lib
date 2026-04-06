@@ -9,19 +9,23 @@
 
 #include "my/file.h"
 #include "my/config.h"
+#include "my/string.h"
 
 static int process_line(config_t *config, char *line)
 {
     char *key = NULL;
     char *value = NULL;
 
-    if (!line || *line == '#' || *line == ';' || *line == '\0')
+    if (!line || *line == '#' || *line == ';' || !(*line))
         return (EXIT_SUCCESS);
+    line = my_strtrim(line, WHITESPACES);
     key = my_strsep(&line, "=");
     value = my_strdup(line);
     if (!value)
         return (EXIT_FAILURE);
     if (key && value) {
+        key = my_strtrim(key, WHITESPACES);
+        value = my_strtrim(value, WHITESPACES);
         if (ht_insert(config, key, value) == EXIT_FAILURE)
             return (EXIT_FAILURE);
     }
