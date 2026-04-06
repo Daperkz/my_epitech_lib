@@ -19,8 +19,8 @@ MY_PRINTF_INCLUDE	=	$(ROOT_DIR)src/printf/private
 
 ARFLAGS	=	-rc
 
-CPPFLAGS    =   -I$(INCLUDE) -I$(MY_PRINTF_INCLUDE)
-override CFLAGS	+=	 -g3 -Wall -Wextra
+CPPFLAGS    =   -I$(INCLUDE) -I$(MY_PRINTF_INCLUDE) -g3
+override CFLAGS	+=	-Wall -Wextra
 
 OBJ_D	=	$(ROOT_DIR)obj/
 
