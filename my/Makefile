@@ -19,7 +19,7 @@ MY_PRINTF_INCLUDE	=	$(ROOT_DIR)src/printf/private
 
 ARFLAGS	=	-rc
 
-CPPFLAGS    =   -I$(INCLUDE) -I$(MY_PRINTF_INCLUDE) -g3 -MMD -MP -MT $@
+CPPFLAGS    =   -I$(INCLUDE) -I$(MY_PRINTF_INCLUDE) -g3
 override CFLAGS	+=	-Wall -Wextra
 
 OBJ_D	=	$(ROOT_DIR)obj/
@@ -213,8 +213,6 @@ SRC	=	$(addprefix $(IO_D), $(IO_F)) 	\
 # -_- puts all .c files wherever they come from into the bin folder as a .o -_-
 OBJ	=	$(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)
 
-DEP	=	$(OBJ:$(OBJ_D%.o=$(OBJ_D)%.d))
-
 ## --__-- RULES --__--
 
 all:	$(NAME)
@@ -241,7 +239,5 @@ re: fclean all
 bestre:
 	@$(MAKE) fclean --no-print-directory
 	@$(MAKE) -j$$(nproc) all --no-print-directory
-
--include $(DEP)
 
 .PHONY:	all	clean	fclean	re	bestre

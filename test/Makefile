@@ -15,7 +15,7 @@ TEST_DIR	=	$(REPO_DIR)test/
 
 INCLUDE	=	$(LIB_DIR)include/
 
-CPPFLAGS	=	-I(INCLUDE) -g3 -MMD -MP -MT $@
+CPPFLAGS	=	-I(INCLUDE) -g3
 CFLAGS	=	-Wall -Wextra
 FLAGS_LIB	=	--coverage -fprofile-arcs -ftest-coverage
 LDFLAGS	=	-lcriterion -L$(LIB_DIR) -lmy --coverage
@@ -36,8 +36,6 @@ SRC	=	$(addprefix $(SRC_D), test_io.c)	\
 		$(addprefix $(SRC_D), test_config.c)
 
 OBJ	=	$(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)
-
-DEP	=	$(OBJ:$(OBJ_D%.o=$(OBJ_D)%.d))
 
 all:	$(NAME)
 
@@ -67,7 +65,5 @@ coverage:	run
 	@touch $(COVERAGE_F)
 	@gcovr --gcov-executable "llvm-cov gcov" --root $(REPO_DIR) --print-summary --filter $(LIB_DIR)src/ --exclude $(TEST_DIR) --branches > $(COVERAGE_F)
 	@printf "\033[1;32m%s\033[0m\n" "Coverage Calculated."
-
--include $(DEP)
 
 .PHONY: all	fclean	clean	re	run	coverage
