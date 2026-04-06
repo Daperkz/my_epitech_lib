@@ -19,7 +19,7 @@ MY_PRINTF_INCLUDE	=	$(ROOT_DIR)src/printf/private
 
 ARFLAGS	=	-rc
 
-CPPFLAGS    =   -I$(INCLUDE) -I$(MY_PRINTF_INCLUDE) -MMD -MP
+CPPFLAGS    =   -I$(INCLUDE) -I$(MY_PRINTF_INCLUDE)
 override CFLAGS	+=	 -g3 -Wall -Wextra
 
 OBJ_D	=	$(ROOT_DIR)obj/
@@ -64,7 +64,7 @@ IO_F	=	my_putchar.c	\
 			my_show_word_array.c
 
 # -_- Files located in $(STRING_D) = ./src/string/ -_-
-STRING_F	=	
+STRING_F	=
 
 # -_- Files located in $(COMPARAISON_D) = ./src/string/comparaison/ -_-
 COMPARAISON_F	=	my_str_isalpha.c	\
@@ -212,10 +212,6 @@ SRC	=	$(addprefix $(IO_D), $(IO_F)) 	\
 
 # -_- puts all .c files wherever they come from into the bin folder as a .o -_-
 OBJ	=	$(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)
-
-DEP	=	$(OBJ:.o=.d)
-
--include $(DEP)
 
 ## --__-- RULES --__--
 

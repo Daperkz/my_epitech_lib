@@ -9,7 +9,6 @@
     #define MY_STRING_H_
 
 
-
 /* --- string array --- */
 
 char **my_str_to_str_arr(char const *str, char const *seps);
@@ -31,7 +30,7 @@ int my_getnbrspe(char *str, int *error_ptr);
 int my_strlen(char const *str);
 int my_strlen_d(char const *str, char delim);
 int my_putstr(char const *str);
-int my_putstr_fd(int fd, char const *str);
+int my_fputstr(int fd, char const *str);
 char *my_strcpy(char *dest, char const *src);
 char *my_strncpy(char *dest, char const *src, int n);
 char *my_strcat(char *dest, char const *src);
