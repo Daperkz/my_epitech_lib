@@ -7,16 +7,15 @@
 
 #include <stdlib.h>
 
-#include "my/linked_lists/double_linked_list.h"
+#include "my/graph/simple_linked_list.h"
 
-dll_t *dll_create(void)
+ll_t *ll_create(void)
 {
-    dll_t *list = malloc(sizeof(dll_t));
+    ll_t *list = malloc(sizeof(ll_t));
 
     if (!list)
         return (NULL);
     list->head = NULL;
-    list->tail = NULL;
     list->len = 0;
     return (list);
 }

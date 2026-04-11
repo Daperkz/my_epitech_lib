@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 
-#include "my/linked_lists/simple_linked_list.h"
+#include "my/graph/simple_linked_list.h"
 
 void ll_destroy(ll_t *list, void (*free_data)(void *))
 {

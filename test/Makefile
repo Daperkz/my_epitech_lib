@@ -31,7 +31,7 @@ SRC	=	$(addprefix $(SRC_D), test_io.c)	\
 		$(addprefix $(SRC_D), test_math.c)	\
 		$(addprefix $(SRC_D), test_file.c)	\
 		$(addprefix $(SRC_D), test_printf.c)	\
-		$(addprefix $(SRC_D), test_linked_list.c)	\
+		$(addprefix $(SRC_D), test_graph.c)	\
 		$(addprefix $(SRC_D), test_hashtable.c)	\
 		$(addprefix $(SRC_D), test_config.c)
 

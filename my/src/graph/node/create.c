@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 
-#include "my/linked_lists/node.h"
+#include "my/graph/node.h"
 
 node_t *create_node(void *data)
 {
@@ -29,5 +29,17 @@ dnode_t *create_dnode(void *data)
     node->data = data;
     node->next = NULL;
     node->prev = NULL;
+    return (node);
+}
+
+bnode_t *create_bnode(void *data)
+{
+    bnode_t *node = malloc(sizeof(bnode_t));
+
+    if (!node)
+        return (NULL);
+    node->data = data;
+    node->left = NULL;
+    node->right = NULL;
     return (node);
 }

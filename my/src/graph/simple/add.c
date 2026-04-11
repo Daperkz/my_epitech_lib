@@ -7,7 +7,7 @@
 
 #include "my/macro.h"
 
-#include "my/linked_lists/simple_linked_list.h"
+#include "my/graph/simple_linked_list.h"
 
 int ll_insert(ll_t *list, void *data)
 {

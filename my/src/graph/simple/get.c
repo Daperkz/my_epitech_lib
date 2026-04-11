@@ -7,7 +7,7 @@
 
 #include "my/macro.h"
 
-#include "my/linked_lists/simple_linked_list.h"
+#include "my/graph/simple_linked_list.h"
 
 void *ll_get(ll_t *list, void *ref, int (*cmp)(void *, void *))
 {

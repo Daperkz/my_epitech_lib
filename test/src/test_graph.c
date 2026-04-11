@@ -9,7 +9,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "my/linked_lists.h"
+#include "my/graph.h"
 
 static int cmp_int(void *a, void *b)
 {

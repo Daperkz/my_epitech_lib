@@ -7,7 +7,7 @@
 
 #include "my/macro.h"
 
-#include "my/linked_lists/double_linked_list.h"
+#include "my/graph/double_linked_list.h"
 
 void *dll_get(dll_t *list, void *ref, int (*cmp)(void *, void *))
 {

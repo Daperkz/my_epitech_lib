@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 
-#include "my/linked_lists/double_linked_list.h"
+#include "my/graph/double_linked_list.h"
 
 void *dll_pop_head(dll_t *list)
 {
