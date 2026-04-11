@@ -23,16 +23,32 @@ void create_test_file(const char *name, const char *content)
     }
 }
 
-void file_cleanup(void)
+static void clean_test_open(void)
 {
     remove("test_open.txt");
+}
+
+static void clean_size_test(void)
+{
     remove("size_test.txt");
-    remove("content_test.txt");
-    remove("full_read.txt");
+}
+
+static void clean_empty(void)
+{
     remove("empty.txt");
 }
 
-Test(open_file, existing_file, .fini = file_cleanup)
+static void clean_content_test(void)
+{
+    remove("content_test.txt");
+}
+
+static void clean_full_read(void)
+{
+    remove("full_read.txt");
+}
+
+Test(open_file, existing_file, .fini = clean_test_open)
 {
     int fd;
 
@@ -42,26 +58,27 @@ Test(open_file, existing_file, .fini = file_cleanup)
     close(fd);
 }
 
-Test(open_file, missing_file, .fini = file_cleanup)
+Test(open_file, missing_file)
 {
     int fd = open_file("non_existent_file.void");
     cr_assert_eq(fd, -1);
 }
 
-Test(get_file_size, check_accuracy, .fini = file_cleanup)
+Test(get_file_size, check_accuracy, .fini = clean_size_test)
 {
     const char *content = "1234567890";
     create_test_file("size_test.txt", content);
     cr_assert_eq(get_file_size("size_test.txt"), 10);
 }
 
-Test(get_file_size, empty_file, .fini = file_cleanup)
+Test(get_file_size, empty_file, .fini = clean_empty)
 {
     create_test_file("empty.txt", "");
     cr_assert_eq(get_file_size("empty.txt"), 0);
+    remove("empty.txt");
 }
 
-Test(get_file_content, read_from_fd, .fini = file_cleanup)
+Test(get_file_content, read_from_fd, .fini = clean_content_test)
 {
     int fd;
     char *res;
@@ -74,7 +91,7 @@ Test(get_file_content, read_from_fd, .fini = file_cleanup)
     close(fd);
 }
 
-Test(read_file, full_path, .fini = file_cleanup)
+Test(read_file, full_path, .fini = clean_full_read)
 {
     char *res;
 
@@ -84,7 +101,7 @@ Test(read_file, full_path, .fini = file_cleanup)
     free(res);
 }
 
-Test(read_file_dyn, special_files, .fini = file_cleanup)
+Test(read_file_dyn, special_files)
 {
     char *res = read_file_dyn("/proc/self/comm");
 

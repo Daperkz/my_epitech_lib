@@ -14,10 +14,8 @@ char *get_file_content(int fd, long size)
 {
     char *buffer = malloc(sizeof(char) * (size + 1));
 
-    if (!buffer) {
-        perror("Error malloc");
+    if (!buffer)
         return (NULL);
-    }
     if (read(fd, buffer, size) != size) {
         perror("Error read");
         free(buffer);

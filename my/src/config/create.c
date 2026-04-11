@@ -16,9 +16,14 @@ static int process_line(config_t *config, char *line)
     char *key = NULL;
     char *value = NULL;
 
-    if (!line || *line == '#' || *line == ';' || !(*line))
+    if (!line)
         return (EXIT_SUCCESS);
     line = my_strtrim(line, WHITESPACES);
+    if (*line == '#' || *line == ';' || !(*line))
+        return (EXIT_SUCCESS);
+    line = my_strtrim(line, WHITESPACES);
+    if (!my_strchr(line, '='))
+        return (EXIT_SUCCESS);
     key = my_strsep(&line, "=");
     value = my_strdup(line);
     if (!value)
@@ -61,8 +66,8 @@ config_t *config_create(char const *filepath, int size)
         return (NULL);
     }
     if (parse_file(config, file) == EXIT_FAILURE) {
-        ht_destroy(config, NULL);
         free(file);
+        ht_destroy(config, NULL);
         return (NULL);
     }
     free(file);

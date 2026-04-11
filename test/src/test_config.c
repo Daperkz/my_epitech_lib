@@ -23,14 +23,22 @@ void create_test_config(char const *filename, char const *content)
     }
 }
 
-void conf_cleanup(void)
+void clean_test_basic_conf(void)
 {
     remove("test_basic.conf");
+}
+
+void clean_test_noise_conf(void)
+{
     remove("test_noise.conf");
+}
+
+void clean_test_garbage_conf(void)
+{
     remove("test_garbage.conf");
 }
 
-Test(config, basic_parsing, .fini = conf_cleanup)
+Test(config, basic_parsing, .fini = clean_test_basic_conf)
 {
     char const *content = "key=value\nport=8080\npi=3.14\n";
     config_t *conf;
@@ -45,7 +53,7 @@ Test(config, basic_parsing, .fini = conf_cleanup)
     unlink("test_basic.conf");
 }
 
-Test(config, comments_and_empty_lines, .fini = conf_cleanup)
+Test(config, comments_and_empty_lines, .fini = clean_test_noise_conf)
 {
     char const *content = (
         "# This is a comment\n\n  \nname=daperkz\n; Another comment\nversion=3"
@@ -62,7 +70,7 @@ Test(config, comments_and_empty_lines, .fini = conf_cleanup)
     unlink("test_noise.conf");
 }
 
-Test(config, malformed_lines, .fini = conf_cleanup)
+Test(config, malformed_lines, .fini = clean_test_garbage_conf)
 {
     char const *content = "valid=yes\nthis_line_is_garbage\n";
     config_t *conf = NULL;
