@@ -11,6 +11,17 @@
 #include "my/config.h"
 #include "my/string.h"
 
+static int clean_line(char **line_p)
+{
+    *line_p = my_strtrim(*line_p, WHITESPACES);
+    if (*(*line_p) == '#' || *(*line_p) == ';' || !(*(*line_p)))
+        return (1);
+    *line_p = my_strtrim(*line_p, WHITESPACES);
+    if (!my_strchr(*line_p, '='))
+        return (1);
+    return (EXIT_SUCCESS);
+}
+
 static int process_line(config_t *config, char *line)
 {
     char *key = NULL;
@@ -18,11 +29,7 @@ static int process_line(config_t *config, char *line)
 
     if (!line)
         return (EXIT_SUCCESS);
-    line = my_strtrim(line, WHITESPACES);
-    if (*line == '#' || *line == ';' || !(*line))
-        return (EXIT_SUCCESS);
-    line = my_strtrim(line, WHITESPACES);
-    if (!my_strchr(line, '='))
+    if (clean_line(&line) == 1)
         return (EXIT_SUCCESS);
     key = my_strsep(&line, "=");
     value = my_strdup(line);
