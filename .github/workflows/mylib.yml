@@ -21,21 +21,19 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v6
 
-      - name: Run Coding Style
+      - name: Run 1st Coding Style
         run: |
           banana-check-repo . > coding-style-reports.log
           if grep -q "\[Banana\]" coding-style-reports.log; then
             sed -i '1d' coding-style-reports.log
             while read -r LINE_CONTENT; do
-              FILE_LINE=$(echo "$LINE_CONTENT" | cut -d':' -f1,2)
               FILE=$(echo "$LINE_CONTENT" | cut -d':' -f1)
               FILE=${FILE#./}
-              LINE=${FILE_LINE#*:}
               LEVEL=$(echo "$LINE_CONTENT" | cut -d'[' -f3 | cut -d']' -f1)
               DESC=$(echo "$LINE_CONTENT" | cut -d']' -f3 | cut -d'(' -f1 | sed 's/^ //;s/ $//')
               CODE=$(echo "$LINE_CONTENT" | grep -oP '\(\K[^\)]+' )
               TITLE="$LEVEL coding style error"
-              echo "::error file=$FILE,line=$LINE,title=$TITLE::$CODE - $DESC"
+              echo "::error file=$FILE,line=0,title=$TITLE::$CODE - $DESC"
             done < coding-style-reports.log
             exit 1
           fi
@@ -44,8 +42,27 @@ jobs:
         env:
           CC: epiclang
         run: |
-          make
+          make 2> coding-style-reports.log
         timeout-minutes: 2
+
+      - name: Run 2nd Coding style
+        shell: bash
+        run: |
+          if grep -q "\[Banana\]" coding-style-reports.log; then
+            while read -r LINE_CONTENT; do
+              if [[ "$LINE_CONTENT" == *"[Banana]"* ]]; then
+                FILE_LINE=$(echo "$LINE_CONTENT" | cut -d':' -f1,2)
+                FILE=${FILE_LINE%:*}; FILE=${FILE#./}
+                LINE=${FILE_LINE#*:}
+                LEVEL=$(echo "$LINE_CONTENT" | cut -d'[' -f3 | cut -d']' -f1)
+                CODE=$(echo "$LINE_CONTENT" | grep -oP '\(\K[^\)]+')
+                DESC=$(echo "$LINE_CONTENT" | cut -d']' -f3 | cut -d'(' -f1 | sed 's/^ //;s/ $//')
+                TITLE="$LEVEL coding style error"
+                echo "::error file=$FILE,line=$LINE,title=$TITLE::$CODE - $DESC"
+              fi
+            done < coding-style-reports.log
+            exit 1
+          fi
 
       - name: Clean Project
         run: |
