@@ -1,0 +1,84 @@
+name: mylib
+
+on:
+  push:
+    branches-ignore:
+      - 'no-ga/**'
+  pull_request:
+    types: [opened, reopened]
+    branches-ignore:
+      - 'no-ga/**'
+
+env:
+  MIRROR_SSH_URL: "git@github.com:Daperkz/my_epitech_lib.git"
+  EXECUTABLES: "test_mylib"
+
+jobs:
+  check_coding_style_and_compilation:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Run Coding Style
+        run: |
+          banana-check-repo . > coding-style-reports.log
+          if grep -q "\[Banana\]" coding-style-reports.log; then
+            sed -i '1d' coding-style-reports.log
+            while read -r LINE_CONTENT; do
+              FILE_LINE=$(echo "$LINE_CONTENT" | cut -d':' -f1,2)
+              FILE=$(echo "$LINE_CONTENT" | cut -d':' -f1)
+              FILE=${FILE#./}
+              LINE=${FILE_LINE#*:}
+              LEVEL=$(echo "$LINE_CONTENT" | cut -d'[' -f3 | cut -d']' -f1)
+              DESC=$(echo "$LINE_CONTENT" | cut -d']' -f3 | cut -d'(' -f1 | sed 's/^ //;s/ $//')
+              CODE=$(echo "$LINE_CONTENT" | grep -oP '\(\K[^\)]+' )
+              TITLE="$LEVEL coding style error"
+              echo "::error file=$FILE,line=$LINE,title=$TITLE::$CODE - $DESC"
+            done < coding-style-reports.log
+            exit 1
+          fi
+
+      - name: Compile Project
+        env:
+          CC: epiclang
+        run: |
+          make
+        timeout-minutes: 2
+
+      - name: Clean Project
+        run: |
+          make fclean
+          rm -f coding-style-reports.log
+
+  run_tests:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    needs: check_coding_style_and_compilation
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Run Unit Tests
+        run: make test_run
+        timeout-minutes: 2
+
+      - name: Clean Project
+        run: make fclean
+
+  push_to_mirror:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.repository != 'Daperkz/my_epitech_lib'
+    needs: run_tests
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Mirror to Repo
+        uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url: ${{ env.MIRROR_SSH_URL }}
+          ssh_private_key: ${{ secrets.GIT_SSH_PRIVATE_KEY }}
