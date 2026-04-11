@@ -23,17 +23,17 @@ void create_test_config(char const *filename, char const *content)
     }
 }
 
-void clean_test_basic_conf(void)
+static void clean_test_basic_conf(void)
 {
     remove("test_basic.conf");
 }
 
-void clean_test_noise_conf(void)
+static void clean_test_noise_conf(void)
 {
     remove("test_noise.conf");
 }
 
-void clean_test_garbage_conf(void)
+static void clean_test_garbage_conf(void)
 {
     remove("test_garbage.conf");
 }
