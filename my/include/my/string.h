@@ -47,6 +47,8 @@ char *my_strupcase(char *str);
 char *my_strlowcase(char *str);
 char *my_strcapitalize(char *str);
 
+char *my_strjoin(char *str1, char *str2);
+
 /* --- search --- */
 
 char *my_strstr(char *str, char const *to_find);
