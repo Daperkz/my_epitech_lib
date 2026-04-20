@@ -49,7 +49,18 @@ jobs:
         shell: bash
         run: |
           if grep -q "\[Banana\]" coding-style-reports.log; then
-            awk -F: '{print "::error file="$1", line="$2", title="$3", coding style error::"$4"}' coding-style-reports.log
+            while read -r LINE_CONTENT; do
+              if [[ "$LINE_CONTENT" == *"[Banana]"* ]]; then
+                FILE_LINE=$(echo "$LINE_CONTENT" | cut -d':' -f1,2)
+                FILE=${FILE_LINE%:*}; FILE=${FILE#./}
+                LINE=${FILE_LINE#*:}
+                LEVEL=$(echo "$LINE_CONTENT" | cut -d'[' -f3 | cut -d']' -f1)
+                CODE=$(echo "$LINE_CONTENT" | grep -oP '\(\K[^\)]+')
+                DESC=$(echo "$LINE_CONTENT" | cut -d']' -f3 | cut -d'(' -f1 | sed 's/^ //;s/ $//')
+                TITLE="$LEVEL coding style error"
+                echo "::error file=$FILE,line=$LINE,title=$TITLE::$CODE - $DESC"
+              fi
+            done < coding-style-reports.log
             exit 1
           fi
 
