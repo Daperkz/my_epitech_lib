@@ -2,7 +2,6 @@
 obj/
 main.c
 hand_test.c
-*.o
 *.d
 *.gcno
 *.gcda

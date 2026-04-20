@@ -25,16 +25,7 @@ jobs:
         run: |
           banana-check-repo . > coding-style-reports.log
           if grep -q "\[Banana\]" coding-style-reports.log; then
-            sed -i '1d' coding-style-reports.log
-            while read -r LINE_CONTENT; do
-              FILE=$(echo "$LINE_CONTENT" | cut -d':' -f1)
-              FILE=${FILE#./}
-              LEVEL=$(echo "$LINE_CONTENT" | cut -d'[' -f3 | cut -d']' -f1)
-              DESC=$(echo "$LINE_CONTENT" | cut -d']' -f3 | cut -d'(' -f1 | sed 's/^ //;s/ $//')
-              CODE=$(echo "$LINE_CONTENT" | grep -oP '\(\K[^\)]+' )
-              TITLE="$LEVEL coding style error"
-              echo "::error file=$FILE,line=0,title=$TITLE::$CODE - $DESC"
-            done < coding-style-reports.log
+            awk -F: '{print "::error file="$1", line="$2", title="$3", coding style error::"$4"}' coding-style-reports.log
             exit 1
           fi
 
