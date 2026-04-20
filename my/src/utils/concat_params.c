@@ -12,6 +12,7 @@
 
 char *concat_params(int argc, char **argv)
 {
+    
     char *str;
     int total_len = 0;
     int i = 0;
