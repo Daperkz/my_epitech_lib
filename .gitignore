@@ -8,5 +8,5 @@ hand_test.c
 *.a
 *.out
 gcov_result.txt
-test_mylib
+unit_test
 todo

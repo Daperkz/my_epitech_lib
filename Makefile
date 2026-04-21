@@ -6,13 +6,16 @@
 ##
 
 
-ROOT_DIR	=	./
+ROOT_D	=	./
 
-LIB_D	=	$(ROOT_DIR)my/
-TEST_D	=	$(ROOT_DIR)test/
+LIB_D	=	$(ROOT_D)my/
+TEST_D	=	$(ROOT_D)test/
 
 all:
 	@$(MAKE) -C $(LIB_D) --no-print-directory
+
+debug:
+	@$(MAKE) debug -C $(LIB_D) --no-print-directory
 
 clean:
 	@$(MAKE) -C $(LIB_D) clean --no-print-directory
@@ -27,13 +30,13 @@ re: fclean all
 bestre:
 	@$(MAKE) bestre -C $(LIB_D) --no-print-directory
 
-test:	fclean
+tests:	fclean
 	@$(MAKE) -C $(TEST_D) --no-print-directory
 
-test_run:	fclean
+tests_run:	fclean
 	@$(MAKE) run -C $(TEST_D) --no-print-directory
 
-test_coverage:	fclean
+coverage:	fclean
 	@$(MAKE) coverage -C $(TEST_D) --no-print-directory
 
-.PHONY:	all	clean	fclean	re	bestre	test	test_run
+.PHONY:	all	debug	clean	fclean	re	bestre	test	test_run	coverage
