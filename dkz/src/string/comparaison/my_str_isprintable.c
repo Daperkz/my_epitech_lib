@@ -1,0 +1,18 @@
+/*
+** EPITECH PROJECT, 2025
+** libdkz
+** File description:
+** my_str_isprintable
+** returns 1 if the string passed as parameter only contains printable
+** characters and 0 otherwise.
+*/
+
+int my_str_isprintable(char const *str)
+{
+    while (*str) {
+        if (*str <= 31) {
+            return 0;
+        }
+    }
+    return 1;
+}

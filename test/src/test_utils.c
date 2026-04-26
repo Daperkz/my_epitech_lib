@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2026
-** test_utils.c
+** libdkz
 ** File description:
 ** test_utils
 */
@@ -9,7 +9,7 @@
 #include <criterion/redirect.h>
 #include <stdlib.h>
 
-#include "my/utils.h"
+#include "dkz/utils.h"
 
 Test(my_swap, swap_integers)
 {

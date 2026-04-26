@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2026
-** test_file.c
+** libdkz
 ** File description:
 ** test_file
 */
@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include <string.h>
 
-#include "my/file.h"
+#include "dkz/file.h"
 
 void create_test_file(const char *name, const char *content)
 {

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2026
-** test_printf.c
+** libdkz
 ** File description:
 ** test_printf
 */
@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#include "my/printf.h"
+#include "dkz/printf.h"
 
 Test(my_printf, basic_strings, .init = cr_redirect_stdout)
 {

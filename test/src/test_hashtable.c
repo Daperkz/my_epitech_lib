@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2026
-** test_hashtable.c
+** libdkz
 ** File description:
 ** test_hashtable
 */
@@ -9,7 +9,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "my/hashtable.h"
+#include "dkz/hashtable.h"
 
 static void free_content(void *data)
 {

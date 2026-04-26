@@ -1,6 +1,6 @@
 ##
 ## EPITECH PROJECT, 2026
-## Makefile
+## libdkz
 ## File description:
 ## Root Makefile
 ##
@@ -8,7 +8,7 @@
 
 ROOT_D	=	./
 
-LIB_D	=	$(ROOT_D)my/
+LIB_D	=	$(ROOT_D)dkz/
 TEST_D	=	$(ROOT_D)test/
 
 all:

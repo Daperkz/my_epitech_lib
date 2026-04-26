@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2026
-** test_linked_list.c
+** libdkz
 ** File description:
 ** test_linked_list
 */
@@ -9,7 +9,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "my/graph.h"
+#include "dkz/graph.h"
 
 static int cmp_int(void *a, void *b)
 {
@@ -60,7 +60,7 @@ Test(dll_t, tail_operations)
 
 Test(stack_t, lifo_logic)
 {
-    stack_t *s = STACK_CREATE();
+    my_stack_t *s = STACK_CREATE();
     int v1 = 10;
     int v2 = 20;
 

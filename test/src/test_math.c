@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2026
-** test_math.c
+** libdkz
 ** File description:
 ** test_math
 */
@@ -8,7 +8,7 @@
 #include <criterion/criterion.h>
 #include <criterion/redirect.h>
 
-#include "my/math.h"
+#include "dkz/math.h"
 
 Test(my_is_prime, basic_checks)
 {

@@ -1,6 +1,6 @@
 ##
 ## EPITECH PROJECT, 2026
-## Makefile
+## libdkz
 ## File description:
 ## test Makefile
 ##
@@ -13,7 +13,7 @@ GCOVR			=	gcovr
 
 REPO_D			=	../
 ROOT_D			=	./
-LIB_D			=	$(REPO_D)my/
+LIB_D			=	$(REPO_D)dkz/
 TEST_D			=	$(REPO_D)test/
 
 INCLUDE			=	$(LIB_D)include/
@@ -23,7 +23,7 @@ OBJ_D			=	$(ROOT_D)obj/
 
 CPPFLAGS		=	-I$(INCLUDE)
 CFLAGS			=	-Wall -Wextra --coverage
-LDFLAGS			=	-lcriterion -L$(LIB_D) -lmy
+LDFLAGS			=	-lcriterion -L$(LIB_D) -ldkz
 
 GCOVR_FLAGS		=	--root $(REPO_D) --filter $(LIB_D)src/ --txt-metric branch --gcov-executable "llvm-cov gcov"
 

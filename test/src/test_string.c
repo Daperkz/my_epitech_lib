@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2026
-** test_strings.c
+** libdkz
 ** File description:
 ** Comprehensive string tests
 */
@@ -9,7 +9,7 @@
 #include <criterion/redirect.h>
 #include <stdlib.h>
 
-#include "my/string.h"
+#include "dkz/string.h"
 
 Test(my_strcmp, basic)
 {

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2026
-** test_config.c
+** libdkz
 ** File description:
 ** test_config
 */
@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-#include "my/config.h"
+#include "dkz/config.h"
 
 // Helper to create a dummy config file for testing
 void create_test_config(char const *filename, char const *content)

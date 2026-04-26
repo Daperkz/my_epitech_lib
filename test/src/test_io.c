@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** test_io.c
+** libdkz
 ** File description:
 ** test_io
 */
@@ -10,7 +10,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include "my/io.h"
+#include "dkz/io.h"
 
 static void cleanup_file(char *filename)
 {
