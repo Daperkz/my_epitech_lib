@@ -5,9 +5,9 @@
 ** calculates the number of words the array has
 */
 
-long my_len_str_arr(char **str_arr)
+long my_len_str_arr(char *const *str_arr)
 {
-    char **start;
+    char *const *start;
 
     if (!str_arr)
         return (0);

@@ -9,7 +9,7 @@
 
 #include "dkz/string.h"
 
-char **my_cpy_str_arr(char **str_arr)
+char **my_cpy_str_arr(char *const *str_arr)
 {
     int i = 0;
     char **new_str_arr = NULL;

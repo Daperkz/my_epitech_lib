@@ -29,7 +29,7 @@ static int intlen(int nb, int base_size)
     return len;
 }
 
-char *my_itoab(int nb, char *base)
+char *my_itoab(int nb, char const *base)
 {
     int base_size = my_strlen(base);
     int nblen = intlen(nb, base_size);

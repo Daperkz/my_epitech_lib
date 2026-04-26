@@ -27,7 +27,7 @@ static int longlen(long nb, int base_size)
     return len;
 }
 
-char *my_ltoab(long nb, char *base)
+char *my_ltoab(long nb, char const *base)
 {
     int base_size = my_strlen(base);
     int nblen = longlen(nb, base_size);

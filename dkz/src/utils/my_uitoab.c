@@ -23,7 +23,7 @@ static int intlen(unsigned int nb, int base_size)
     return len;
 }
 
-char *my_uitoab(unsigned int nb, char *base)
+char *my_uitoab(unsigned int nb, char const *base)
 {
     int base_size = my_strlen(base);
     int nblen = intlen(nb, base_size);

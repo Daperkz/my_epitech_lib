@@ -5,10 +5,10 @@
 ** my_memmove
 */
 
-void *my_memmove(void *dest, const void *src, long n)
+void *my_memmove(void *dest, void const *src, long n)
 {
     unsigned char *d = (unsigned char *)dest;
-    const unsigned char *s = (const unsigned char *)src;
+    unsigned char const *s = (unsigned char const *)src;
 
     if (d < s) {
         for (long i = 0; i < n; i++)

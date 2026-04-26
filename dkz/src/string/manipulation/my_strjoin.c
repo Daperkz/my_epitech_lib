@@ -9,7 +9,7 @@
 
 #include "dkz/string.h"
 
-char *my_strjoin(char *str1, char *str2)
+char *my_strjoin(char const *str1, char const *str2)
 {
     char *str;
 

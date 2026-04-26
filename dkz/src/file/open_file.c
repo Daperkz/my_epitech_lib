@@ -11,7 +11,7 @@
 #include "dkz/printf.h"
 
 //returns the file descriptor of said file or -1 in case of error
-int open_file(const char *filename)
+int open_file(char const *filename)
 {
     int fd = open(filename, O_RDONLY);
 

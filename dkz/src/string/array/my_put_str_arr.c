@@ -8,7 +8,7 @@
 #include "dkz/io.h"
 #include "dkz/string.h"
 
-void my_put_str_arr(char **str_arr, char sep)
+void my_put_str_arr(char *const *str_arr, char sep)
 {
     while (*str_arr) {
         my_putstr(*str_arr);

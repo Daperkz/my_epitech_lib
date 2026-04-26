@@ -13,7 +13,7 @@ static int is_num(char c)
     return ('0' <= c && c <= '9');
 }
 
-static int find_num(char *str)
+static int find_num(char const *str)
 {
     int i = 0;
 
@@ -22,7 +22,7 @@ static int find_num(char *str)
     return i;
 }
 
-double my_atof(char *str)
+double my_atof(char const *str)
 {
     int i;
     int start = find_num(str);
@@ -45,7 +45,7 @@ double my_atof(char *str)
     return (str[start - 1] == '-') ? -result : result;
 }
 
-double my_getfnbrspe(char *str, int *error_ptr)
+double my_getfnbrspe(char const *str, int *error_ptr)
 {
     int i;
     int start = find_num(str);

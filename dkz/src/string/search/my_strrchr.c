@@ -8,9 +8,9 @@
 #include <unistd.h>
 
 // returns last occurence of the target char
-char *my_strrchr(char *str, char target)
+char *my_strrchr(char const *str, char target)
 {
-    char *last = NULL;
+    char const *last = NULL;
 
     do {
         if (*str == target) {
@@ -18,5 +18,5 @@ char *my_strrchr(char *str, char target)
         }
         str++;
     } while (*str);
-    return last;
+    return (char *)(last);
 }

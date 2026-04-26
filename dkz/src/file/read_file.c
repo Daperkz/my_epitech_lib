@@ -11,7 +11,7 @@
 #include "dkz/file.h"
 
 // opens said file returns it's content inside of a buffer
-char *read_file(const char *filename)
+char *read_file(char const *filename)
 {
     int fd = open_file(filename);
     long size = get_file_size(filename);
@@ -33,7 +33,7 @@ char *read_file(const char *filename)
 }
 
 // opens said file returns it's content inside of a buffer (no stat)
-char *read_file_dyn(const char *filename)
+char *read_file_dyn(char const *filename)
 {
     int fd = open_file(filename);
     long size = get_file_size_dyn(filename);

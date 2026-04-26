@@ -21,9 +21,9 @@ void my_sort_int_array(int *tab, int size);
 char *concat_params(int argc, char **argv);
 char *convert_base(char const *nbr, char const *base_from, char const *base_to);
 
-char *my_itoab(int nb, char *base);
-char *my_uitoab(unsigned int nb, char *base);
-char *my_ltoab(long nb, char *base);
+char *my_itoab(int nb, char const *base);
+char *my_uitoab(unsigned int nb, char const *base);
+char *my_ltoab(long nb, char const *base);
 char *my_ftoa(double nb, int precision);
 
 #endif /* !DKZ_UTILS_H_ */

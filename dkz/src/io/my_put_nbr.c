@@ -27,7 +27,7 @@ int my_put_nbr(int nb)
     return 0;
 }
 
-int my_put_nbr_base(int nb, char *base)
+int my_put_nbr_base(int nb, char const *base)
 {
     int base_size = my_strlen(base);
     long n = nb;

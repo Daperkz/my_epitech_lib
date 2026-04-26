@@ -8,14 +8,14 @@
 #ifndef DKZ_FILE_H_
     #define DKZ_FILE_H_
 
-int open_file(const char *filename);
+int open_file(char const *filename);
 
-long get_file_size(const char *filename);
-long get_file_size_dyn(const char *filename);
+long get_file_size(char const *filename);
+long get_file_size_dyn(char const *filename);
 
 char *get_file_content(int fd, long size);
 
-char *read_file(const char *filename);
-char *read_file_dyn(const char *filename);
+char *read_file(char const *filename);
+char *read_file_dyn(char const *filename);
 
 #endif /* !DKZ_FILE_H_ */

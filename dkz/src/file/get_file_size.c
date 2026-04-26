@@ -12,7 +12,7 @@
 #include "dkz/file.h"
 
 //returns the size in bytes of said file or -1 in case of error
-long get_file_size(const char *filename)
+long get_file_size(char const *filename)
 {
     struct stat st;
 
@@ -22,7 +22,7 @@ long get_file_size(const char *filename)
 }
 
 //returns the size in bytes of said file or -1 in case of error (no stat)
-long get_file_size_dyn(const char *filename)
+long get_file_size_dyn(char const *filename)
 {
     int fd = open_file(filename);
     char buff[512];

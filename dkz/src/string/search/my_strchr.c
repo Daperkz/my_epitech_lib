@@ -8,16 +8,16 @@
 #include <unistd.h>
 
 // returns first occurence of the target char
-char *my_strchr(char *str, char target)
+char *my_strchr(char const *str, char target)
 {
     if (!str)
         return (NULL);
     while (*str) {
         if (*str == target)
-            return (str);
+            return (char *)(str);
         str++;
     }
     if (*str == target)
-        return (str);
+        return (char *)(str);
     return (NULL);
 }

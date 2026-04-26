@@ -12,7 +12,7 @@ static int is_num(char c)
     return ('0' <= c && c <= '9');
 }
 
-static int find_num(char *str)
+static int find_num(char const *str)
 {
     int i = 0;
 
@@ -35,7 +35,7 @@ int my_atoi(char *str)
     return (str[start - 1] == '-') ? -result : result;
 }
 
-int my_getnbrspe(char *str, int *error_ptr)
+int my_getnbrspe(char const *str, int *error_ptr)
 {
     int i = 0;
     int start = find_num(str);

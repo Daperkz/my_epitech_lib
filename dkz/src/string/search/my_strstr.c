@@ -54,7 +54,7 @@ static void compute_good_suffix(char const *pattern, int m, int *good_suffix)
         good_suffix[m - 1 - suffix[i]] = m - 1 - i;
 }
 
-static char *compute(char *str, int n, char const *pattern, int m)
+static char *compute(char const *str, int n, char const *pattern, int m)
 {
     int j = 0;
     int i = 0;
@@ -68,7 +68,7 @@ static char *compute(char *str, int n, char const *pattern, int m)
         while (j >= 0 && pattern[j] == str[i + j])
             j--;
         if (j < 0)
-            return &str[i];
+            return (char *)(&str[i]);
         i += MAX(good_suffix[j],
             bad_char[(unsigned char)str[i + j]] - (m - 1 - j));
     }
@@ -82,14 +82,14 @@ static char *compute(char *str, int n, char const *pattern, int m)
 ** WC : O(N + M)
 ** @return A pointer the located pattern, NULL if pattern was not found.
 */
-char *my_strstr(char *str, char const *pattern)
+char *my_strstr(char const *str, char const *pattern)
 {
     int n = my_strlen(str);
     int m = my_strlen(pattern);
 
     if (m == 0)
-        return str;
+        return (char *)(str);
     if (m > n)
-        return NULL;
+        return (NULL);
     return compute(str, n, pattern, m);
 }

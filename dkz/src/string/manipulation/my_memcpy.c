@@ -5,7 +5,7 @@
 ** my_memcpy
 */
 
-void *my_memcpy(void *dest, const void *src, long n)
+void *my_memcpy(void *dest, void const *src, long n)
 {
     char *d = (char *)dest;
     const char *s = (const char *)src;
