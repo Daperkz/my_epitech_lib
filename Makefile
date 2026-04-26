@@ -39,4 +39,4 @@ tests_run:	fclean
 coverage:	fclean
 	@$(MAKE) coverage -C $(TEST_D) --no-print-directory
 
-.PHONY:	all	debug	clean	fclean	re	bestre	test	test_run	coverage
+.PHONY:	all	debug	clean	fclean	re	bestre	test	tests_run	coverage
