@@ -1,5 +1,6 @@
 .vscode
-obj/
+incoming
+obj
 main.c
 hand_test.c
 *.d

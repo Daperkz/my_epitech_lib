@@ -11,7 +11,7 @@
     #define WHITESPACES " \t\r\n"
 
 
-/* --- string array --- */
+/* -_- string array -_- */
 
 char **my_str_to_str_arr(char const *str, char const *seps);
 long my_len_str_arr(char **str_arr);
@@ -19,7 +19,7 @@ void my_put_str_arr(char **str_arr, char sep);
 char **my_cpy_str_arr(char **str_arr);
 void my_free_str_arr(char **str_arr);
 
-/* --- convert --- */
+/* -_- convert -_- */
 
 int my_atoi(char const *str);
 double my_atof(char *str);
@@ -27,7 +27,7 @@ double my_getfnbrspe(char *str, int *error_ptr);
 int my_getnbrspe(char *str, int *error_ptr);
 
 
-/* --- manipulation --- */
+/* -_- manipulation -_- */
 
 int my_strlen(char const *str);
 int my_strlen_d(char const *str, char delim);
@@ -48,15 +48,17 @@ char *my_strlowcase(char *str);
 char *my_strcapitalize(char *str);
 
 char *my_strjoin(char *str1, char *str2);
+void *my_memcpy(void *dest, const void *src, long n);
+void *my_memmove(void *dest, const void *src, long n);
 
-/* --- search --- */
+/* -_- search -_- */
 
 char *my_strstr(char *str, char const *to_find);
 char *my_strchr(char *str, char target);
 char *my_strrchr(char *str, char target);
 char *my_strsep(char **str_ptr, const char *sep);
 
-/* --- comparaison --- */
+/* -_- comparaison -_- */
 
 int my_strcmp(char const *s1, char const *s2);
 int my_strncmp(char const *s1, char const *s2, int n);

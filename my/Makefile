@@ -92,7 +92,9 @@ MANIPULATION_F			=	my_putstr.c	\
 							my_strlowcase.c	\
 							my_strupcase.c	\
 							my_strtrim.c	\
-							my_strjoin.c
+							my_strjoin.c	\
+							my_memcpy.c		\
+							my_memmove.c
 
 # -_- Files located in $(SEARCH_D) = ./src/string/search/ -_-
 SEARCH_F				=	my_strchr.c	\
