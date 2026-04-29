@@ -13,11 +13,11 @@
 
 /* -_- string array -_- */
 
-char **my_str_to_str_arr(char const *str, char const *seps);
-long my_len_str_arr(char *const *str_arr);
-void my_put_str_arr(char *const *str_arr, char sep);
-char **my_cpy_str_arr(char *const *str_arr);
-void my_free_str_arr(char **str_arr);
+char **my_str_to_strarr(char const *str, char const *seps);
+long my_len_strarr(char *const *strarr);
+void my_put_strarr(char *const *strarr, char sep);
+char **my_cpy_strarr(char *const *strarr);
+void my_free_strarr(char **strarr);
 
 /* -_- convert -_- */
 

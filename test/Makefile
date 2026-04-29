@@ -44,7 +44,7 @@ DEPENDENCY		=	$(OBJ:%.o=%.d)
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	@$(MAKE) tests -C $(LIB_D) --no-print-directory
+	@$(MAKE) -C $(LIB_D) --no-print-directory
 	@$(CC) -o $@ $^ $(CPPFLAGS) $(CFLAGS) $(LDFLAGS)
 
 $(OBJ_D)%.o:	$(SRC_D)%.c

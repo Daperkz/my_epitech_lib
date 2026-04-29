@@ -103,11 +103,11 @@ SEARCH_F				=	my_strchr.c	\
 							my_strstr.c
 
 # -_- Files located in $(STRING_ARRAY_D) = ./src/string/string_array/ -_-
-STRING_ARRAY_F			=	my_str_to_str_arr.c	\
-							my_put_str_arr.c	\
-							my_len_str_arr.c	\
-							my_cpy_str_arr.c	\
-							my_free_str_arr.c
+STRING_ARRAY_F			=	my_str_to_strarr.c	\
+							my_put_strarr.c	\
+							my_len_strarr.c	\
+							my_cpy_strarr.c	\
+							my_free_strarr.c
 
 # -_- Files located in $(MATH_D) = ./src/math/ -_-
 MATH_F					=	my_isneg.c	\
