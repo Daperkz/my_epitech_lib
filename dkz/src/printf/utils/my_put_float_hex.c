@@ -19,6 +19,8 @@ static char *my_put_mantissa(long x, char *base)
     char *str = malloc(sizeof(char) * 14);
     int mantissa_hex_max = 13;
 
+    if (!str)
+        return (NULL);
     for (int i = mantissa_hex_max - 1; i >= 0; i--) {
         str[i] = base[x % 16];
         x /= 16;
@@ -86,6 +88,8 @@ char *my_put_float_hex(double nb, char *base)
     char *power2_str = NULL;
     char *str = malloc(sizeof(char) * 1);
 
+    if (!str)
+        return (NULL);
     str[0] = '\0';
     if (sign_x_zero_part(&nb, &str, base[15]) == 1)
         return str;

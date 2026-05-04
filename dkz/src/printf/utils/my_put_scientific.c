@@ -75,16 +75,12 @@ static char *special_case(double nb)
 {
     char *str;
 
-    if (nb == 1.0 / 0.0) {
-        str = malloc(sizeof(char) * 4);
-        return (!str) ? NULL : my_strcpy(str, "inf");
-    } else if (nb == -1.0 / 0.0) {
-        str = malloc(sizeof(char) * 5);
-        return (!str) ? NULL : my_strcpy(str, "-inf");
-    } else {
-        str = malloc(sizeof(char) * 4);
-        return (!str) ? NULL : my_strcpy(str, "nan");
-    }
+    if (nb == 1.0 / 0.0)
+        return my_strdup("inf");
+    else if (nb == -1.0 / 0.0)
+        return my_strdup("-inf");
+    else
+        return my_strdup("nan");
     return str;
 }
 
@@ -125,8 +121,9 @@ char *my_put_scientific(double nb, char *base, int cap)
 
     if (nb != nb || nb == 1.0 / 0.0 || nb == -1.0 / 0.0)
         return special_case(nb);
-    str = malloc(sizeof(char) * 1);
-    str[0] = '\0';
+    str = my_strdup("");
+    if (!str)
+        return (NULL);
     if (nb == 0.0)
         return my_strappend(&str, cap ? "0.000000E+00" : "0.000000e+00");
     if (!sign_part(&str, &nb))

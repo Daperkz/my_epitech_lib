@@ -20,15 +20,14 @@ char *my_put_adress(void *a)
     char *nbr = NULL;
 
     if (a == NULL) {
-        str = malloc(sizeof(char) * 6);
-        if (str == NULL)
-            return NULL;
-        return my_strcpy(str, "(nil)");
+        return my_strdup("(nil)");
     }
     nbr = my_ltoab(addr, "0123456789abcdef");
-    str = malloc(sizeof(char) * (2 + my_strlen(nbr) + 1));
-    if (str == NULL)
+    str = nbr ? malloc(sizeof(char) * (2 + my_strlen(nbr) + 1)) : NULL;
+    if (!str) {
+        free(nbr);
         return NULL;
+    }
     my_strcpy(str, "0x");
     my_strcat(str, nbr);
     free(nbr);
