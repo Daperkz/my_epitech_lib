@@ -50,6 +50,7 @@ char *my_strcapitalize(char *str);
 char *my_strjoin(char const *str1, char const *str2);
 void *my_memcpy(void *dest, void const *src, long n);
 void *my_memmove(void *dest, void const *src, long n);
+void *my_memset(void *dest, int c, long n);
 
 /* -_- search -_- */
 
