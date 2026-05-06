@@ -13,10 +13,88 @@
 
 /* -_- string array -_- */
 
+
+/**
+** @brief Splits a string into an array of words
+**
+** @param[in] str The target string to be split into an array.
+** @param[in] seps A string containing all chars to treat as word boundaries.
+**
+** @return @b char** An allocated, NULL-terminated array of strings
+** representing the extracted tokens.
+** @retval NULL Returned if @p str or @p seps is NULL, or if a memory allocation
+** failure occurs during runtime.
+**
+** @note Example:
+** my_str_to_strarr("Hello (World ) -|complex text|-", " \t\n")
+** -> {"Hello", "(World", ")", "-|complex", "text|-"}
+*/
 char **my_str_to_strarr(char const *str, char const *seps);
+
+/**
+** @brief Splits a string into an array of words, ignoring separators when
+** they are enclosed within specified boundary pairs (e.g., quotes, brackets).
+**
+** @param[in] str The target string to be split into an array.
+** @param[in] seps A string containing all chars to treat as word boundaries.
+** @param[in] pairs A configuration string defining multi-character boundary
+** rules, formatted as "open:close" and separated by semicolons (e.g., "\":\"").
+**
+** @return @b char** An allocated, NULL-terminated array of strings
+** representing the extracted tokens.
+** @retval NULL Returned if @p str or @p seps is NULL, or if a memory allocation
+** failure occurs during runtime.
+**
+** @note If @p pairs is NULL or empty, the function automatically falls back to
+** the standard behavior of @ref my_str_to_strarr.
+**
+** my_str_to_strarr_pairs("Hello (World ) -|complex text|-",
+** " \t\n", "(:);-|:|-")
+** -> {"Hello", "World ", "complex text"}
+*/
+char **my_str_to_strarr_pairs(
+    char const *str, char const *seps, char const *pairs
+);
+
+/**
+** @brief Calculates the length of a string array
+**
+** @param[in] strarr The NULL-terminated string array
+**
+** @return @b int The length of the given @p strarr
+** @retval 0 Returned if @p strarr is NULL or empty.
+*/
 long my_len_strarr(char *const *strarr);
+
+/**
+** @brief Prints the string array to the standard output
+**
+** @param[in] strarr The NULL-terminated string array
+** @param[in] sep A simple char which is printed between each string of strarr
+**
+** @return @b void
+*/
 void my_put_strarr(char *const *strarr, char sep);
+
+/**
+** @brief Copies the given @p strarr
+**
+** @param[in] strarr an allocated NULL-terminated array of strings
+**
+** @return @b char** An allocated, NULL-terminated array of strings
+** a copy of @p strarr.
+** @retval NULL Returned if @p strarr is NULL, or if a memory allocation failure
+** occurs during runtime.
+*/
 char **my_cpy_strarr(char *const *strarr);
+
+/**
+** @brief frees the memory of the given @p strarr
+**
+** @param[in, out] strarr an allocated NULL-terminated array of strings
+**
+** @return @b void
+*/
 void my_free_strarr(char **strarr);
 
 /* -_- convert -_- */
