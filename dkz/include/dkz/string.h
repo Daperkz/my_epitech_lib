@@ -13,7 +13,6 @@
 
 /* -_- string array -_- */
 
-
 /**
 ** @brief Splits a string into an array of words
 **
