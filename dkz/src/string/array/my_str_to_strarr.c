@@ -81,29 +81,3 @@ char **my_str_to_strarr(char const *str, char const *seps)
     strarr[wi] = NULL;
     return strarr;
 }
-
-char **my_str_to_strarr_pairs(
-    char const *str, char const *seps, char const *pairs
-)
-{
-    char **str_arr = NULL;
-    int wi = 0;
-
-    if (!str || !seps)
-        return NULL;
-    str_arr = malloc(sizeof(char *) * (nbr_words(str, seps) + 1));
-    if (!str_arr)
-        return NULL;
-    for (int i = 0; str[i]; wi++) {
-        if (!str[skip_seps(str, seps, &i)])
-            break;
-        str_arr[wi] = extract_word(str, seps, &i);
-        if (!str_arr[wi]) {
-            my_free_strarr(str_arr);
-            return NULL;
-        }
-    }
-    (void)pairs;
-    str_arr[wi] = NULL;
-    return str_arr;
-}
