@@ -41,7 +41,8 @@ long get_file_size_dyn(char const *filename);
 ** @param[in] fd The file descriptor to read from
 ** @param[in] size The number of bytes to read
 **
-** @return @b char* A new allocated string containing the content, or NULL on error
+** @return @b char* A new allocated string containing the content,
+** or NULL on error
 */
 char *get_file_content(int fd, long size);
 
