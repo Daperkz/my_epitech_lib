@@ -49,7 +49,7 @@ char **my_str_to_strarr(char const *str, char const *seps);
 **
 ** @warning The @p pairs string must follow the "open:close;" format strictly.
 ** Providing empty patterns (e.g., "::") or missing delimiters (':' or ';')
-** will result in undefined or unexpected behavior, including potential 
+** will result in undefined or unexpected behavior, including potential
 ** infinite loops or incorrect tokenization.
 **
 ** my_str_to_strarr_pairs("Hello (World ) -|complex text|-",
