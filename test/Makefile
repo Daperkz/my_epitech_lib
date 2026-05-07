@@ -8,7 +8,7 @@
 NAME			=	unit_test
 COVERAGE_NAME	=	gcov_result.txt
 
-CC				=	epiclang
+CC				=	clang
 GCOVR			=	gcovr
 
 REPO_D			=	../
@@ -17,19 +17,21 @@ LIB_D			=	$(REPO_D)dkz/
 TEST_D			=	$(REPO_D)test/
 
 INCLUDE			=	$(LIB_D)include/
+TEST_INCLUDE	=	$(TEST_D)include/
 
 SRC_D			=	$(ROOT_D)src/
 OBJ_D			=	$(ROOT_D)obj/
 
 STRING_D		=	$(SRC_D)string/
 
-CPPFLAGS		=	-I$(INCLUDE)
+CPPFLAGS		=	-I$(INCLUDE) -I$(TEST_INCLUDE)
 CFLAGS			=	-Wall -Wextra --coverage
-LDFLAGS			=	-lcriterion -L$(LIB_D) -ldkz
+LDFLAGS			=	-lcriterion -L$(LIB_D) -ldkz -Wl,--wrap=malloc
 
 GCOVR_FLAGS		=	--root $(REPO_D) --filter $(LIB_D)src/ --txt-metric branch --gcov-executable "llvm-cov gcov"
 
-SRC				=	$(SRC_D)test_io.c				\
+SRC				=	$(SRC_D)malloc_wrapper.c		\
+					$(SRC_D)test_io.c				\
 					$(SRC_D)test_string.c			\
 					$(STRING_D)test_array.c			\
 					$(SRC_D)test_utils.c			\
@@ -68,7 +70,7 @@ run:	$(NAME)
 	@./$(NAME)
 	@printf "\033[1;32m%s\033[0m\n" "Test ran."
 
-coverage:	$(NAME)
+coverage:	fclean	$(NAME)
 	@./$(NAME)
 	@$(GCOVR) $(GCOVR_FLAGS) > $(COVERAGE_NAME)
 	@printf "\033[1;32m%s\033[0m\n" "Coverage Calculated."
