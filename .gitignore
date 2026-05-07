@@ -1,6 +1,8 @@
 .vscode
 incoming
 obj
+html
+latex
 main.c
 hand_test.c
 *.d
