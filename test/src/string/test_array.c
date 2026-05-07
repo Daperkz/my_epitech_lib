@@ -5,11 +5,8 @@
 ** test_array
 */
 
-#include <criterion/criterion.h>
-#include <criterion/redirect.h>
-#include <stdlib.h>
+#include "test.h"
 
-#include "dkz/string.h"
 Test(my_str_to_strarr, null_safety)
 {
     cr_assert_null(my_str_to_strarr(NULL, " "));
@@ -65,6 +62,20 @@ Test(my_str_to_strarr, split_logic)
     cr_assert_str_eq(res[2], "test");
     cr_assert_null(res[3]);
     my_free_strarr(res);
+}
+
+Test(my_str_to_strarr, first_malloc_fail, .fini = reset_malloc_wrapper)
+{
+    set_malloc_fail(1);
+    set_malloc_count(0);
+    cr_assert_null(my_str_to_strarr("hello:world;test", ":;"));
+}
+
+Test(my_str_to_strarr, second_malloc_fail, .fini = reset_malloc_wrapper)
+{
+    set_malloc_fail(1);
+    set_malloc_count(1);
+    cr_assert_null(my_str_to_strarr("hello:world;test", ":;"));
 }
 
 Test(my_str_to_strarr_pairs, fallback_behavior)
@@ -159,6 +170,42 @@ Test(my_str_to_strarr_pairs, overlapping_pair_characters)
     my_free_strarr(res);
 }
 
+Test(my_str_to_strarr_pairs, mismatched_closing_tags,
+    .fini = reset_malloc_wrapper)
+{
+    char **res = my_str_to_strarr_pairs("( wrong closing -|", " ", "(:);-|:|-");
+
+    cr_assert_null(res);
+}
+
+Test(my_str_to_strarr_pairs, mismatched_interleaved_brackets)
+{
+    char **res = my_str_to_strarr_pairs("(content]still_inside)", " ", "(:);[:]");
+
+    cr_assert_not_null(res);
+    cr_assert_str_eq(res[0], "content]still_inside");
+    cr_assert_null(res[1]);
+    my_free_strarr(res);
+}
+
+Test(my_str_to_strarr_pairs, first_malloc_fail, .fini = reset_malloc_wrapper)
+{
+    set_malloc_fail(1);
+    set_malloc_count(0);
+    cr_assert_null(my_str_to_strarr_pairs(
+        "Hello (World ) -|complex text|-", " \t\n", "(:);-|:|-"
+    ));
+}
+
+Test(my_str_to_strarr_pairs, second_malloc_fail, .fini = reset_malloc_wrapper)
+{
+    set_malloc_fail(1);
+    set_malloc_count(1);
+    cr_assert_null(my_str_to_strarr_pairs(
+        "Hello (World ) -|complex text|-", " \t\n", "(:);-|:|-"
+    ));
+}
+
 Test(my_len_strarr, basic_length)
 {
     char *arr[] = {"one", "two", "three", NULL};
@@ -190,6 +237,24 @@ Test(my_cpy_strarr, deep_copy_validation)
 Test(my_cpy_strarr, null_input)
 {
     cr_assert_null(my_cpy_strarr(NULL));
+}
+
+Test(my_cpy_strarr, first_malloc_fail, .fini = reset_malloc_wrapper)
+{
+    char *arr[] = {"apple", "banana", NULL};
+
+    set_malloc_fail(1);
+    set_malloc_count(0);
+    cr_assert_null(my_cpy_strarr(arr));
+}
+
+Test(my_cpy_strarr, second_malloc_fail, .fini = reset_malloc_wrapper)
+{
+    char *arr[] = {"apple", "banana", NULL};
+
+    set_malloc_fail(1);
+    set_malloc_count(1);
+    cr_assert_null(my_cpy_strarr(arr));
 }
 
 Test(my_put_strarr, standard_output, .init = cr_redirect_stdout)

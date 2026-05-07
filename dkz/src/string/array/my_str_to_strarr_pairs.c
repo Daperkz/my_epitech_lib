@@ -32,7 +32,7 @@ static int match_bracket_side(
     int len;
     char const *pat;
 
-    for (int i = 0; pairs && pairs[i]; i++) {
+    for (int i = 0; pairs[i]; i++) {
         if (pairs[i] != ':')
             continue;
         s = i - 1;
@@ -137,21 +137,23 @@ char **my_str_to_strarr_pairs(char const *str, char const *seps,
     char const *pairs)
 {
     int n;
-    char **arr;
+    char **strarr;
     struct token_s t = {0, 0, 0};
 
     if (!str || !seps || !pairs || !*pairs)
         return (!str || !seps) ? (NULL) : (my_str_to_strarr(str, seps));
     n = count_tokens(str, seps, pairs);
-    if (n < 0)
-        return (NULL);
-    arr = malloc(sizeof(char *) * (n + 1));
-    if (!arr)
+    strarr = (n < 0) ? NULL : malloc(sizeof(char *) * (n + 1));
+    if (!strarr)
         return (NULL);
     for (int i = 0; i < n; i++) {
         get_bounds(str, seps, pairs, &t);
-        arr[i] = my_strndup(&str[t.start], t.end - t.start);
+        strarr[i] = my_strndup(&str[t.start], t.end - t.start);
+        if (!strarr[i]) {
+            my_free_strarr(strarr);
+            return (NULL);
+        }
     }
-    arr[n] = NULL;
-    return (arr);
+    strarr[n] = NULL;
+    return (strarr);
 }

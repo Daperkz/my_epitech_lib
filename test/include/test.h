@@ -9,8 +9,13 @@
     #define LIBDKZ_TEST_H_
 
     #include <stdlib.h>
+    #include <criterion/criterion.h>
+    #include <criterion/redirect.h>
 
     #include "../../dkz/include/dkz.h"
+
+    #define BASE_MALLOC_FAIL 0
+    #define BASE_MALLOC_COUNT -1
 
 // The "real" malloc provided by the system
 void *__real_malloc(size_t size);
