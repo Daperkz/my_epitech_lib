@@ -33,10 +33,12 @@ long get_file_size_dyn(char const *filename)
         return (-1);
     while (n > 0) {
         n = read(fd, buff, 512);
+        if (n == -1) {
+            close(fd);
+            return (-1);
+        }
         size += n;
     }
     close(fd);
-    if (n == -1)
-        return (-1);
     return (size);
 }

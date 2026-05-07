@@ -12,7 +12,7 @@
 //returns a buffer of the entire content of a file or NULL in case of error
 char *get_file_content(int fd, long size)
 {
-    char *buffer = malloc(sizeof(char) * (size + 1));
+    char *buffer = (fd == -1) ? NULL : malloc(sizeof(char) * (size + 1));
 
     if (!buffer)
         return (NULL);

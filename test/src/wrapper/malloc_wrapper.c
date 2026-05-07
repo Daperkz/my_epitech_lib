@@ -8,8 +8,8 @@
 #include "test.h"
 
 // This flag controls whether malloc should fail or succeed
-static int should_malloc_fail = BASE_MALLOC_FAIL;
-static int malloc_count_until_fail = BASE_MALLOC_COUNT;
+static int should_malloc_fail = BASE_SYSCALL_FAIL;
+static int malloc_count_until_fail = BASE_SYSCALL_COUNT;
 
 void set_malloc_fail(int should_fail)
 {
@@ -21,7 +21,7 @@ void set_malloc_count(int count)
     malloc_count_until_fail = count;
 }
 
-// Our wrapper
+// my wrapper
 void *__wrap_malloc(size_t size)
 {
     int *fail = &should_malloc_fail;
@@ -38,6 +38,6 @@ void *__wrap_malloc(size_t size)
 
 void reset_malloc_wrapper(void)
 {
-    should_malloc_fail = BASE_MALLOC_FAIL;
-    malloc_count_until_fail = BASE_MALLOC_COUNT;
+    should_malloc_fail = BASE_SYSCALL_FAIL;
+    malloc_count_until_fail = BASE_SYSCALL_COUNT;
 }
