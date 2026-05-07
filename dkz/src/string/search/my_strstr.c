@@ -75,13 +75,6 @@ static char *compute(char const *str, int n, char const *pattern, int m)
     return NULL;
 }
 
-/**
-** @brief Locates the first occurrence the pattern in the str
-** Boyer-Moore algorithm
-** BC : O(N/M)
-** WC : O(N + M)
-** @return A pointer the located pattern, NULL if pattern was not found.
-*/
 char *my_strstr(char const *str, char const *pattern)
 {
     int n = my_strlen(str);
