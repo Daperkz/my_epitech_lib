@@ -4,6 +4,19 @@
 ** File description:
 ** file
 */
+/**
+** @file file.h
+** @brief File system interaction and reading utilities.
+**
+** Functions to handle file descriptors, retrieve file metadata (size),
+** and read content into memory via both static and dynamic methods.
+**
+** @author Daperkz
+** @ingroup libdkz
+** @test ./tests/file/
+** @version 1.0
+** @date 2026-07-05
+*/
 
 #ifndef DKZ_FILE_H_
     #define DKZ_FILE_H_

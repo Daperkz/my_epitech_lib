@@ -4,6 +4,19 @@
 ** File description:
 ** string.h
 */
+/**
+** @file string.h
+** @brief Header file for string manipulation and array utilities.
+**
+** This file contains the definitions for the libdkz string library,
+** including memory management for string arrays and search algorithms.
+**
+** @author Daperkz
+** @ingroup libdkz
+** @test ./tests/string/
+** @version 1.0
+** @date 2026-07-05
+*/
 
 #ifndef DKZ_STRING_H_
     #define DKZ_STRING_H_

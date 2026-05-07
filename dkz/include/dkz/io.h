@@ -4,6 +4,19 @@
 ** File description:
 ** io.h
 */
+/**
+** @file io.h
+** @brief Basic Input/Output functions.
+**
+** Includes functions for printing characters, numbers, and
+** debugging tools like memory and string hex-dumps.
+**
+** @author Daperkz
+** @ingroup libdkz
+** @test ./tests/io/
+** @version 1.0
+** @date 2026-07-05
+*/
 
 #ifndef DKZ_IO_H_
     #define DKZ_IO_H_

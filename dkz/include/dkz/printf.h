@@ -4,6 +4,19 @@
 ** File description:
 ** printf.h
 */
+/**
+** @file printf.h
+** @brief Custom implementation of the printf family functions.
+**
+** Provides formatted output capabilities for standard output,
+** file descriptors, and dynamic string allocation.
+**
+** @author Daperkz
+** @ingroup libdkz
+** @test ./tests/printf/
+** @version 1.0
+** @date 2026-07-05
+*/
 
 #ifndef DKZ_PRINTF_H
     #define DKZ_PRINTF_H

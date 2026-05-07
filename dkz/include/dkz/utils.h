@@ -4,6 +4,19 @@
 ** File description:
 ** utils.h
 */
+/**
+** @file utils.h
+** @brief General utility functions and base conversion tools.
+**
+** This file contains helper functions for sorting, swapping, and
+** advanced base conversion for various numeric types.
+**
+** @author Daperkz
+** @ingroup libdkz
+** @test ./tests/utils/
+** @version 1.0
+** @date 2026-07-05
+*/
 
 #ifndef DKZ_UTILS_H_
     #define DKZ_UTILS_H_
