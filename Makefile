@@ -28,12 +28,12 @@ docs:
 	@echo "Documentation generated in the $(DOC_DIR)/ directory."
 
 clean:
-	$(RM) -rf $(DOC_D) latex
+	@$(RM) -r $(DOC_D) latex
 	@$(MAKE) -C $(LIB_D) clean --no-print-directory
 	@$(MAKE) -C $(TEST_D) clean --no-print-directory
 
 fclean:
-	$(RM) -rf $(DOC_D)
+	@$(RM) -r $(DOC_D)
 	@$(MAKE) -C $(LIB_D) fclean --no-print-directory
 	@$(MAKE) -C $(TEST_D) fclean --no-print-directory
 
@@ -42,13 +42,13 @@ re: fclean all
 bestre:
 	@$(MAKE) bestre -C $(LIB_D) --no-print-directory
 
-tests:	fclean
+tests:
 	@$(MAKE) -C $(TEST_D) --no-print-directory
 
-tests_run:	fclean
+tests_run:
 	@$(MAKE) run -C $(TEST_D) --no-print-directory
 
-coverage:	fclean
+coverage:
 	@$(MAKE) coverage -C $(TEST_D) --no-print-directory
 
 .PHONY:	all	debug	docs	clean	fclean	re	bestre	test	tests_run	coverage
