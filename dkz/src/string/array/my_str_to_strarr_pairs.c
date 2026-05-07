@@ -6,164 +6,152 @@
 */
 
 #include <stdlib.h>
-
 #include "dkz/string.h"
 
-static int is_seperator(char c, char const *seps)
+struct token_s {
+    int start;
+    int end;
+    int next;
+};
+
+static int get_pat_len(char const *pattern, int is_open)
 {
-    for (int i = 0; seps[i]; i++) {
-        if (c == seps[i])
+    int len = 0;
+    char stop = is_open ? ':' : ';';
+
+    while (pattern[len] && pattern[len] != stop)
+        len++;
+    return len;
+}
+
+static int match_bracket_side(
+    char const *str, char const *pairs, int is_open, int *pair_id
+)
+{
+    int s;
+    int len;
+    char const *pat;
+
+    for (int i = 0; pairs && pairs[i]; i++) {
+        if (pairs[i] != ':')
+            continue;
+        s = i - 1;
+        while (s >= 0 && pairs[s] != ';')
+            s--;
+        pat = is_open ? &pairs[s + 1] : &pairs[i + 1];
+        len = get_pat_len(pat, is_open);
+        if (my_strncmp(str, pat, len) == 0) {
+            *pair_id = i;
+            return len;
+        }
+    }
+    return 0;
+}
+
+static int handle_pair_match(
+    int closelen, int dest_id, int curr_id, int *depth
+)
+{
+    if (closelen > 0 && curr_id == dest_id) {
+        *depth -= 1;
+        if (*depth == 0)
             return 1;
     }
     return 0;
 }
 
-static int skip_seps(char const *str, char const *seps, int *i_ptr)
-{
-    while (str[*i_ptr] && is_seperator(str[*i_ptr], seps))
-        (*i_ptr)++;
-    return (*i_ptr);
-}
-
-static int find_opener_start(char const *pairs, int i)
-{
-    int start = i - 1;
-
-    while (start >= 0 && pairs[start] != ';')
-        start--;
-    return (start + 1);
-}
-
-static int check_and_set_closer(
-    char const *str, char const *pairs, int *meta, char const **closer_ptr
+static int pair_loop(
+    char const *str, char const *pairs, int dest_id, struct token_s *token
 )
 {
-    int idx = meta[0];
-    int start = find_opener_start(pairs, idx);
-    int op_len = idx - start;
+    int closelen;
+    int openlen;
+    int curr_id;
+    int depth = 1;
 
-    if (my_strncmp(str, &pairs[start], op_len) == 0) {
-        *closer_ptr = &pairs[idx + 1];
-        meta[1] = 0;
-        while ((*closer_ptr)[meta[1]] && (*closer_ptr)[meta[1]] != ';')
-            meta[1]++;
-        return (op_len);
-    }
-    return (0);
-}
-
-static int match_opening_pair(
-    char const *str, char const *pairs, char const **closer_ptr, int *closer_len
-)
-{
-    int meta[2];
-    int len;
-
-    if (!pairs || !str)
-        return (0);
-    for (int i = 0; pairs[i]; i++) {
-        if (pairs[i] != ':')
-            continue;
-        meta[0] = i;
-        len = check_and_set_closer(str, pairs, meta, closer_ptr);
-        if (len > 0) {
-            *closer_len = meta[1];
-            return (len);
+    for (int i = token->start; str[i]; i++) {
+        closelen = match_bracket_side(&str[i], pairs, 0, &curr_id);
+        if (handle_pair_match(closelen, dest_id, curr_id, &depth)) {
+            token->end = i;
+            token->next = i + closelen;
+            return 1;
+        }
+        openlen = match_bracket_side(&str[i], pairs, 1, &curr_id);
+        if (openlen > 0 && curr_id == dest_id) {
+            depth++;
+            i += openlen - 1;
         }
     }
-    return (0);
+    return -1;
 }
 
-static void handle_pair_skip(
-    char const *str, int *i, char const *closer, int len
-)
+static int find_simple_token(char const *str, char const *seps,
+    char const *pairs, struct token_s *token)
 {
-    while (str[*i] && my_strncmp(&str[*i], closer, len) != 0)
-        (*i)++;
-    if (str[*i])
-        (*i) += len;
+    int i = token->start;
+    int curr_id;
+
+    while (str[i] && !my_strchr(seps, str[i]) &&
+        !match_bracket_side(&str[i], pairs, 1, &curr_id))
+        i++;
+    token->end = i;
+    token->next = i;
+    return 1;
 }
 
-static int count_loop_body(
-    char const *str, char const *seps, char const *pairs, int *meta
-)
+static int get_bounds(char const *str, char const *seps, char const *pairs,
+    struct token_s *token)
 {
-    char const *closer = NULL;
-    int c_len = 0;
-    int op_len = match_opening_pair(&str[meta[0]], pairs, &closer, &c_len);
+    int i = token->next;
+    int openlen;
+    int dest_id;
 
-    if (op_len > 0) {
-        meta[1] = 1;
-        meta[0] += op_len;
-        handle_pair_skip(str, &meta[0], closer, c_len);
-        return (1);
+    while (str[i] && my_strchr(seps, str[i]))
+        i++;
+    if (!str[i])
+        return 0;
+    openlen = match_bracket_side(&str[i], pairs, 1, &dest_id);
+    if (openlen > 0) {
+        token->start = i + openlen;
+        return pair_loop(str, pairs, dest_id, token);
     }
-    if (!is_seperator(str[meta[0]], seps) && !meta[1]) {
-        meta[1] = 1;
-        meta[0]++;
-        return (1);
-    }
-    if (is_seperator(str[meta[0]], seps))
-        meta[1] = 0;
-    meta[0]++;
-    return (0);
+    token->start = i;
+    return find_simple_token(str, seps, pairs, token);
 }
 
-static int nbr_words_pairs(char const *str, char const *seps, char const *pairs)
+static int count_tokens(char const *str, char const *seps, char const *pairs)
 {
-    int count = 0;
-    int meta[2] = {0, 0};
+    int n = 0;
+    int stat = 1;
+    struct token_s t = {0, 0, 0};
 
-    while (str[meta[0]]) {
-        count += count_loop_body(str, seps, pairs, meta);
+    while (stat > 0) {
+        stat = get_bounds(str, seps, pairs, &t);
+        if (stat > 0)
+            n++;
     }
-    return (count);
+    return (stat == -1) ? -1 : n;
 }
 
-static char *extract_word_pairs(
-    char const *str, char const *seps, char const *pairs, int *i_ptr
-)
+char **my_str_to_strarr_pairs(char const *str, char const *seps,
+    char const *pairs)
 {
-    int start = *i_ptr;
-    char const *closer = NULL;
-    int c_len = 0;
-    int op_len;
+    int n;
+    char **arr;
+    struct token_s t = {0, 0, 0};
 
-    while (str[*i_ptr]) {
-        op_len = match_opening_pair(&str[*i_ptr], pairs, &closer, &c_len);
-        if (op_len > 0) {
-            (*i_ptr) += op_len;
-            handle_pair_skip(str, i_ptr, closer, c_len);
-            continue;
-        }
-        if (is_seperator(str[*i_ptr], seps))
-            break;
-        (*i_ptr)++;
-    }
-    return (my_strndup(&str[start], *i_ptr - start));
-}
-
-char **my_str_to_strarr_pairs(
-    char const *str, char const *seps, char const *pairs
-)
-{
-    char **strarr = NULL;
-    int wi = 0;
-
-    if (!str || !seps || !pairs || pairs[0] == '\0')
-        return ((!str || !seps) ? NULL : my_str_to_strarr(str, seps));
-    strarr = malloc(sizeof(char *) * (nbr_words_pairs(str, seps, pairs) + 1));
-    if (!strarr)
+    if (!str || !seps || !pairs || !*pairs)
+        return (!str || !seps) ? (NULL) : (my_str_to_strarr(str, seps));
+    n = count_tokens(str, seps, pairs);
+    if (n < 0)
         return (NULL);
-    for (int i = 0; str[i]; wi++) {
-        if (!str[skip_seps(str, seps, &i)])
-            break;
-        strarr[wi] = extract_word_pairs(str, seps, pairs, &i);
-        if (!strarr[wi]) {
-            my_free_strarr(strarr);
-            return (NULL);
-        }
+    arr = malloc(sizeof(char *) * (n + 1));
+    if (!arr)
+        return (NULL);
+    for (int i = 0; i < n; i++) {
+        get_bounds(str, seps, pairs, &t);
+        arr[i] = my_strndup(&str[t.start], t.end - t.start);
     }
-    strarr[wi] = NULL;
-    return (strarr);
+    arr[n] = NULL;
+    return (arr);
 }
