@@ -12,7 +12,8 @@ void my_put_strarr(char *const *strarr, char sep)
 {
     while (strarr && *strarr) {
         my_putstr(*strarr);
-        my_putchar(sep);
+        if (*(strarr + 1))
+            my_putchar(sep);
         strarr++;
     }
 }

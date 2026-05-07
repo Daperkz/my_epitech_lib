@@ -14,6 +14,8 @@ char **my_cpy_strarr(char *const *strarr)
     int i = 0;
     char **new_strarr = NULL;
 
+    if (!strarr)
+        return (NULL);
     while (strarr && strarr[i])
         i++;
     new_strarr = malloc(sizeof(char *) * (i + 1));

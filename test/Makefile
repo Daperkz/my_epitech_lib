@@ -21,20 +21,23 @@ INCLUDE			=	$(LIB_D)include/
 SRC_D			=	$(ROOT_D)src/
 OBJ_D			=	$(ROOT_D)obj/
 
+STRING_D		=	$(SRC_D)string/
+
 CPPFLAGS		=	-I$(INCLUDE)
 CFLAGS			=	-Wall -Wextra --coverage
 LDFLAGS			=	-lcriterion -L$(LIB_D) -ldkz
 
 GCOVR_FLAGS		=	--root $(REPO_D) --filter $(LIB_D)src/ --txt-metric branch --gcov-executable "llvm-cov gcov"
 
-SRC				=	$(SRC_D)test_io.c	\
-					$(SRC_D)test_string.c	\
-					$(SRC_D)test_utils.c	\
-					$(SRC_D)test_math.c	\
-					$(SRC_D)test_file.c	\
-					$(SRC_D)test_printf.c	\
-					$(SRC_D)test_graph.c	\
-					$(SRC_D)test_hashtable.c	\
+SRC				=	$(SRC_D)test_io.c				\
+					$(SRC_D)test_string.c			\
+					$(STRING_D)test_array.c			\
+					$(SRC_D)test_utils.c			\
+					$(SRC_D)test_math.c				\
+					$(SRC_D)test_file.c				\
+					$(SRC_D)test_printf.c			\
+					$(SRC_D)test_graph.c			\
+					$(SRC_D)test_hashtable.c		\
 					$(SRC_D)test_config.c
 
 OBJ				=	$(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)
