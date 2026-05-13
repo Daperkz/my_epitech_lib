@@ -5,7 +5,9 @@
 ** my_nbrlen
 */
 
-int my_nbrlen(int x)
+#include "dkz/utils.h"
+
+int my_intlenb(int x, int baselen)
 {
     int len = 0;
 
@@ -14,8 +16,13 @@ int my_nbrlen(int x)
     if (x < 0)
         x = -x;
     while (x > 0) {
-        x /= 10;
+        x /= baselen;
         len++;
     }
     return len;
+}
+
+int my_intlen(int x)
+{
+    return (my_intlenb(x, 10));
 }

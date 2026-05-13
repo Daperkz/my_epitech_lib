@@ -46,6 +46,7 @@ int my_round(double x);
 // Returns the Integer part by truncating toward zero
 int my_trunc(double x);
 
-int my_nbrlen(int x);
+int my_intlen(int x);
+int my_intlenb(int x, int baselen);
 
 #endif /* !DKZ_MATH_H_ */

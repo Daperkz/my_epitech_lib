@@ -34,7 +34,7 @@ static int print_the_nbr(double nb, int precision, double multiplier)
     if (precision > 0) {
         printed += my_putstr(".");
         decimals = (long long)(fractional_part * multiplier);
-        for (int i = 0; i < (precision - my_nbrlen(decimals)); i++)
+        for (int i = 0; i < (precision - my_intlen(decimals)); i++)
             printed += my_putstr("0");
         if (decimals > 0 || precision > 0)
             printed += my_put_nbr(decimals);
