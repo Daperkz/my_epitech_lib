@@ -5,9 +5,9 @@
 ** my_pow
 */
 
-int my_ipow(int n, int p)
+long long my_ipow(int n, int p)
 {
-    int result = 1;
+    long long result = 1;
 
     for (int i = 0; i < p; i++)
         result *= n;

@@ -11,37 +11,49 @@
 #include "dkz/string.h"
 #include "dkz/math.h"
 
-void special_case(double nb)
+static int special_case(double nb)
 {
     if (nb == 1.0 / 0.0) {
-        my_putstr("inf");
+        return my_putstr("inf");
     } else if (nb == -1.0 / 0.0) {
-        my_putstr("-inf");
+        return my_putstr("-inf");
     } else {
-        my_putstr("nan");
+        return my_putstr("nan");
     }
-    return;
+    return 0;
 }
 
-void my_put_float(double nb, int precision)
+static int print_the_nbr(double nb, int precision, double multiplier)
 {
-    int decimal;
-    int precision_p10 = my_ipow(10, precision);
+    long long integer_part = (long long)nb;
+    double fractional_part = nb - (double)integer_part;
+    long long decimals;
+    int printed = 0;
+
+    printed += my_put_nbr(integer_part);
+    if (precision > 0) {
+        printed += my_putstr(".");
+        decimals = (long long)(fractional_part * multiplier);
+        for (int i = 0; i < (precision - my_nbrlen(decimals)); i++)
+            printed += my_putstr("0");
+        if (decimals > 0 || precision > 0)
+            printed += my_put_nbr(decimals);
+    }
+    return printed;
+}
+
+int my_put_float(double nb, int precision)
+{
+    int printed = 0;
+    double multiplier;
 
     if (nb != nb || nb == 1.0 / 0.0 || nb == -1.0 / 0.0)
         return special_case(nb);
     if (nb < 0 && nb != -0.0) {
-        my_putstr("-");
-        nb *= -1;
+        printed = my_putstr("-");
+        nb = -nb;
     }
-    decimal = (int) ((nb - (int) nb) * precision_p10 + 0.5);
-    if (decimal == precision_p10) {
-        nb += 1.0;
-        decimal = 0;
-    }
-    my_put_nbr((int) nb);
-    my_putstr(".");
-    if (decimal < 10)
-        my_putstr("0");
-    my_put_nbr(decimal);
+    multiplier = my_ipow(10, precision);
+    nb += 0.5 / multiplier;
+    return (printed + print_the_nbr(nb, precision, multiplier));
 }

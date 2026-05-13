@@ -62,6 +62,16 @@ int my_put_nbr(int nb);
 int my_put_nbr_base(int nb, char const *base);
 
 /**
+** @brief Prints a double to the standard output
+**
+** @param[in] nb The double to print
+** @param[in] precision The amount of decimals printed out
+**
+** @return @b void
+*/
+int my_put_float(double nb, int precision);
+
+/**
 ** @brief Prints a string, representing non-printable characters as hex
 **
 ** @param[in] str The string to display

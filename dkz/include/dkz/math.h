@@ -28,7 +28,7 @@ int my_compute_power_rec(int nb, int power);
 int my_compute_square_root(int nb);
 int my_is_prime(int nb);
 int my_find_prime_sup(int nb);
-int my_ipow(int n, int p);
+long long my_ipow(int n, int p);
 
 // Returns the factorial of n
 long my_factorial(int n);
@@ -45,5 +45,7 @@ int my_floor(double x);
 int my_round(double x);
 // Returns the Integer part by truncating toward zero
 int my_trunc(double x);
+
+int my_nbrlen(int x);
 
 #endif /* !DKZ_MATH_H_ */
