@@ -35,7 +35,7 @@
 **
 ** @note Supports standard specifiers (e.g., %s, %d, %c, %x, %p).
 */
-int my_printf(const char *format, ...);
+int my_printf(char const *format, ...);
 
 /**
 ** @brief Produces output according to a format string to a file descriptor
@@ -46,7 +46,7 @@ int my_printf(const char *format, ...);
 **
 ** @return @b int The total number of characters printed, or -1 on failure
 */
-int my_fprintf(int fd, const char *format, ...);
+int my_fprintf(int fd, char const *format, ...);
 
 /**
 ** @brief Produces output to an allocated string according to a format string
@@ -62,6 +62,6 @@ int my_fprintf(int fd, const char *format, ...);
 ** @warning The caller is responsible for freeing the memory allocated
 ** to @p *str_ptr.
 */
-int my_sprintf(char **str_ptr, const char *format, ...);
+int my_sprintf(char **str_ptr, char const *format, ...);
 
 #endif /* !DKZ_PRINTF_H_ */

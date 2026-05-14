@@ -209,7 +209,19 @@ int my_strlen_d(char const *str, char const delim);
 int my_putstr(char const *str);
 
 /**
-** @brief Prints the string into the given @p df
+** @brief Prints the string into the standard output
+**
+** @param[in] str The '\0'-terminated string
+** @param[in] n The amount of characters to be printed
+**
+** @return @b int The amount of char printed from @p str
+** @retval 0 Returned if @p str is NULL or empty.
+** @retval -1 Returned if the Syscall failed or if @p n is negative.
+*/
+int my_putnstr(char const *str, int n);
+
+/**
+** @brief Prints the string into the given @p fd
 **
 ** @param[in] fd A file descriptor
 ** @param[in] str The '\0'-terminated string
@@ -220,6 +232,21 @@ int my_putstr(char const *str);
 ** @retval -1 Returned if the Syscall failed or if @p fd is invalid.
 */
 int my_fputstr(int fd, char const *str);
+
+/**
+** @brief Prints the string into the given @p fd
+**
+** @param[in] fd A file descriptor
+** @param[in] str The '\0'-terminated string
+** @param[in] n The amount of characters to be printed
+**
+** @return @b int The amount of char printed from @p str
+**
+** @retval 0 Returned if @p str is NULL or empty.
+** @retval -1 Returned if the Syscall failed, if @p fd is invalid
+** or if @p n is negative.
+*/
+int my_fputnstr(int fd, char const *str, int n);
 
 /**
 ** @brief Copies the string @p src to @p dest
