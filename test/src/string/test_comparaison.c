@@ -5,11 +5,7 @@
 ** test_comparaison
 */
 
-#include <criterion/criterion.h>
-#include <criterion/redirect.h>
-#include <stdlib.h>
-
-#include "dkz/string.h"
+#include "test.h"
 
 Test(my_strcmp, basic)
 {

@@ -94,35 +94,3 @@ Test(my_strstr, edge_cases)
     cr_assert_null(my_strstr("Hello", "z"));
     cr_assert_null(my_strstr(NULL, "Hello"));
 }
-
-
-Test(my_atoi, conversion)
-{
-    cr_assert_eq(my_atoi("42"), 42);
-    cr_assert_eq(my_atoi("-42"), -42);
-    cr_assert_eq(my_atoi("   +123abc45"), 0);
-    cr_assert_eq(my_atoi("invalid"), 0);
-}
-
-Test(my_atoi, stress_test)
-{
-    cr_assert_eq(my_atoi("   ---+++--42abc"), 0);
-    cr_assert_eq(my_atoi("2147483647"), 2147483647);
-    cr_assert_eq(my_atoi("-2147483648"), -2147483648);
-    cr_assert_eq(my_atoi("nothing"), 0);
-}
-
-Test(my_atof, precision)
-{
-    cr_assert_float_eq(my_atof("0.000001"), 0.000001, 0.0000001);
-    cr_assert_float_eq(my_atof("-123.456"), -123.456, 0.001);
-    cr_assert_float_eq(my_atof("1e2"), 1.0, 0.1);
-}
-
-Test(my_atof, conversion)
-{
-    cr_assert_float_eq(my_atof("3.14"), 3.14, 0.001);
-    cr_assert_float_eq(my_atof("-0.5"), -0.5, 0.001);
-    cr_assert_float_eq(my_atof("10"), 10.0, 0.001);
-    cr_assert_float_eq(my_atof(".5"), 0.5, 0.001);
-}

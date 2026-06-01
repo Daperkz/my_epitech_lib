@@ -6,6 +6,7 @@
 */
 
 #include "dkz/math.h"
+#include "dkz/string.h"
 
 static int is_num(char c)
 {
@@ -16,39 +17,56 @@ static int find_num(char const *str)
 {
     int i = 0;
 
-    while (str[i] == '-' && !is_num(str[i]) && str[i])
+    while (str[i] && str[i] == '-' && !is_num(str[i]))
         i++;
-    return i;
+    return (i);
 }
 
-int my_atoi(char *str)
+static int is_negative(char const *str)
 {
-    int i;
-    int start = find_num(str);
-    int result = 0;
+    int count = 0;
 
-    for (i = start; is_num(str[i]); i++) {
-        result = ((result * 10) + (str[i] - '0'));
+    while (*str && !is_num(*str)) {
+        if (*str == '-')
+            count++;
+        str++;
     }
-    if (start - 1 < 0)
-        return result;
-    return (str[start - 1] == '-') ? -result : result;
+    return (count % 2);
 }
 
-int my_getnbrspe(char const *str, int *error_ptr)
+int my_atoi(char const *str)
 {
+    int result = 0;
+    int neg;
+    int start;
+
+    if (!str)
+        return (0);
+    start = find_num(str);
+    neg = is_negative(str);
+    for (int i = start; is_num(str[i]); i++)
+        result = ((result * 10) + (str[i] - '0'));
+    return neg ? -result : result;
+}
+
+int my_getnbrspe(char const *str, int *error_p)
+{
+    int result = 0;
     int i = 0;
-    int start = find_num(str);
-    int result = 0;
+    int neg;
+    int start;
 
-    for (i = start; is_num(str[i]); i++) {
-        result = ((result * 10) + (str[i] - '0'));
+    if (!str) {
+        (*error_p) = 1;
+        return (0);
     }
+    start = find_num(str);
+    neg = is_negative(str);
+    for (i = start; is_num(str[i]); i++)
+        result = ((result * 10) + (str[i] - '0'));
     if ((!is_num(str[start]) && str[start] != '-') ||
         (!is_num(str[i]) && str[i])) {
-        (*error_ptr) = 1;
+        (*error_p) = 1;
     }
-    if (str[start - 1] == '-')
-        return -result;
-    return result;
+    return neg ? -result : result;
 }

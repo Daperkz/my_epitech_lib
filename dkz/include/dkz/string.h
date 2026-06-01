@@ -156,7 +156,7 @@ double my_atof(char const *str);
 **
 ** @return @b double The converted value
 */
-double my_getfnbrspe(char const *str, int *error_ptr);
+double my_getfnbrspe(char const *str, int *error_p);
 
 /**
 ** @brief Converts a string to a Integer with error handling
@@ -166,7 +166,7 @@ double my_getfnbrspe(char const *str, int *error_ptr);
 **
 ** @return @b int The converted value
 */
-int my_getnbrspe(char const *str, int *error_ptr);
+int my_getnbrspe(char const *str, int *error_p);
 
 
 /*
