@@ -5,11 +5,17 @@
 ** my_memcpy
 */
 
+#include "dkz/macro.h"
+
 void *my_memcpy(void *dest, void const *src, long n)
 {
-    char *d = (char *)dest;
-    const char *s = (const char *)src;
+    char *d;
+    const char *s;
 
+    if (!dest || !src)
+        return (NULL);
+    d = (char *)dest;
+    s = (const char *)src;
     for (long i = 0; i < n; i++)
         d[i] = s[i];
     return (dest);

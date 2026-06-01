@@ -121,7 +121,6 @@ Test(my_getfnbrspe, conversion)
     cr_assert_float_eq(my_getfnbrspe("10", &error), 10.0, 0.001);
     cr_assert_eq(error, 0);
     error = 0;
-    printf("%f\n", my_getfnbrspe(".5", &error));
     cr_assert_float_eq(my_getfnbrspe(".5", &error), 0.5, 0.001);
     cr_assert_eq(error, 1);
     error = 0;
