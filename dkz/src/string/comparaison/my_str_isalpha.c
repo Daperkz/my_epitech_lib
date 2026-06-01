@@ -9,11 +9,13 @@
 
 int my_str_isalpha(char const *str)
 {
+    if (!str)
+        return (0);
     while (*str) {
-        if (!((*str >= 'a' && *str <= 'z') || (*str >= 'A' && *str <= 'Z'))) {
-            return 0;
+        if ((*str < 'A' || *str > 'Z') && (*str < 'a' || *str > 'z')) {
+            return (0);
         }
         str++;
     }
-    return 1;
+    return (1);
 }

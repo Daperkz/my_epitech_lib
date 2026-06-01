@@ -9,11 +9,13 @@
 
 int my_str_isupper(char const *str)
 {
+    if (!str)
+        return (0);
     while (*str) {
-        if (!(*str >= 'A' && *str <= 'Z')) {
-            return 0;
+        if (*str < 'A' || *str > 'Z') {
+            return (0);
         }
         str++;
     }
-    return 1;
+    return (1);
 }

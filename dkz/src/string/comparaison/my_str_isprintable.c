@@ -9,10 +9,13 @@
 
 int my_str_isprintable(char const *str)
 {
+    if (!str)
+        return (0);
     while (*str) {
         if (*str <= 31) {
-            return 0;
+            return (0);
         }
+        str++;
     }
-    return 1;
+    return (1);
 }

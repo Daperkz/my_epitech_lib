@@ -515,11 +515,12 @@ int my_str_isnum(char const *str);
 
 
 /**
-** @brief Checks if the string contains lowercase alphabetical characters
+** @brief checks if the string passed as parameter only contains lowercase
+** alphabetical characters and 0 otherwise.
 **
 ** @param[in] str The String to check
 **
-** @return @b int 1 if true, 0 otherwise
+** @return 1 if true, 0 otherwise
 */
 int my_str_islower(char const *str);
 

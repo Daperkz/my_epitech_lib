@@ -11,45 +11,6 @@
 
 #include "dkz/string.h"
 
-Test(my_strcmp, basic)
-{
-    cr_assert_eq(my_strcmp("abc", "abc"), 0);
-    cr_assert(my_strcmp("abc", "abd") < 0);
-    cr_assert(my_strcmp("abd", "abc") > 0);
-    cr_assert(my_strcmp("", "") == 0);
-}
-
-Test(my_strncmp, limits)
-{
-    cr_assert_eq(my_strncmp("hello", "hellz", 4), 0);
-    cr_assert_neq(my_strncmp("hello", "hellz", 5), 0);
-    cr_assert_eq(my_strncmp("abc", "def", 0), 0);
-    cr_assert_eq(my_strncmp("", "", 5), 0);
-}
-
-Test(my_strncmp, overflow_n)
-{
-    cr_assert_eq(my_strncmp("abc", "abc", 10), 0);
-    cr_assert_neq(my_strncmp("abc", "abd", 10), 0);
-    cr_assert_eq(my_strncmp("a", "b", 0), 0);
-}
-
-Test(my_str_isalpha, types)
-{
-    cr_assert_eq(my_str_isalpha("HelloWorld"), 1);
-    cr_assert_eq(my_str_isalpha("Hello World"), 0);
-    cr_assert_eq(my_str_isalpha("123"), 0);
-    cr_assert_eq(my_str_isalpha(""), 1);
-}
-
-Test(my_str_isnum, types)
-{
-    cr_assert_eq(my_str_isnum("123456"), 1);
-    cr_assert_eq(my_str_isnum("123a45"), 0);
-    cr_assert_eq(my_str_isnum("-123"), 0);
-    cr_assert_eq(my_str_isnum(""), 1);
-}
-
 Test(my_strlen, basic)
 {
     cr_assert_eq(my_strlen("Hello"), 5);
