@@ -5,12 +5,15 @@ on:
     branches-ignore:
       - 'no-ga/**'
   pull_request:
-    types: [opened, reopened]
+    types: [opened, reopened, synchronize]
     branches-ignore:
       - 'no-ga/**'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
-  MIRROR_SSH_URL: "git@github.com:Daperkz/my_epitech_lib.git"
   EXECUTABLES: "test_mylib"
 
 jobs:
@@ -83,19 +86,3 @@ jobs:
 
       - name: Clean Project
         run: make fclean
-
-  push_to_mirror:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.repository != 'Daperkz/my_epitech_lib'
-    needs: run_tests
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-
-      - name: Mirror to Repo
-        uses: pixta-dev/repository-mirroring-action@v1
-        with:
-          target_repo_url: ${{ env.MIRROR_SSH_URL }}
-          ssh_private_key: ${{ secrets.GIT_SSH_PRIVATE_KEY }}
