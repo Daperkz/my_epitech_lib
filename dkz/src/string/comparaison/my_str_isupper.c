@@ -7,12 +7,17 @@
 ** alphabetical char- acters and 0 otherwise.
 */
 
+int is_upper(char const c)
+{
+    return (c >= 'A' && c <= 'Z');
+}
+
 int my_str_isupper(char const *str)
 {
     if (!str)
         return (0);
     while (*str) {
-        if (*str < 'A' || *str > 'Z') {
+        if (!is_upper(*str)) {
             return (0);
         }
         str++;

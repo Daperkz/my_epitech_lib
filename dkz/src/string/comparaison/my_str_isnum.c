@@ -7,12 +7,17 @@
 ** otherwise.
 */
 
+int is_num(char const c)
+{
+    return (c >= '0' && c <= '9');
+}
+
 int my_str_isnum(char const *str)
 {
     if (!str)
         return (0);
     while (*str) {
-        if (*str < '0' || *str > '9') {
+        if (!is_num(*str)) {
             return 0;
         }
         str++;

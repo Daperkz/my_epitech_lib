@@ -152,7 +152,7 @@ double my_atof(char const *str);
 ** @brief Converts a string to a double with error handling
 **
 ** @param[in] str The string to convert
-** @param[in, out] error_ptr Pointer to an int set to 1 on error, 0 on success
+** @param[in, out] error_p Pointer to an integer set to 1 on error, 0 on success
 **
 ** @return @b double The converted value
 */
@@ -162,7 +162,7 @@ double my_getfnbrspe(char const *str, int *error_p);
 ** @brief Converts a string to a Integer with error handling
 **
 ** @param[in] str The string to convert
-** @param[in, out] error_ptr Pointer to an int set to 1 on error, 0 on success
+** @param[in, out] error_p Pointer to an integer set to 1 on error, 0 on success
 **
 ** @return @b int The converted value
 */
@@ -215,8 +215,9 @@ int my_putstr(char const *str);
 ** @param[in] n The amount of characters to be printed
 **
 ** @return @b int The amount of char printed from @p str
-** @retval 0 Returned if @p str is NULL or empty.
-** @retval -1 Returned if the Syscall failed or if @p n is negative.
+** @retval 0 Returned if @p str is empty.
+** @retval -1 Returned if the Syscall failed, @p str is NULL or
+** if @p n is negative.
 */
 int my_putnstr(char const *str, int n);
 
@@ -228,8 +229,9 @@ int my_putnstr(char const *str, int n);
 **
 ** @return @b int The amount of char printed from @p str
 **
-** @retval 0 Returned if @p str is NULL or empty.
-** @retval -1 Returned if the Syscall failed or if @p fd is invalid.
+** @retval 0 Returned if @p str is empty.
+** @retval -1 Returned if the Syscall failed, if @p str is NULL or
+** if @p fd is invalid.
 */
 int my_fputstr(int fd, char const *str);
 
@@ -242,9 +244,9 @@ int my_fputstr(int fd, char const *str);
 **
 ** @return @b int The amount of char printed from @p str
 **
-** @retval 0 Returned if @p str is NULL or empty.
-** @retval -1 Returned if the Syscall failed, if @p fd is invalid
-** or if @p n is negative.
+** @retval 0 Returned if @p str is empty.
+** @retval -1 Returned if the Syscall failed, if @p fd is invalid,
+** if @p str is NULL or if @p n is negative.
 */
 int my_fputnstr(int fd, char const *str, int n);
 
@@ -333,12 +335,12 @@ char *my_revstr(char *str);
 /**
 ** @brief Concatenates @p src to the end of a dynamically allocated string
 **
-** @param[in, out] dest_ptr Pointer to the allocated string to extend
+** @param[in, out] dest_p Pointer to the allocated string to extend
 ** @param[in] src The string to append
 **
-** @return @b char* The updated pointer @p *dest_ptr, or NULL on failure
+** @return @b char* The updated pointer @p *dest_p, or NULL on failure
 */
-char *my_strappend(char **dest_ptr, char *src);
+char *my_strappend(char **dest_p, char *src);
 
 /**
 ** @brief Removes leading and trailing characters found in @p seps
@@ -480,7 +482,8 @@ char *my_strsep(char **str_ptr, const char *sep);
 ** @param[in] s1 The first string
 ** @param[in] s2 The second string
 **
-** @return @b int : 0 if equal, <0 if s1 < s2, >0 if s1 > s2
+** @return @b int
+** @retval 0 if equal, <0 if s1 < s2, >0 if s1 > s2
 */
 int my_strcmp(char const *s1, char const *s2);
 
@@ -490,29 +493,60 @@ int my_strcmp(char const *s1, char const *s2);
 ** @param[in] s1 The first string
 ** @param[in] s2 The second string
 **
-** @return @b int : 0 if equal, <0 if s1 < s2, >0 if s1 > s2
+** @return @b int
+** @retval 0 if equal, -0 if s1 < s2, +0 if s1 > s2
 */
 int my_strncmp(char const *s1, char const *s2, int n);
+
+/**
+** @brief Checks if the character is an alphabetical character
+**
+** @param[in] c The char to check
+**
+** @return @b int
+** @retval 1 if true, 0 otherwise
+**/
+int is_alphabetical(char const c);
 
 /**
 ** @brief Checks if the string contains only alphabetical characters
 **
 ** @param[in] str The String to check
 **
-** @return @b int 1 if true, 0 otherwise
+** @return @b int
+** @retval 1 if true, 0 otherwise
 */
 int my_str_isalpha(char const *str);
 
+/**
+** @brief Checks if the character is a number
+**
+** @param[in] c The char to check
+**
+** @return @b int
+** @retval 1 if true, 0 otherwise
+**/
+int is_lower(char const c);
 
 /**
 ** @brief Checks if the string contains only numeric characters
 **
 ** @param[in] str The String to check
 **
-** @return @b int 1 if true, 0 otherwise
+** @return @b int
+** @retval 1 if true, 0 otherwise
 */
 int my_str_isnum(char const *str);
 
+/**
+** @brief Checks if the character is a lowercase letter
+**
+** @param[in] c The char to check
+**
+** @return @b int
+** @retval 1 if true, 0 otherwise
+**/
+int is_lower(char const c);
 
 /**
 ** @brief checks if the string passed as parameter only contains lowercase
@@ -520,25 +554,49 @@ int my_str_isnum(char const *str);
 **
 ** @param[in] str The String to check
 **
-** @return 1 if true, 0 otherwise
+** @return @b int
+** @retval 1 if true, 0 otherwise
 */
 int my_str_islower(char const *str);
+
+/**
+** @brief Checks if the character is an uppercase letter
+**
+** @param[in] c The char to check
+**
+** @return @b int
+** @retval 1 if true, 0 otherwise
+**/
+int is_upper(char const c);
 
 /**
 ** @brief Checks if the string contains uppercase alphabetical characters
 **
 ** @param[in] str The String to check
 **
-** @return @b int 1 if true, 0 otherwise
+** @return @b int
+** @retval 1 if true, 0 otherwise
 */
 int my_str_isupper(char const *str);
+
+
+/**
+** @brief Checks if the character is a printable character
+**
+** @param[in] c The char to check
+**
+** @return @b int
+** @retval 1 if true, 0 otherwise
+**/
+int is_printable(char const c);
 
 /**
 ** @brief Checks if the string contains only printable characters
 **
 ** @param[in] str The String to check
 **
-** @return @b int 1 if true, 0 otherwise
+** @return @b int
+** @retval 1 if true, 0 otherwise
 */
 int my_str_isprintable(char const *str);
 
