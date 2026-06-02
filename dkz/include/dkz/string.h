@@ -499,7 +499,7 @@ int my_strcmp(char const *s1, char const *s2);
 int my_strncmp(char const *s1, char const *s2, int n);
 
 /**
-** @brief Checks if the character is an alphabetical character
+** @brief Checks if the character is an alphabetical character (a, z, A, Z)
 **
 ** @param[in] c The char to check
 **
@@ -507,6 +507,17 @@ int my_strncmp(char const *s1, char const *s2, int n);
 ** @retval 1 if true, 0 otherwise
 **/
 int is_alphabetical(char const c);
+
+/**
+** @brief Checks if the character is an alphanumeric character
+** (a, z, A, Z, 0, 9)
+**
+** @param[in] c The char to check
+**
+** @return @b int
+** @retval 1 if true, 0 otherwise
+**/
+int is_alphanumeric(char const c);
 
 /**
 ** @brief Checks if the string contains only alphabetical characters
@@ -526,7 +537,7 @@ int my_str_isalpha(char const *str);
 ** @return @b int
 ** @retval 1 if true, 0 otherwise
 **/
-int is_lower(char const c);
+int is_num(char const c);
 
 /**
 ** @brief Checks if the string contains only numeric characters

@@ -8,11 +8,6 @@
 #include "dkz/math.h"
 #include "dkz/string.h"
 
-static int is_num(char c)
-{
-    return ('0' <= c && c <= '9');
-}
-
 static int find_num(char const *str)
 {
     int i = 0;

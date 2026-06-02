@@ -14,6 +14,11 @@ int is_alphabetical(char const c)
     return (is_upper(c) || is_lower(c));
 }
 
+int is_alphanumeric(char const c)
+{
+    return (is_upper(c) || is_lower(c) || is_num(c));
+}
+
 int my_str_isalpha(char const *str)
 {
     if (!str)
