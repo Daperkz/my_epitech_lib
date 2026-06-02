@@ -17,8 +17,8 @@ int my_putstr(char const *str)
 
 int my_putnstr(char const *str, int n)
 {
-    if (n < 0)
-        return -1;
+    if (!str || n < 0)
+        return (-1);
     return write(1, str, n);
 }
 
@@ -29,7 +29,7 @@ int my_fputstr(int fd, char const *str)
 
 int my_fputnstr(int fd, char const *str, int n)
 {
-    if (n < 0)
-        return -1;
+    if (fd == -1 || !str || n < 0)
+        return (-1);
     return write(fd, str, n);
 }

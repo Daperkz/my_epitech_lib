@@ -6,20 +6,18 @@
 ** capitalizes the first letter of each word
 */
 
+#include "dkz/macro.h"
+#include "dkz/string.h"
+
 char *my_strcapitalize(char *str)
 {
-    int i = 0;
-
-    while (str[i]) {
-        if (str[i] >= 'A' && str[i] <= 'Z')
+    if (!str)
+        return (NULL);
+    for (int i = 0; str[i]; i++) {
+        if (is_upper(str[i]))
             str[i] += 'a' - 'A';
-        if ((i == 0 || (str[i - 1] >= 32 && str[i - 1] <= 47)
-                || (str[i - 1] >= 58 && str[i - 1] <= 64)
-                || (str[i - 1] >= 91 && str[i - 1] <= 96)
-                || (str[i - 1] >= 123 && str[i - 1] <= 126))
-            && (str[i] >= 'a' && str[i] <= 'z'))
+        if ((i == 0 || !is_alphanumeric(str[i - 1])) && is_lower(str[i]))
             str[i] += ('A' - 'a');
-        i++;
     }
     return str;
 }

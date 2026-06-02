@@ -13,6 +13,7 @@
     #include <unistd.h>
     #include <string.h>
     #include <fcntl.h>
+    #include <signal.h>
     #include <sys/stat.h>
 
     #include <criterion/criterion.h>

@@ -40,6 +40,7 @@ SRC				=	$(WRAPPER_D)malloc_wrapper.c	\
 					$(STRING_D)test_array.c			\
 					$(STRING_D)test_comparaison.c	\
 					$(STRING_D)test_convert.c		\
+					$(STRING_D)test_manipulation.c	\
 					$(SRC_D)test_utils.c			\
 					$(SRC_D)test_math.c				\
 					$(SRC_D)test_file.c				\

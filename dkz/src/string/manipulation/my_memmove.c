@@ -5,11 +5,17 @@
 ** my_memmove
 */
 
+#include "dkz/macro.h"
+
 void *my_memmove(void *dest, void const *src, long n)
 {
-    unsigned char *d = (unsigned char *)dest;
-    unsigned char const *s = (unsigned char const *)src;
+    unsigned char *d;
+    unsigned char const *s;
 
+    if (!dest || !src)
+        return (NULL);
+    d = (unsigned char *)dest;
+    s = (unsigned char const *)src;
     if (d < s) {
         for (long i = 0; i < n; i++)
             d[i] = s[i];

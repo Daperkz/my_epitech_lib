@@ -11,13 +11,15 @@
 
 char *my_revstr(char *str)
 {
-    int size = my_strlen(str);
-    int half = (size / 2);
+    int size;
+    int half;
     int i = 0;
     char temp;
 
     if (!str)
         return (NULL);
+    size = my_strlen(str);
+    half = (size / 2);
     while (i < half) {
         temp = str[i];
         str[i] = str[size - i - 1];

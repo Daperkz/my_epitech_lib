@@ -6,10 +6,14 @@
 ** concatenates two strings into dest must have enough space allocated.
 */
 
+#include "dkz/macro.h"
+
 char *my_strcat(char *dest, char const *src)
 {
     char *origin = dest;
 
+    if (!dest || !src)
+        return (NULL);
     while (*dest)
         dest++;
     while (*src) {
@@ -26,6 +30,8 @@ char *my_strncat(char *dest, char const *src, int nb)
     int i = 0;
     int j = 0;
 
+    if (!dest || !src || nb < 0)
+        return (NULL);
     while (dest[i])
         i++;
     while (src[j] && j < nb) {

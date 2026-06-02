@@ -26,7 +26,7 @@ int my_strlen_d(char const *str, char delim)
     if (!str)
         return (0);
     start = str;
-    while (*str != delim && *str)
+    while (*str && *str != delim)
         str++;
     return (str - start);
 }
