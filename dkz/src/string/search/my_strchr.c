@@ -21,3 +21,21 @@ char *my_strchr(char const *str, char target)
         return (char *)(str);
     return (NULL);
 }
+
+// returns last occurence of the target char
+char *my_strrchr(char const *str, char target)
+{
+    char const *last = NULL;
+
+    if (!str)
+        return (NULL);
+    while (*str){
+        if (*str == target) {
+            last = str;
+        }
+        str++;
+    }
+    if (*str == target)
+        return (char *)(str);
+    return (char *)(last);
+}

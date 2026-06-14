@@ -33,8 +33,7 @@ static void build_suffix_arr(char const *pattern, int m, int *suffix)
         if (i < g)
             g = i;
         f = i;
-        for (g = (i < g) ? i : g;
-            g >= 0 && pattern[g] == pattern[g + m - 1 - f]; g--);
+        for (g = i; g >= 0 && pattern[g] == pattern[g + m - 1 - f]; g--);
         suffix[i] = f - g;
     }
 }
@@ -77,9 +76,13 @@ static char *compute(char const *str, int n, char const *pattern, int m)
 
 char *my_strstr(char const *str, char const *pattern)
 {
-    int n = my_strlen(str);
-    int m = my_strlen(pattern);
+    int n;
+    int m;
 
+    if (!str || !pattern)
+        return (NULL);
+    n = my_strlen(str);
+    m = my_strlen(pattern);
     if (m == 0)
         return (char *)(str);
     if (m > n)

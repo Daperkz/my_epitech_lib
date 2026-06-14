@@ -17,23 +17,23 @@ static int issep(char c, const char *sep)
     return 0;
 }
 
-char *my_strsep(char **str_ptr, const char *sep)
+char *my_strsep(char **str_p, const char *sep)
 {
     char *str = NULL;
     char *start = NULL;
 
-    if (!str_ptr || !(*str_ptr))
+    if (!str_p || !(*str_p) || !sep)
         return (NULL);
-    str = (*str_ptr);
+    str = (*str_p);
     start = str;
     while (*str) {
         if (issep(*str, sep)) {
             *str = '\0';
-            (*str_ptr) = str + 1;
+            (*str_p) = str + 1;
             return (start);
         }
         str++;
     }
-    *str_ptr = NULL;
+    *str_p = NULL;
     return start;
 }

@@ -21,7 +21,7 @@ OBJ_D					=	$(ROOT_D)obj/
 SRC_D					=	$(ROOT_D)src/
 
 CPPFLAGS    			=   -I$(INCLUDE) -I$(MY_PRINTF_INCLUDE)
-CFLAGS					=	-Wall -Wextra -MMD
+CFLAGS					=	-O3 -Wall -Wextra -MMD -MP
 CFLAGS_TEST				=	--coverage
 CFLAGS_DEBUG			=	-g3
 
@@ -99,7 +99,6 @@ MANIPULATION_F			=	my_putstr.c			\
 
 # -_- Files located in $(SEARCH_D) = ./src/string/search/ -_-
 SEARCH_F				=	my_strchr.c		\
-							my_strrchr.c	\
 							my_strsep.c		\
 							my_strstr.c
 

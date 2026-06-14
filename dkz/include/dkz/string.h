@@ -433,7 +433,11 @@ char *my_strcapitalize(char *str);
 
 /**
 ** @brief Locates the first occurrence the pattern in the str
-** Boyer-Moore algorithm
+**
+** @param[in] str The string to parse
+** @param[in] to_find The pattern
+**
+** @note Boyer-Moore algorithm
 ** BC : O(N/M)
 ** WC : O(N + M)
 ** @return A pointer the located pattern, NULL if pattern was not found.
@@ -463,12 +467,12 @@ char *my_strrchr(char const *str, char target);
 /**
 ** @brief Extracts a token from a string using @p sep as delimiter
 **
-** @param[in, out] str_ptr Pointer to the string to parse
+** @param[in, out] str_p Pointer to the string to parse
 ** @param[in] sep Delimiter string
 **
 ** @return @b char* Pointer to the token
 */
-char *my_strsep(char **str_ptr, const char *sep);
+char *my_strsep(char **str_p, const char *sep);
 
 /*
 ** -_-

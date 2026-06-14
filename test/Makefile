@@ -26,7 +26,7 @@ WRAPPER_D		=	$(SRC_D)wrapper/
 STRING_D		=	$(SRC_D)string/
 
 CPPFLAGS		=	-I$(INCLUDE) -I$(TEST_INCLUDE)
-CFLAGS			=	-Wall -Wextra --coverage
+CFLAGS			=	-O3 -Wall -Wextra --coverage
 LDFLAGS_SPECIAL	=	-Wl,--wrap=malloc,--wrap=read,--wrap=stat
 LDFLAGS			=	-lcriterion -L$(LIB_D) -ldkz $(LDFLAGS_SPECIAL)
 
@@ -36,11 +36,11 @@ SRC				=	$(WRAPPER_D)malloc_wrapper.c	\
 					$(WRAPPER_D)read_wrapper.c		\
 					$(WRAPPER_D)stat_wrapper.c		\
 					$(SRC_D)test_io.c				\
-					$(SRC_D)test_string.c			\
 					$(STRING_D)test_array.c			\
 					$(STRING_D)test_comparaison.c	\
 					$(STRING_D)test_convert.c		\
 					$(STRING_D)test_manipulation.c	\
+					$(STRING_D)test_search.c	\
 					$(SRC_D)test_utils.c			\
 					$(SRC_D)test_math.c				\
 					$(SRC_D)test_file.c				\
