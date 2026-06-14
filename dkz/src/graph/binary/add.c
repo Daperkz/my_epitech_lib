@@ -13,7 +13,7 @@ static int bnode_insert(
     bnode_t **node_ptr, void *data, int (*cmp)(void *, void *)
 )
 {
-    if (*node_ptr == NULL) {
+    if (!*node_ptr) {
         *node_ptr = create_bnode(data);
         return (*node_ptr ? EXIT_SUCCESS : EXIT_FAILURE);
     }

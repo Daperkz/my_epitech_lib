@@ -5,12 +5,7 @@
 ** test_config
 */
 
-#include <criterion/criterion.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-
-#include "dkz/config.h"
+#include "test.h"
 
 // Helper to create a dummy config file for testing
 void create_test_config(char const *filename, char const *content)

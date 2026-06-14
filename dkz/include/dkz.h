@@ -19,5 +19,6 @@
 
     #include "dkz/graph.h"
     #include "dkz/hashtable.h"
+    #include "dkz/config.h"
 
 #endif /* !DKZ_H_ */

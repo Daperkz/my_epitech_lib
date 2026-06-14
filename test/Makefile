@@ -27,6 +27,7 @@ OBJ_D			=	$(ROOT_D)obj/
 
 WRAPPER_D		=	$(SRC_D)wrapper/
 STRING_D		=	$(SRC_D)string/
+GRAPH_D			=	$(SRC_D)graph/
 
 
 # -_- FLAGS -_-
@@ -61,11 +62,12 @@ SRC				=	$(WRAPPER_D)malloc_wrapper.c	\
 					$(STRING_D)test_comparaison.c	\
 					$(STRING_D)test_convert.c		\
 					$(STRING_D)test_manipulation.c	\
-					$(STRING_D)test_search.c	\
+					$(STRING_D)test_search.c		\
 					$(SRC_D)test_utils.c			\
 					$(SRC_D)test_math.c				\
 					$(SRC_D)test_file.c				\
 					$(SRC_D)test_printf.c			\
+					$(GRAPH_D)test_bintree.c		\
 					$(SRC_D)test_graph.c			\
 					$(SRC_D)test_hashtable.c		\
 					$(SRC_D)test_config.c
@@ -77,7 +79,7 @@ DEPENDENCY		=	$(OBJ:%.o=%.d)
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	@$(MAKE) tests -C $(LIB_D) --no-print-directory
+	@$(MAKE) -C $(LIB_D) tests --no-print-directory
 	@$(CC) -o $@ $^ $(CPPFLAGS) $(CFLAGS) $(LDFLAGS)
 
 $(OBJ_D)%.o:	$(SRC_D)%.c
