@@ -9,7 +9,7 @@
 
 #include "dkz/string.h"
 
-static int intlen(unsigned int nb, int base_size)
+static int uintlen(unsigned int nb, int base_size)
 {
     int len = 0;
 
@@ -26,7 +26,7 @@ static int intlen(unsigned int nb, int base_size)
 char *my_uitoab(unsigned int nb, char const *base)
 {
     int base_size = my_strlen(base);
-    int nblen = intlen(nb, base_size);
+    int nblen = uintlen(nb, base_size);
     char *str = malloc(sizeof(char) * (nblen + 1));
     int i = nblen - 1;
 

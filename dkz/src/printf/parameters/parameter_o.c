@@ -8,7 +8,7 @@
 
 #include <stdarg.h>
 
-#include "dkz/utils.h"
+#include "dkz/string.h"
 
 #include "internal.h"
 

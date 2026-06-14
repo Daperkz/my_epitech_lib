@@ -78,7 +78,11 @@ COMPARAISON_F			=	my_str_isalpha.c		\
 
 # -_- Files located in $(CONVERT_D) = ./src/string/convert/ -_-
 CONVERT_F				=	my_atoi.c	\
-							my_atof.c
+							my_atof.c	\
+							my_itoab.c	\
+							my_uitoab.c	\
+							my_ltoab.c	\
+							my_ftoa.c
 
 # -_- Files located in $(COMPARAISON_D) = ./src/string/comparaison/ -_-
 MANIPULATION_F			=	my_putstr.c			\
@@ -126,11 +130,7 @@ MATH_F					=	my_isneg.c					\
 UTILS_F					=	my_swap.c			\
 							my_sort_int_array.c	\
 							concat_params.c		\
-							convert_base.c		\
-							my_itoab.c			\
-							my_uitoab.c			\
-							my_ltoab.c			\
-							my_ftoa.c
+							convert_base.c
 
 # -_- Files located in $(FILE_D) = ./src/file/ -_-
 FILE_F					=	open_file.c			\

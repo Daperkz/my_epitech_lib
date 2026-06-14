@@ -20,36 +20,23 @@
 
 static int floatlen(double nb, int precision)
 {
-    int len = 1 + precision;
-    double abs_ipart;
+    int len = (precision > 0) ? (1 + precision) : 0;
 
-    if (nb == 0.0) {
-        return (1.0 / nb < 0.0) ? 3 + precision : 2 + precision;
-    } else if (nb < 0.0) {
+    if (nb < 0.0 || (nb == 0.0 && 1.0 / nb < 0.0)) {
         len++;
-        abs_ipart = -(int)nb;
-    } else
-        abs_ipart = (int)nb;
-    do {
-        len++;
-        abs_ipart /= 10;
-    } while (abs_ipart >= 1.0);
+    }
+    len += my_intlen((int)nb);
     return len;
 }
 
 static char *special_case(double nb)
 {
-    char *str;
-
     if (nb == 1.0 / 0.0) {
-        str = malloc(sizeof(char) * 4);
-        return (!str) ? NULL : my_strcpy(str, "inf");
+        return my_strdup("inf");
     } else if (nb == -1.0 / 0.0) {
-        str = malloc(sizeof(char) * 5);
-        return (!str) ? NULL : my_strcpy(str, "-inf");
+        return my_strdup("-inf");
     } else {
-        str = malloc(sizeof(char) * 4);
-        return (!str) ? NULL : my_strcpy(str, "nan");
+        return my_strdup("nan");
     }
     return NULL;
 }
@@ -69,6 +56,22 @@ static void sign_case_x_decimal_calc(
     }
 }
 
+void construct_string(
+    char *str, char *integer_part, char *decimal_part, int precision
+)
+{
+    int leading_zeros;
+
+    my_strcat(str, integer_part);
+    if (precision > 0) {
+        my_strcat(str, ".");
+        leading_zeros = precision - my_strlen(decimal_part);
+        for (int i = 0; i < leading_zeros; i++)
+            my_strcat(str, "0");
+        my_strcat(str, decimal_part);
+    }
+}
+
 char *my_ftoa(double nb, int precision)
 {
     int float_len = floatlen(nb, precision);
@@ -81,13 +84,13 @@ char *my_ftoa(double nb, int precision)
     if (nb != nb || nb == 1.0 / 0.0 || nb == -1.0 / 0.0)
         return special_case(nb);
     str = malloc(sizeof(char) * (float_len + 1));
+    if (!str)
+        return (NULL);
     str[0] = '\0';
     sign_case_x_decimal_calc(&nb, &str, &decimal, decimal_precision);
-    integer_part = my_itoab((int)nb, "0123456789");
-    decimal_part = my_itoab(decimal, "0123456789");
-    my_strcat(my_strcat(my_strcat(str, integer_part), "."), decimal_part);
-    for (int i = 0; i < precision - my_strlen(decimal_part); i++)
-        my_strcat(str, "0");
+    integer_part = my_itoab((int)nb, BASE10);
+    decimal_part = my_itoab(decimal, BASE10);
+    construct_string(str, integer_part, decimal_part, precision);
     free(integer_part);
     free(decimal_part);
     return str;

@@ -11,20 +11,20 @@
 
 static int longlen(long nb, int base_size)
 {
-    unsigned long abs_nb = (nb < 0) ?
-        (unsigned long)-(nb + 1) + 1 : (unsigned long)nb;
+    unsigned long abs_nb = (unsigned long)nb;
     int len = 0;
 
     if (nb == 0) {
-        return 1;
+        return (1);
     } else if (nb < 0) {
         len++;
+        abs_nb = (unsigned long)-(nb + 1) + 1;
     }
     while (abs_nb > 0) {
         len++;
         abs_nb /= base_size;
     }
-    return len;
+    return (len);
 }
 
 char *my_ltoab(long nb, char const *base)

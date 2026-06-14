@@ -69,44 +69,4 @@ char *concat_params(int argc, char **argv);
 */
 char *convert_base(char const *nbr, char const *base_from, char const *base_to);
 
-/**
-** @brief Converts an integer to a string in a specific base
-**
-** @param[in] nb The integer to convert
-** @param[in] base The base characters (e.g., "0123456789")
-**
-** @return @b char* A new allocated string, or NULL on failure
-*/
-char *my_itoab(int nb, char const *base);
-
-/**
-** @brief Converts an unsigned integer to a string in a specific base
-**
-** @param[in] nb The unsigned integer to convert
-** @param[in] base The base characters
-**
-** @return @b char* A new allocated string, or NULL on failure
-*/
-char *my_uitoab(unsigned int nb, char const *base);
-
-/**
-** @brief Converts a long to a string in a specific base
-**
-** @param[in] nb The long integer to convert
-** @param[in] base The base characters
-**
-** @return @b char* A new allocated string, or NULL on failure
-*/
-char *my_ltoab(long nb, char const *base);
-
-/**
-** @brief Converts a double to a string with specified precision
-**
-** @param[in] nb The double to convert
-** @param[in] precision Number of decimal places to include
-**
-** @return @b char* A new allocated string, or NULL on failure
-*/
-char *my_ftoa(double nb, int precision);
-
 #endif /* !DKZ_UTILS_H_ */

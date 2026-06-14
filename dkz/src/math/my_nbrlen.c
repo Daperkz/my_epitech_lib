@@ -10,13 +10,17 @@
 int my_intlenb(int x, int baselen)
 {
     int len = 0;
+    unsigned int abs_x;
 
     if (x == 0)
         return 1;
-    if (x < 0)
-        x = -x;
-    while (x > 0) {
-        x /= baselen;
+    abs_x = (unsigned int)x;
+    if (x < 0) {
+        len++;
+        abs_x = (unsigned int)-(x + 1) + 1;
+    }
+    while (abs_x > 0) {
+        abs_x /= baselen;
         len++;
     }
     return len;
