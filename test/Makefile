@@ -10,6 +10,9 @@ COVERAGE_NAME	=	gcov_result.txt
 
 CC				=	clang
 GCOVR			=	gcovr
+VALGRIND		=	valgrind
+
+# -_- DIRECTORIES -_-
 
 REPO_D			=	../
 ROOT_D			=	./
@@ -25,12 +28,30 @@ OBJ_D			=	$(ROOT_D)obj/
 WRAPPER_D		=	$(SRC_D)wrapper/
 STRING_D		=	$(SRC_D)string/
 
+
+# -_- FLAGS -_-
+
 CPPFLAGS		=	-I$(INCLUDE) -I$(TEST_INCLUDE)
-CFLAGS			=	-O3 -Wall -Wextra --coverage
+
+CFLAGS			=	-O3 -Wall -Wextra --coverage -MMD -MP
+CFLAGS_DEBUG	=	-g3
+
 LDFLAGS_SPECIAL	=	-Wl,--wrap=malloc,--wrap=read,--wrap=stat
 LDFLAGS			=	-lcriterion -L$(LIB_D) -ldkz $(LDFLAGS_SPECIAL)
 
-GCOVR_FLAGS		=	--root $(REPO_D) --filter $(LIB_D)src/ --txt-metric branch --gcov-executable "llvm-cov gcov"
+GCOVR_FLAGS		=	--root $(REPO_D) 					\
+					--filter $(LIB_D)src/ 				\
+					--txt-metric branch 				\
+					--gcov-executable "llvm-cov gcov"
+
+VALGRIND_FLAGS	=	--leak-check=full		 			\
+					--show-leak-kinds=definite 			\
+					--errors-for-leak-kinds=definite 	\
+					--suppressions=criterion.supp 		\
+					--track-fds=yes
+
+
+# -_- FILES -_-
 
 SRC				=	$(WRAPPER_D)malloc_wrapper.c	\
 					$(WRAPPER_D)read_wrapper.c		\
@@ -73,14 +94,23 @@ fclean:
 
 re: fclean $(NAME)
 
+debug: CFLAGS += $(CFLAGS_DEBUG)
+debug: $(NAME)
+
 run:	$(NAME)
 	@./$(NAME)
 	@printf "\033[1;32m%s\033[0m\n" "Test ran."
 
-coverage:	fclean	$(NAME)
-	@./$(NAME)
+memory_run:	debug
+	CRITERION_NO_FORK=1 $(VALGRIND) $(VALGRIND_FLAGS) ./$(NAME)
+
+coverage:	fclean	run
 	@$(GCOVR) $(GCOVR_FLAGS) > $(COVERAGE_NAME)
 	@printf "\033[1;32m%s\033[0m\n" "Coverage Calculated."
 
-.PHONY: all	fclean	clean	re	run	coverage
+memory_coverage: fclean memory_run
+	@$(GCOVR) $(GCOVR_FLAGS) > $(COVERAGE_NAME)
+	@printf "\033[1;32m%s\033[0m\n" "Coverage Calculated."
+
+.PHONY: all fclean clean re run memory_run coverage memory_coverage
 -include $(DEPENDENCY)

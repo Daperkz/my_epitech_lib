@@ -12,6 +12,9 @@ AR						=	ar
 
 ROOT_D					=	./
 
+
+# -_- DIRECTORIES -_-
+
 # -_- Public include for my = ./include -_-
 INCLUDE					=	$(ROOT_D)include/
 # -_- Internal / Private include for my_printf = ./src/printf/private -_-
@@ -19,13 +22,6 @@ MY_PRINTF_INCLUDE		=	$(MY_PRINTF_D)private/
 
 OBJ_D					=	$(ROOT_D)obj/
 SRC_D					=	$(ROOT_D)src/
-
-CPPFLAGS    			=   -I$(INCLUDE) -I$(MY_PRINTF_INCLUDE)
-CFLAGS					=	-O3 -Wall -Wextra -MMD -MP
-CFLAGS_TEST				=	--coverage
-CFLAGS_DEBUG			=	-g3
-
-ARFLAGS					=	-rc
 
 # -_- Directories located in $(SRC_D) = ./src/ -_-
 IO_D					=	$(SRC_D)io/
@@ -56,6 +52,16 @@ SIMPLE_GRAPH_D			=	$(GRAPH_D)simple/
 DOUBLE_GRAPH_D			=	$(GRAPH_D)double/
 BINARY_GRAPH_D			=	$(GRAPH_D)binary/
 
+
+# -_- FLAGS -_-
+CPPFLAGS    			=   -I$(INCLUDE) -I$(MY_PRINTF_INCLUDE)
+CFLAGS					=	-O3 -Wall -Wextra -MMD -MP
+CFLAGS_TEST				=	--coverage
+CFLAGS_DEBUG			=	-g3
+
+ARFLAGS					=	-rc
+
+# -_- FILES -_-
 
 # -_- Files located in $(IO_D) = ./src/io/ -_-
 IO_F					=	my_putchar.c	\

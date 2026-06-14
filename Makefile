@@ -21,7 +21,7 @@ all:
 	@$(MAKE) -C $(LIB_D) --no-print-directory
 
 debug:
-	@$(MAKE) debug -C $(LIB_D) --no-print-directory
+	@$(MAKE) -C $(LIB_D) debug --no-print-directory
 
 docs:
 	@$(DOXYGEN) $(DOXYFILE)
@@ -40,15 +40,25 @@ fclean:
 re: fclean all
 
 bestre:
-	@$(MAKE) bestre -C $(LIB_D) --no-print-directory
+	@$(MAKE) -C $(LIB_D) bestre --no-print-directory
 
 tests:
 	@$(MAKE) -C $(TEST_D) --no-print-directory
 
+tests_debug:
+	@$(MAKE) -C $(TEST_D) debug --no-print-directory
+
 tests_run:
-	@$(MAKE) run -C $(TEST_D) --no-print-directory
+	@$(MAKE) -C $(TEST_D) run --no-print-directory
+
+tests_memory_run:
+	@$(MAKE) -C $(TEST_D) memory_run --no-print-directory
 
 coverage:
-	@$(MAKE) coverage -C $(TEST_D) --no-print-directory
+	@$(MAKE) -C $(TEST_D) coverage --no-print-directory
 
-.PHONY:	all	debug	docs	clean	fclean	re	bestre	test	tests_run	coverage
+memory_coverage:
+	@$(MAKE) -C $(TEST_D) memory_coverage --no-print-directory
+
+.PHONY: all debug docs clean fclean re bestre \
+		test tests_run coverage memory_coverage
