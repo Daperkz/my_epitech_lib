@@ -14,27 +14,18 @@
 
 #include "dkz/string.h"
 
-static int is_seperator(char c, char const *seps)
-{
-    for (int i = 0; seps[i]; i++) {
-        if (c == seps[i])
-            return 1;
-    }
-    return 0;
-}
-
 static int nbr_words(char const *str, char const *seps)
 {
     int in_word = 0;
     int count = 0;
 
     for (int i = 0; str[i]; i++) {
-        if (!is_seperator(str[i], seps) && !in_word) {
+        if (!my_strchr(seps, str[i]) && !in_word) {
             in_word = 1;
             count++;
             continue;
         }
-        if (is_seperator(str[i], seps)) {
+        if (my_strchr(seps, str[i])) {
             in_word = 0;
         }
     }
@@ -46,7 +37,7 @@ static char *extract_word(char const *str, char const *seps, int *i_ptr)
     int start = *i_ptr;
     int len;
 
-    while (str[*i_ptr] && !is_seperator(str[*i_ptr], seps))
+    while (str[*i_ptr] && !my_strchr(seps, str[*i_ptr]))
         (*i_ptr)++;
     len = *i_ptr - start;
     return my_strndup(&str[start], len);
@@ -54,7 +45,7 @@ static char *extract_word(char const *str, char const *seps, int *i_ptr)
 
 static int skip_seps(char const *str, char const *seps, int *i_ptr)
 {
-    while (str[*i_ptr] && is_seperator(str[*i_ptr], seps))
+    while (str[*i_ptr] && my_strchr(seps, str[*i_ptr]))
         (*i_ptr)++;
     return (*i_ptr);
 }
