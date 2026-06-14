@@ -102,7 +102,7 @@ run:	$(NAME)
 	@printf "\033[1;32m%s\033[0m\n" "Test ran."
 
 memory_run:	debug
-	CRITERION_NO_FORK=1 $(VALGRIND) $(VALGRIND_FLAGS) ./$(NAME)
+	@CRITERION_NO_FORK=1 $(VALGRIND) $(VALGRIND_FLAGS) ./$(NAME)
 
 coverage:	fclean	run
 	@$(GCOVR) $(GCOVR_FLAGS) > $(COVERAGE_NAME)
