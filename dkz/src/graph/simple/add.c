@@ -7,7 +7,7 @@
 
 #include "dkz/macro.h"
 
-#include "dkz/graph/simple_linked_list.h"
+#include "dkz/graph/linked_list.h"
 
 int ll_insert(ll_t *list, void *data)
 {

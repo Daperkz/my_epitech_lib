@@ -8,7 +8,7 @@
 #ifndef DKZ_STACK_H_
     #define DKZ_STACK_H_
 
-    #include "simple_linked_list.h"
+    #include "linked_list.h"
 
 typedef ll_t my_stack_t;
 

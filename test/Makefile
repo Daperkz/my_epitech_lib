@@ -70,6 +70,7 @@ SRC				=	$(WRAPPER_D)malloc_wrapper.c		\
 					$(GRAPH_D)test_binary_tree.c		\
 					$(GRAPH_D)test_double_linked_list.c	\
 					$(GRAPH_D)test_node.c				\
+					$(GRAPH_D)test_linked_list.c		\
 					$(SRC_D)test_graph.c				\
 					$(SRC_D)test_hashtable.c			\
 					$(SRC_D)test_config.c

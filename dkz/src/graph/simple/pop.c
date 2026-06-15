@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 
-#include "dkz/graph/simple_linked_list.h"
+#include "dkz/graph/linked_list.h"
 
 void *ll_pop_head(ll_t *list)
 {

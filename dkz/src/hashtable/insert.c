@@ -10,7 +10,7 @@
 #include "dkz/string.h"
 
 #include "dkz/hashtable.h"
-#include "dkz/graph/simple_linked_list.h"
+#include "dkz/graph/linked_list.h"
 
 static int compare_keys(void *data, void *ref)
 {

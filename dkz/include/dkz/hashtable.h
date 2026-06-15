@@ -8,7 +8,7 @@
 #ifndef DKZ_HASHTABLE_H
     #define DKZ_HASHTABLE_H
 
-    #include "graph/simple_linked_list.h"
+    #include "graph/linked_list.h"
 
 typedef struct ht_buckets_s {
     char *key;

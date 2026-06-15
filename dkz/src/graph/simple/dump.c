@@ -7,7 +7,7 @@
 
 #include "dkz/macro.h"
 
-#include "dkz/graph/simple_linked_list.h"
+#include "dkz/graph/linked_list.h"
 
 void ll_dump(ll_t *list, void (*dump_data)(void *))
 {

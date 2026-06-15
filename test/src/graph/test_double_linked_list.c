@@ -12,6 +12,13 @@ static int compare_ints(void *a, void *b)
     return (*(int *)a - *(int *)b);
 }
 
+static void dump_data(void *data)
+{
+    char *c = (char *)data;
+
+    write(1, c, 1);
+}
+
 Test(dll_append, null_parameters)
 {
     int data = 42;
@@ -154,13 +161,6 @@ Test(dll_destroy, freeable_content)
     dll_destroy(list, free);
 }
 
-static void dump_data(void *data)
-{
-    char *c = (char *)data;
-
-    write(1, c, 1);
-}
-
 Test(dll_dump, null_entry)
 {
     dll_t *list = {0};
@@ -180,7 +180,7 @@ Test(dll_dump, basic, .init = cr_redirect_stdout)
     dll_destroy(list, NULL);
 }
 
-Test(dll_dump, no_dump_function_and_list_not_empty, .init = cr_redirect_stdout)
+Test(dll_dump, no_dump_function_and_list_not_empty)
 {
     dll_t *list = dll_create();
     char *data = "A";

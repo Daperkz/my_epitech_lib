@@ -8,7 +8,7 @@
 #ifndef DKZ_GRAPH_H_
     #define DKZ_GRAPH_H_
 
-    #include "graph/simple_linked_list.h"
+    #include "graph/linked_list.h"
     #include "graph/double_linked_list.h"
     #include "graph/stack.h"
     #include "graph/queue.h"

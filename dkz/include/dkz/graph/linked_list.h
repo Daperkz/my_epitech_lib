@@ -5,8 +5,8 @@
 ** simple_linked_list
 */
 
-#ifndef DKZ_SIMPLE_LINKED_LIST_H_
-    #define DKZ_SIMPLE_LINKED_LIST_H_
+#ifndef DKZ_LINKED_LIST_H_
+    #define DKZ_LINKED_LIST_H_
 
     #include "node.h"
 
