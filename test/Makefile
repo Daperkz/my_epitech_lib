@@ -34,8 +34,8 @@ GRAPH_D			=	$(SRC_D)graph/
 
 CPPFLAGS		=	-I$(INCLUDE) -I$(TEST_INCLUDE)
 
-CFLAGS			=	-O3 -Wall -Wextra --coverage -MMD -MP
-CFLAGS_DEBUG	=	-g3
+CFLAGS			=	-O0 -Wall -Wextra --coverage -MMD -MP
+CFLAGS_DEBUG	=	-g3 -O0
 
 LDFLAGS_SPECIAL	=	-Wl,--wrap=malloc,--wrap=read,--wrap=stat
 LDFLAGS			=	-lcriterion -L$(LIB_D) -ldkz $(LDFLAGS_SPECIAL)
@@ -54,22 +54,23 @@ VALGRIND_FLAGS	=	--leak-check=full		 			\
 
 # -_- FILES -_-
 
-SRC				=	$(WRAPPER_D)malloc_wrapper.c	\
-					$(WRAPPER_D)read_wrapper.c		\
-					$(WRAPPER_D)stat_wrapper.c		\
-					$(SRC_D)test_io.c				\
-					$(STRING_D)test_array.c			\
-					$(STRING_D)test_comparaison.c	\
-					$(STRING_D)test_convert.c		\
-					$(STRING_D)test_manipulation.c	\
-					$(STRING_D)test_search.c		\
-					$(SRC_D)test_utils.c			\
-					$(SRC_D)test_math.c				\
-					$(SRC_D)test_file.c				\
-					$(SRC_D)test_printf.c			\
-					$(GRAPH_D)test_bintree.c		\
-					$(SRC_D)test_graph.c			\
-					$(SRC_D)test_hashtable.c		\
+SRC				=	$(WRAPPER_D)malloc_wrapper.c		\
+					$(WRAPPER_D)read_wrapper.c			\
+					$(WRAPPER_D)stat_wrapper.c			\
+					$(SRC_D)test_io.c					\
+					$(STRING_D)test_array.c				\
+					$(STRING_D)test_comparaison.c		\
+					$(STRING_D)test_convert.c			\
+					$(STRING_D)test_manipulation.c		\
+					$(STRING_D)test_search.c			\
+					$(SRC_D)test_utils.c				\
+					$(SRC_D)test_math.c					\
+					$(SRC_D)test_file.c					\
+					$(SRC_D)test_printf.c				\
+					$(GRAPH_D)test_binary_tree.c		\
+					$(GRAPH_D)test_double_linked_list.c	\
+					$(SRC_D)test_graph.c				\
+					$(SRC_D)test_hashtable.c			\
 					$(SRC_D)test_config.c
 
 OBJ				=	$(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)

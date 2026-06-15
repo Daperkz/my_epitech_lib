@@ -56,8 +56,8 @@ BINARY_GRAPH_D			=	$(GRAPH_D)binary/
 # -_- FLAGS -_-
 CPPFLAGS    			=   -I$(INCLUDE) -I$(MY_PRINTF_INCLUDE)
 CFLAGS					=	-O3 -Wall -Wextra -MMD -MP
-CFLAGS_TEST				=	--coverage -fno-builtin
-CFLAGS_DEBUG			=	-g3
+CFLAGS_TEST				=	--coverage -fno-builtin -O0
+CFLAGS_DEBUG			=	-g3 -O0
 
 ARFLAGS					=	-rc
 

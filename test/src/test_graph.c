@@ -41,23 +41,6 @@ Test(ll_t, basic_flow)
     ll_destroy(list, free_int);
 }
 
-Test(dll_t, tail_operations)
-{
-    dll_t *list = dll_create();
-    int a = 1;
-    int b = 2;
-    void *data = NULL;
-
-    dll_append(list, &a);
-    dll_append(list, &b);
-    cr_assert_eq(list->len, 2);
-    cr_assert_eq(*(int *)list->tail->data, 2);
-    data = dll_pop_tail(list);
-    cr_assert_eq(*(int *)data, 2);
-    cr_assert_eq(list->len, 1);
-    dll_destroy(list, NULL);
-}
-
 Test(stack_t, lifo_logic)
 {
     my_stack_t *s = STACK_CREATE();

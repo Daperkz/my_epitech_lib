@@ -64,7 +64,7 @@ void *dll_pop(dll_t *list, void *ref, int (*cmp)(void *, void *))
     dnode_t *curr = NULL;
     void *data = NULL;
 
-    if (!list || !list->head || !cmp)
+    if (!list || list->len == 0 || !cmp)
         return (NULL);
     curr = list->head;
     for (int i = 0; i < list->len; i++) {
