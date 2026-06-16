@@ -67,6 +67,7 @@ Test(my_floor, floor_logic)
     cr_assert_eq(my_floor(3.9), 3);
     cr_assert_eq(my_floor(-3.1), -4);
     cr_assert_eq(my_floor(5.0), 5);
+    cr_assert_eq(my_floor(-5.0), -5);
 }
 
 Test(my_round, nearest_int)

@@ -38,13 +38,13 @@ long my_factorial(int n);
 //functions found in the rounds.c
 
 // Calculates the ceiling of a value (towards inf)
-int my_ceil(double x);
+double my_ceil(double x);
 // Calculates the floor of a value (towards -inf)
-int my_floor(double x);
+double my_floor(double x);
 // Returns the nearest Integer
-int my_round(double x);
+double my_round(double x);
 // Returns the Integer part by truncating toward zero
-int my_trunc(double x);
+double my_trunc(double x);
 
 int my_intlen(int x);
 int my_intlenb(int x, int baselen);
