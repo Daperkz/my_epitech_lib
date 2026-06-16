@@ -32,12 +32,11 @@ static int print_the_nbr(double nb, int precision, double multiplier)
 
     printed += my_put_nbr(integer_part);
     if (precision > 0) {
-        printed += my_putstr(".");
+        printed += my_putchar('.');
         decimals = (long long)(fractional_part * multiplier);
         for (int i = 0; i < (precision - my_intlen(decimals)); i++)
             printed += my_putstr("0");
-        if (decimals > 0 || precision > 0)
-            printed += my_put_nbr(decimals);
+        printed += my_put_nbr(decimals);
     }
     return printed;
 }
@@ -49,8 +48,8 @@ int my_put_float(double nb, int precision)
 
     if (nb != nb || nb == 1.0 / 0.0 || nb == -1.0 / 0.0)
         return special_case(nb);
-    if (nb < 0 && nb != -0.0) {
-        printed = my_putstr("-");
+    if (nb < 0) {
+        printed += my_putstr("-");
         nb = -nb;
     }
     multiplier = my_ipow(10, precision);

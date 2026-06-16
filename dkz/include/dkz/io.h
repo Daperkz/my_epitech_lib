@@ -67,7 +67,7 @@ int my_put_nbr_base(int nb, char const *base);
 ** @param[in] nb The double to print
 ** @param[in] precision The amount of decimals printed out
 **
-** @return @b void
+** @return @b int The number of characters printed
 */
 int my_put_float(double nb, int precision);
 
@@ -76,7 +76,7 @@ int my_put_float(double nb, int precision);
 **
 ** @param[in] str The string to display
 **
-** @return @b int 0 on success
+** @return @b int The number of characters printed
 */
 int my_showstr(char const *str);
 
@@ -95,7 +95,7 @@ int my_showmem(char const *str, int size);
 **
 ** @param[in] tab The string array to display
 **
-** @return @b int 0 on success
+** @return @b int The number of characters printed
 */
 int my_show_word_array(char **tab);
 

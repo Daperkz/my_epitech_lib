@@ -11,24 +11,18 @@
 #include <stdlib.h>
 
 #include "dkz/string.h"
-#include "dkz/utils.h"
+#include "dkz/io.h"
 
 int my_show_word_array(char **tab)
 {
-    int count = 0;
-    char *str = NULL;
+    int printed = 0;
 
     if (!tab)
-        return (EXIT_FAILURE);
-    while (tab[count] != 0)
-        count++;
-    if (count == 0 && tab[count] == 0)
-        return (EXIT_SUCCESS);
-    str = concat_params(count, tab);
-    if (!str)
-        return (EXIT_FAILURE);
-    my_putstr(str);
-    my_putstr("\n");
-    free(str);
-    return (EXIT_SUCCESS);
+        return (0);
+    while (*tab) {
+        printed += my_putstr(*tab);
+        printed += my_putchar('\n');
+        tab++;
+    }
+    return (printed);
 }

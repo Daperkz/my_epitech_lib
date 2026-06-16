@@ -11,25 +11,28 @@
 #include "dkz/macro.h"
 #include "dkz/io.h"
 
-static void leading_zero(char c)
+static int leading_zero(char c)
 {
     if (c < 16)
-        my_putchar('0');
+        return my_putchar('0');
+    return (0);
 }
 
 int my_showstr(char const *str)
 {
+    int printed = 0;
+
     if (!str)
-        return (EXIT_FAILURE);
+        return (0);
     while (*str) {
         if (*str < 32 || *str > 126) {
-            my_putchar('\\');
-            leading_zero(*str);
-            my_put_nbr_base(*str, "0123456789abcdef");
+            printed += my_putchar('\\');
+            printed += leading_zero(*str);
+            printed += my_put_nbr_base(*str, "0123456789abcdef");
         } else {
-            my_putchar(*str);
+            printed += my_putchar(*str);
         }
         str++;
     }
-    return (EXIT_SUCCESS);
+    return (printed);
 }

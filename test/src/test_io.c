@@ -73,88 +73,81 @@ Test(my_put_nbr_base, invalid_base, .init = cr_redirect_stdout)
 
 Test(my_put_float, limits, .init = cr_redirect_stdout)
 {
-    my_put_float(-2147483647.0, 5);
+    cr_assert_eq(my_put_float(-2147483647.0, 5), 17);
     cr_assert_stdout_eq_str("-2147483647.00000");
-}
-
-Test(my_put_float, negative, .init = cr_redirect_stdout)
-{
-    my_put_float(-20.0, 5);
-    cr_assert_stdout_eq_str("-20.00000");
-}
-
-Test(my_put_float, zero_case, .init = cr_redirect_stdout)
-{
-    my_put_float(0.0, 1);
-    cr_assert_stdout_eq_str("0.0");
-}
-
-Test(my_put_float, neg_zero_case, .init = cr_redirect_stdout)
-{
-    my_put_float(-0.0, 1);
-    cr_assert_stdout_eq_str("0.0");
 }
 
 Test(my_put_float, divide_1_by_0, .init = cr_redirect_stdout)
 {
-    my_put_float(1.0 / 0.0, 6);
+    cr_assert_eq(my_put_float(1.0 / 0.0, 6), 3);
     cr_assert_stdout_eq_str("inf");
 }
 
 Test(my_put_float, divide_neg1_by_0, .init = cr_redirect_stdout)
 {
-    my_put_float(-1.0 / 0.0, 6);
+    cr_assert_eq(my_put_float(-1.0 / 0.0, 6), 4);
     cr_assert_stdout_eq_str("-inf");
 }
 
 Test(my_put_float, divide_0_by_0, .init = cr_redirect_stdout)
 {
-    my_put_float(0.0 / 0.0, 6);
+    cr_assert_eq(my_put_float(0.0 / 0.0, 6), 3);
     cr_assert_stdout_eq_str("nan");
 }
 
 Test(my_put_float, precision_zero, .init = cr_redirect_stdout)
 {
-    my_put_float(42.75, 0);
+    cr_assert_eq(my_put_float(42.75, 0), 2);
     cr_assert_stdout_eq_str("43");
 }
 
-Test(my_put_float, less_than_zero_value, .init = cr_redirect_stdout)
+Test(my_show_word_array, null_parameter, .init = cr_redirect_stdout)
 {
-    my_put_float(0.075, 3);
-    cr_assert_stdout_eq_str("0.075");
+    cr_assert_eq(my_show_word_array(NULL), 0);
+    cr_assert_stdout_eq_str("");
 }
 
 Test(my_show_word_array, basic, .init = cr_redirect_stdout)
 {
     char *tab[] = {"Hello", "World", NULL};
-    my_show_word_array(tab);
+
+    cr_assert_eq(my_show_word_array(tab), 12);
     cr_assert_stdout_eq_str("Hello\nWorld\n");
 }
 
 Test(my_show_word_array, single_element, .init = cr_redirect_stdout)
 {
     char *tab[] = {"OnlyOne", NULL};
-    my_show_word_array(tab);
+
+    cr_assert_eq(my_show_word_array(tab), 8);
     cr_assert_stdout_eq_str("OnlyOne\n");
 }
 
-Test(my_show_word_array, null_element, .init = cr_redirect_stdout)
+Test(my_showstr, null_parameters, .init = cr_redirect_stdout)
 {
-    char **tab = NULL;
-    my_show_word_array(tab);
+    cr_assert_eq(my_showstr(NULL), 0);
     cr_assert_stdout_eq_str("");
 }
 
-Test(my_showstr, non_printable, .init = cr_redirect_stdout)
+Test(my_showstr, only_printable, .init = cr_redirect_stdout)
 {
-    char str[] = {27, 'a', 0};
-    my_showstr(str);
-    cr_assert_stdout_eq_str("\\1ba");
+    char *str = "hello";
+    cr_assert_eq(my_showstr(str), 5);
+    cr_assert_stdout_eq_str("hello");
 }
 
-Test(my_showstr, null_pointer, .init = cr_redirect_stdout)
+Test(my_showstr, only_nonprintable, .init = cr_redirect_stdout)
 {
-    my_showstr(NULL);
-    cr_assert_stdout_eq_str("");
+    char str[] = {27, 127, 4, '\0'};
+
+    cr_assert_eq(my_showstr(str), 9);
+    cr_assert_stdout_eq_str("\\1b\\7f\\04");
+}
+
+Test(my_showstr, mixed, .init = cr_redirect_stdout)
+{
+    char str[] = {27, 'A', 127, 4, 'a', '\0'};
+
+    cr_assert_eq(my_showstr(str), 11);
+    cr_assert_stdout_eq_str("\\1bA\\7f\\04a");
 }

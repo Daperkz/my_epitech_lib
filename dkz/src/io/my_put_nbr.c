@@ -13,36 +13,38 @@
 int my_put_nbr(int nb)
 {
     long n = nb;
+    int printed = 0;
 
     if (n < 0) {
-        my_putchar('-');
+        printed += my_putchar('-');
         n *= -1;
     }
     if (n >= 10) {
-        my_put_nbr(n / 10);
-        my_put_nbr(n % 10);
+        printed += my_put_nbr(n / 10);
+        printed += my_put_nbr(n % 10);
     } else {
-        my_putchar(n + '0');
+        printed += my_putchar(n + '0');
     }
-    return 0;
+    return printed;
 }
 
 int my_put_nbr_base(int nb, char const *base)
 {
     int base_size = my_strlen(base);
     long n = nb;
+    int printed = 0;
 
     if (base_size <= 1)
         return 0;
     if (n < 0) {
-        my_putchar('-');
+        printed += my_putchar('-');
         n *= -1;
     }
     if (n >= base_size) {
-        my_put_nbr_base((int)(n / base_size), base);
-        my_put_nbr_base((int)(n % base_size), base);
+        printed += my_put_nbr_base((int)(n / base_size), base);
+        printed += my_put_nbr_base((int)(n % base_size), base);
     } else {
-        my_putchar(base[n]);
+        printed += my_putchar(base[n]);
     }
-    return 0;
+    return printed;
 }
