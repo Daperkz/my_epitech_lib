@@ -12,11 +12,18 @@
 
 ht_buckets_t *bucket_create(char *key, void *data)
 {
-    ht_buckets_t *bucket = malloc(sizeof(ht_buckets_t));
+    ht_buckets_t *bucket;
 
+    if (!key)
+        return (NULL);
+    bucket = malloc(sizeof(ht_buckets_t));
     if (!bucket)
         return (NULL);
     bucket->key = my_strdup(key);
+    if (!bucket->key) {
+        free(bucket);
+        return (NULL);
+    }
     bucket->data = data;
     return (bucket);
 }

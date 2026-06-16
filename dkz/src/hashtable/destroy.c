@@ -13,13 +13,9 @@ static void bucket_free_wrapper(void *ptr, void (*free_data)(void *))
 {
     ht_buckets_t *bucket = (ht_buckets_t *)ptr;
 
-    if (!bucket)
-        return;
-    if (bucket->key)
-        free(bucket->key);
     if (free_data && bucket->data)
         free_data(bucket->data);
-    free(bucket);
+    bucket_destroy(bucket);
 }
 
 void ht_destroy(ht_t *ht, void (*free_data)(void *))

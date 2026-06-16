@@ -32,7 +32,7 @@ int ht_insert(ht_t *ht, char *key, void *data)
     int index = 0;
     ht_buckets_t *entry;
 
-    if (!ht || !key || !data)
+    if (!ht || !key)
         return (EXIT_FAILURE);
     index = ht->hash(key, ht->size);
     if (ll_update_node(ht->buckets[index], key, data) == EXIT_SUCCESS)
