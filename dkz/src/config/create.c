@@ -27,20 +27,16 @@ static int process_line(config_t *config, char *line)
     char *key = NULL;
     char *value = NULL;
 
-    if (!line)
-        return (EXIT_SUCCESS);
     if (clean_line(&line) == 1)
         return (EXIT_SUCCESS);
     key = my_strsep(&line, "=");
     value = my_strdup(line);
     if (!value)
         return (EXIT_FAILURE);
-    if (key && value) {
-        key = my_strtrim(key, WHITESPACES);
-        value = my_strtrim(value, WHITESPACES);
-        if (ht_insert(config, key, value) == EXIT_FAILURE)
-            return (EXIT_FAILURE);
-    }
+    key = my_strtrim(key, WHITESPACES);
+    value = my_strtrim(value, WHITESPACES);
+    if (ht_insert(config, key, value) == EXIT_FAILURE)
+        return (EXIT_FAILURE);
     return (EXIT_SUCCESS);
 }
 
