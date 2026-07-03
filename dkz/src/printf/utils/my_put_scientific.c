@@ -10,65 +10,85 @@
 #include "dkz/string.h"
 #include "dkz/utils.h"
 
-static char *put_exponent(char **str_ptr, int exponent, char *base, int cap)
-{
-    char *exponent_str = NULL;
+struct builder_s {
+    int exponent;
+    int entier;
+    int decimal;
+    char *str;
+    short error;
+};
 
-    if (!my_strappend(str_ptr, cap ? "E" : "e"))
-        return NULL;
-    if (exponent >= 0) {
-        if (!my_strappend(str_ptr, "+"))
-            return NULL;
-    } else {
-        if (!my_strappend(str_ptr, "-"))
-            return NULL;
-        exponent = -exponent;
-    }
-    if (exponent < 10)
-        if (!my_strappend(str_ptr, "0"))
-            return NULL;
-    exponent_str = my_itoab(exponent, base);
-    my_strappend(str_ptr, exponent_str);
-    free(exponent_str);
-    return (*str_ptr);
+static void append(struct builder_s *b, char *s)
+{
+    if (b->error)
+        return;
+    if (!my_strappend(&b->str, s))
+        b->error = 1;
 }
 
-static char *put_decimal(char **str_ptr, int decimal, char *base)
+static void append_sign(struct builder_s *b, double *nb)
 {
-    int limit = 10000;
-    char *decimal_str;
-
-    while (limit > 0 && decimal < limit) {
-        my_strappend(str_ptr, "0");
-        if (!(*str_ptr))
-            return NULL;
-        limit /= 10;
+    if (*nb < 0) {
+        append(b, "-");
+        *nb = -(*nb);
     }
-    decimal_str = my_itoab(decimal, base);
-    if (!decimal_str)
-        return NULL;
-    my_strappend(str_ptr, decimal_str);
-    if (!(*str_ptr))
-        return NULL;
-    free(decimal_str);
-    return *str_ptr;
 }
 
-static void calculate_scientific(
-    double nb, int *exponent_ptr, int *entier_ptr, int *decimal_ptr
-)
+static void calculate_parts(double nb, struct builder_s *b)
 {
-    *exponent_ptr = 0;
+    b->exponent = 0;
     while (nb >= 10.0) {
         nb /= 10.0;
-        (*exponent_ptr)++;
+        (b->exponent)++;
     }
-    while (nb < 1.0) {
+    while (nb < 1.0 && nb > 0) {
         nb *= 10.0;
-        (*exponent_ptr)--;
+        (b->exponent)--;
     }
-    *entier_ptr = (int)nb;
-    *decimal_ptr = (int)((nb - *entier_ptr) * 1000000 + 0.00005);
+    b->entier = (int)nb;
+    b->decimal = (int)((nb - b->entier) * 1000000 + 0.00005);
+}
+
+static void append_parts(struct builder_s *b, char *base)
+{
+    char *e_str = my_itoab(b->entier, base);
+    char *d_str = my_itoab(b->decimal, base);
+
+    if (!e_str || !d_str) {
+        b->error = 1;
+    } else {
+        append(b, e_str);
+        append(b, ".");
+        for (int i = 100000; i > b->decimal && i > 1; i /= 10)
+            append(b, "0");
+        append(b, d_str);
+    }
+    free(e_str);
+    free(d_str);
+}
+
+static void append_exponent(struct builder_s *b, char *base, int cap)
+{
+    char *exp_str = NULL;
+
+    append(b, cap ? "E" : "e");
+    append(b, b->exponent >= 0 ? "+" : "-");
+    if (b->exponent < 0)
+        b->exponent = -b->exponent;
+    if (b->exponent < 10)
+        append(b, "0");
+    exp_str = my_itoab(b->exponent, base);
+    if (!exp_str) {
+        b->error = 1;
+    } else {
+        append(b, exp_str);
+        free(exp_str);
+    }
+}
+
+static int is_special(double nb)
+{
+    return (nb != nb || nb == 1.0 / 0.0 || nb == -1.0 / 0.0);
 }
 
 static char *special_case(double nb)
@@ -84,54 +104,26 @@ static char *special_case(double nb)
     return str;
 }
 
-static char *int_and_decimal_part(
-    char **str_ptr, int entier, int decimal, char *base)
-{
-    char *entier_str = my_itoab(entier, base);
-
-    if (!entier_str)
-        return NULL;
-    my_strappend(str_ptr, entier_str);
-    free(entier_str);
-    if (!(*str_ptr))
-        return NULL;
-    if (!my_strappend(str_ptr, "."))
-        return NULL;
-    if (!put_decimal(str_ptr, decimal, base))
-        return NULL;
-    return (*str_ptr);
-}
-
-static char *sign_part(char **str_ptr, double *nb_ptr)
-{
-    if ((*nb_ptr) < 0) {
-        if (!my_strappend(str_ptr, "-"))
-            return NULL;
-        (*nb_ptr) = -(*nb_ptr);
-    }
-    return *(str_ptr);
-}
-
 char *my_put_scientific(double nb, char *base, int cap)
 {
-    int exponent = 0;
-    int entier = 0;
-    int decimal = 0;
-    char *str;
+    struct builder_s b = {0, 0, 0, NULL, 0};
 
-    if (nb != nb || nb == 1.0 / 0.0 || nb == -1.0 / 0.0)
+    if (is_special(nb))
         return special_case(nb);
-    str = my_strdup("");
-    if (!str)
+    b.str = my_strdup("");
+    if (!b.str)
         return (NULL);
     if (nb == 0.0)
-        return my_strappend(&str, cap ? "0.000000E+00" : "0.000000e+00");
-    if (!sign_part(&str, &nb))
-        return NULL;
-    calculate_scientific(nb, &exponent, &entier, &decimal);
-    if (!int_and_decimal_part(&str, entier, decimal, base))
-        return NULL;
-    if (!put_exponent(&str, exponent, base, cap))
-        return NULL;
-    return str;
+        append(&b, cap ? "0.000000E+00" : "0.000000e+00");
+    else {
+        append_sign(&b, &nb);
+        calculate_parts(nb, &b);
+        append_parts(&b, base);
+        append_exponent(&b, base, cap);
+    }
+    if (b.error) {
+        free(b.str);
+        return (NULL);
+    }
+    return (b.str);
 }
