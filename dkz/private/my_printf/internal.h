@@ -29,7 +29,7 @@ typedef struct printf_info_s {
     char length;
 } pf_info_t;
 
-typedef char *(*flag_func_t)(va_list, pf_info_t *, pf_ctx_t *);
+typedef char *(*flag_func_t)(va_list, pf_ctx_t *);
 
 typedef struct flag_map_s {
     char flag;

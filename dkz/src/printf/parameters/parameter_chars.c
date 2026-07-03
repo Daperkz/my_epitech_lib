@@ -10,32 +10,8 @@
 #include "dkz/string.h"
 #include "dkz/utils.h"
 
-#include "internal.h"
-#include "modifiers.h"
-
-/*
-static char *modifier_id_c(char *str, char flag, int x, int id)
-{
-    switch (id) {
-        case 0 :
-            return left(str, flag, x);
-        case 2 :
-            return sign_str(str, flag, x)
-        default :
-            return str;
-    }
-}
-
-static int modifier_precision_id_c(va_list args, int x, int id)
-{
-    switch (id) {
-        case 1 :
-            return va_arg(args, int);
-        default :
-            return 0;
-    }
-}
-*/
+#include "my_printf/internal.h"
+#include "my_printf/modifiers.h"
 
 char *parameter_c(va_list args, pf_ctx_t *coterr)
 {

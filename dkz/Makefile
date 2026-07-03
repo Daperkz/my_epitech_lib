@@ -17,8 +17,8 @@ ROOT_D					=	./
 
 # -_- Public include for my = ./include -_-
 INCLUDE					=	$(ROOT_D)include/
-# -_- Internal / Private include for my_printf = ./src/printf/private -_-
-MY_PRINTF_INCLUDE		=	$(MY_PRINTF_D)private/
+# -_- Internal / Private include = ./private -_-
+PRIVATE_INCLUDE		=	$(ROOT_D)private/
 
 OBJ_D					=	$(ROOT_D)obj/
 SRC_D					=	$(ROOT_D)src/
@@ -54,7 +54,7 @@ BINARY_GRAPH_D			=	$(GRAPH_D)binary/
 
 
 # -_- FLAGS -_-
-CPPFLAGS    			=   -I$(INCLUDE) -I$(MY_PRINTF_INCLUDE)
+CPPFLAGS    			=   -I$(INCLUDE) -I$(PRIVATE_INCLUDE)
 CFLAGS					=	-O3 -Wall -Wextra -MMD -MP
 CFLAGS_TEST				=	--coverage -fno-builtin -O0
 CFLAGS_DEBUG			=	-g3 -O0

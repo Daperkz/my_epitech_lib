@@ -9,7 +9,7 @@
 
 #include "dkz/string.h"
 
-#include "internal.h"
+#include "my_printf/internal.h"
 
 char *apply_sign_flags(char *str, pf_info_t *info, char specifier)
 {

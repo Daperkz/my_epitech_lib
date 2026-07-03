@@ -12,7 +12,7 @@
 #include "dkz/string.h"
 #include "dkz/utils.h"
 
-#include "internal.h"
+#include "my_printf/internal.h"
 
 static int number_of_number(char *str, int *nb_count)
 {

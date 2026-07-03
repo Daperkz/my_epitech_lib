@@ -10,7 +10,7 @@
 #include "dkz/string.h"
 #include "dkz/utils.h"
 
-#include "internal.h"
+#include "my_printf/internal.h"
 
 char *parameter_n(va_list args, pf_ctx_t *coterr)
 {

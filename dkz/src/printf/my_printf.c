@@ -8,9 +8,8 @@
 #include <unistd.h>
 
 #include "dkz.h"
+#include "private_dkz.h"
 
-#include "internal.h"
-#include "parser.h"
 
 static int no_format_case(int fd, char const **format, pf_ctx_t *ctx)
 {

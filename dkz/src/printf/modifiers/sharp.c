@@ -9,7 +9,7 @@
 
 #include "dkz/string.h"
 
-#include "internal.h"
+#include "my_printf/internal.h"
 
 static char *zeropadding_o(char *str)
 {

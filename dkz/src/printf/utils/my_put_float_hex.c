@@ -12,7 +12,7 @@
 #include "dkz/string.h"
 #include "dkz/utils.h"
 
-#include "floating_point.h"
+#include "my_printf/floating_point.h"
 
 static char *my_put_mantissa(long x, char *base)
 {

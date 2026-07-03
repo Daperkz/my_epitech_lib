@@ -8,9 +8,8 @@
 
 #include <stdarg.h>
 
-#include "internal.h"
-
 #include "dkz/string.h"
+#include "my_printf/internal.h"
 
 char *parameter_d(va_list args, pf_ctx_t *coterr)
 {

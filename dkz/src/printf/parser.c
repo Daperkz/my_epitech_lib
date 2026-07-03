@@ -8,10 +8,19 @@
 #include <stdlib.h>
 
 #include "dkz/string.h"
+#include "my_printf/internal.h"
+#include "my_printf/modifiers.h"
+#include "my_printf/all_parameters.h"
 
-#include "internal.h"
-#include "modifiers.h"
-#include "all_parameters.h"
+const flag_map_t ALL_FORMAT[22] = {
+    {'d', parameter_d}, {'i', parameter_d}, {'u', parameter_u},
+    {'o', parameter_o}, {'x', parameter_x}, {'X', parameter_xx},
+    {'f', parameter_f}, {'F', parameter_ff}, {'e', parameter_e},
+    {'E', parameter_ee}, {'g', parameter_g}, {'G', parameter_gg},
+    {'a', parameter_a}, {'A', parameter_aa}, {'c', parameter_c},
+    {'s', parameter_s}, {'p', parameter_p}, {'n', parameter_n},
+    {'%', parameter_percent}, {0, NULL}
+};
 
 static int my_isdigit(char c)
 {
@@ -114,10 +123,10 @@ int handle_conversion(
     char specifier = format[offset];
     char *res = NULL;
 
-    for (int i = 0; ALL_FORMAT[i]->flag != 0; i++) {
-        if (specifier != ALL_FORMAT[i]->flag)
+    for (int i = 0; ALL_FORMAT[i].flag != 0; i++) {
+        if (specifier != ALL_FORMAT[i].flag)
             continue;
-        res = ALL_FORMAT[i]->func(args, &info, ctx);
+        res = ALL_FORMAT[i].func(args, ctx);
         if (post_processing(&info, &res, specifier) == EXIT_FAILURE)
             return (-1);
         if (printf_or_sprintf(ctx, res, str_ptr) == EXIT_FAILURE)

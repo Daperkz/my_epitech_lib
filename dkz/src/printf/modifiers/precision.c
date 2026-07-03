@@ -9,7 +9,7 @@
 
 #include "dkz/string.h"
 
-#include "internal.h"
+#include "my_printf/internal.h"
 
 static void fill_precision(char *new, int is_neg, int pad)
 {
