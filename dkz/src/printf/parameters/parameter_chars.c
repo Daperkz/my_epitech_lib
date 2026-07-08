@@ -18,42 +18,28 @@ char *parameter_c(va_list args, pf_ctx_t *coterr)
     char c = va_arg(args, int);
     char *str = malloc(sizeof(char) * 2);
 
-    coterr->count += 0;
+    UNUSED(coterr);
     if (!str)
         return NULL;
     str[0] = c;
     str[1] = '\0';
-    return str;
+    return (str);
 }
 
 char *parameter_s(va_list args, pf_ctx_t *coterr)
 {
     char *str = va_arg(args, char *);
-    char *new_str = NULL;
 
-    coterr->count += 0;
+    UNUSED(coterr);
     if (str == NULL) {
-        new_str = malloc(sizeof(char) * 7);
-        if (!new_str)
-            return NULL;
-        my_strcpy(new_str, "(null)");
-    } else {
-        new_str = malloc(sizeof(char) * (my_strlen(str) + 1));
-        if (!new_str)
-            return NULL;
-        my_strcpy(new_str, str);
+        return (my_strdup("(null)"));
     }
-    return new_str;
+    return (my_strdup(str));
 }
 
 char *parameter_percent(va_list args, pf_ctx_t *coterr)
 {
-    char *str = malloc(sizeof(char) * 2);
-
     UNUSED(args);
-    coterr->count += 0;
-    if (!str)
-        return NULL;
-    my_strcpy(str, "%");
-    return str;
+    UNUSED(coterr);
+    return (my_strdup("%"));
 }

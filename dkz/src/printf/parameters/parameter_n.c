@@ -15,11 +15,10 @@
 char *parameter_n(va_list args, pf_ctx_t *coterr)
 {
     int *x = va_arg(args, int *);
-    char *str = malloc(sizeof(char) * 1);
+    char *str = my_strdup("");
 
     *x = coterr->count;
     if (!str)
         return NULL;
-    my_strcpy(str, "");
-    return str;
+    return (str);
 }

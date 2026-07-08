@@ -123,6 +123,7 @@ SRC				=	$(CONFIG_D)test_create.c						\
 					$(PRINTF_MODIFIERS_D)test_sharp.c 				\
 					$(PRINTF_MODIFIERS_D)test_signs.c 				\
 					$(PRINTF_MODIFIERS_D)test_width.c 				\
+					$(PRINTF_PARAMETERS_D)helpers.c 				\
 					$(PRINTF_PARAMETERS_D)test_parameter_a.c 		\
 					$(PRINTF_PARAMETERS_D)test_parameter_chars.c	\
 					$(PRINTF_PARAMETERS_D)test_parameter_e.c		\
