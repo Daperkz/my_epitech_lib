@@ -64,7 +64,7 @@ CPPFLAGS		=	-I$(INCLUDE) -I$(TEST_INCLUDE)
 CFLAGS			=	-O0 -Wall -Wextra --coverage -MMD -MP
 CFLAGS_DEBUG	=	-g3 -O0
 
-LDFLAGS_SPECIAL	=	-Wl,--wrap=malloc,--wrap=read,--wrap=stat
+LDFLAGS_SPECIAL	=	-Wl,--wrap=malloc,--wrap=read,--wrap=stat,--wrap=write
 LDFLAGS			=	-lcriterion -L$(LIB_D) -ldkz $(LDFLAGS_SPECIAL)
 
 GCOVR_FLAGS		=	--root $(REPO_D) 					\
@@ -137,6 +137,7 @@ SRC				=	$(CONFIG_D)test_create.c						\
 					$(PRINTF_UTILS_D)test_my_put_adress.c			\
 					$(PRINTF_UTILS_D)test_my_put_float_hex.c		\
 					$(PRINTF_UTILS_D)test_my_put_scientific.c		\
+					$(PRINTF_D)helpers.c							\
 					$(PRINTF_D)test_my_printf.c						\
 					$(PRINTF_D)test_parser.c						\
 					$(MATH_D)test_macros.c							\
@@ -151,7 +152,6 @@ SRC				=	$(CONFIG_D)test_create.c						\
 					$(MATH_D)test_my_nbrlen.c						\
 					$(MATH_D)test_my_rounds.c						\
 					$(MATH_D)test_my_sign.c							\
-					$(SRC_D)test_printf.c							\
 					$(ARRAY_D)test_my_cpy_strarr.c					\
 					$(ARRAY_D)test_my_free_strarr.c					\
 					$(ARRAY_D)test_my_len_strarr.c					\
@@ -194,7 +194,8 @@ SRC				=	$(CONFIG_D)test_create.c						\
 					$(UTILS_D)test_my_swap.c						\
 					$(WRAPPER_D)malloc_wrapper.c					\
 					$(WRAPPER_D)read_wrapper.c						\
-					$(WRAPPER_D)stat_wrapper.c
+					$(WRAPPER_D)stat_wrapper.c						\
+					$(WRAPPER_D)write_wrapper.c
 
 OBJ				=	$(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)
 

@@ -14,12 +14,12 @@
 static int no_format_case(int fd, char const **format, pf_ctx_t *ctx)
 {
     int offset = my_strlen_d(*format, '%');
+    int formatlen = my_strlen(*format);
 
-    if (offset == -1) {
-        offset = my_strlen(*format);
-        ctx->error = my_fputnstr(fd, *format, offset) == -1 ?
+    if (offset == formatlen) {
+        ctx->error = my_fputnstr(fd, *format, formatlen) == -1 ?
             1 : ctx->error;
-        ctx->count += offset;
+        ctx->count += formatlen;
         return (EXIT_FAILURE);
     }
     ctx->error = (my_fputnstr(fd, *format, offset) == -1) ? 1 : ctx->error;
@@ -43,10 +43,9 @@ static int internal_printf(int fd, char const *format, va_list args)
         if (retv == EXIT_DONE)
             continue;
         offset = handle_conversion(&ctx, format + 1, args, NULL);
-        if (offset > 0) {
-            format += (offset + 1);
-            continue;
-        }
+        if (offset <= 0)
+            return (-1);
+        format += (offset + 1);
     }
     return ctx.error ? -1 : ctx.count;
 }
@@ -94,7 +93,7 @@ static int isnotspecifier(char **str_ptr, pf_ctx_t *ctx, char const **format)
 static int internal_sprintf(char **str_ptr, char const *format, va_list args)
 {
     pf_ctx_t ctx = {-1, 0, 0};
-    int offset;
+    int offset = 0;
     int retv;
 
     while (*format) {
@@ -104,31 +103,33 @@ static int internal_sprintf(char **str_ptr, char const *format, va_list args)
         if (retv == EXIT_SUCCESS)
             continue;
         offset = handle_conversion(&ctx, format + 1, args, str_ptr);
-        if (offset > 0) {
-            format += (offset + 1);
-            continue;
-        }
-        if (offset == -1)
+        if (offset <= 0)
             return (-1);
+        format += (offset + 1);
     }
-    return (ctx.error ? (-1) : (ctx.count));
+    return (ctx.count);
 }
 
 int my_sprintf(char **str_ptr, char const *format, ...)
 {
     va_list args;
     int ret;
+    short allocated_here = 0;
 
     if (!str_ptr)
         return (-1);
     if (!(*str_ptr)) {
-        *str_ptr = malloc(sizeof(char) * 1);
+        *str_ptr = my_strdup("");
         if (!*str_ptr)
             return (-1);
-        *str_ptr[0] = '\0';
+        allocated_here = 1;
     }
     va_start(args, format);
     ret = internal_sprintf(str_ptr, format, args);
     va_end(args);
+    if (ret == -1 && allocated_here) {
+        free(*str_ptr);
+        *str_ptr = NULL;
+    }
     return ret;
 }

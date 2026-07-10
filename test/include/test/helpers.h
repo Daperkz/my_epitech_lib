@@ -19,4 +19,19 @@ char *parameter_wrapper_stack_forced(
     const char *type, void *val
 );
 
+
+typedef struct hcv_args_s {
+    int width;
+    int precision;
+} hcv_args_t;
+
+
+int handle_conversion_wrapper(
+    pf_ctx_t *ctx, const char *format, char **str_ptr, struct hcv_args_s *args
+);
+
+int handle_conversion_wrapper_force_stack(
+    pf_ctx_t *ctx, const char *format, char **str_ptr, struct hcv_args_s *args
+);
+
 #endif /* !LIBDKZ_TEST_HELPERS_H_ */

@@ -44,6 +44,8 @@ static int parse_width_precision(
 {
     int i = 0;
 
+    if (format[i] == '\0')
+        return (i);
     if (format[i] == '*') {
         info->width = va_arg(args, int);
         i++;
@@ -97,7 +99,7 @@ static int printf_or_sprintf(pf_ctx_t *ctx, char *res, char **str_ptr)
             return (EXIT_FAILURE);
         ctx->count += my_strlen(res);
     }
-    return (EXIT_SUCCESS);
+    return (ctx->error ? EXIT_FAILURE : EXIT_SUCCESS);
 }
 
 static int post_processing(pf_info_t *info, char **res_ptr, char specifier)

@@ -45,5 +45,15 @@ void reset_stat_wrapper(void);
 void set_stat_count(int count);
 void set_stat_fail(int should_fail);
 
+// The "real" write provided by the system
+ssize_t __real_write(int __fd, const void *__buf, size_t __nbytes);
+
+// my wrapper
+ssize_t __wrap_write(int __fd, const void *__buf, size_t __nbytes);
+
+void reset_write_wrapper(void);
+void set_write_count(int count);
+void set_write_fail(int should_fail);
+
 
 #endif /* !LIBDKZ_TEST_WRAPPERS_H_ */
