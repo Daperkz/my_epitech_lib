@@ -13,7 +13,7 @@
 **
 ** @author Daperkz
 ** @ingroup libdkz
-** @test ./tests/io/
+** @test ./test/src/io/
 ** @version 1.0
 ** @date 2026-07-05
 */

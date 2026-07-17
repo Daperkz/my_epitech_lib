@@ -27,7 +27,7 @@ static int my_isdigit(char c)
     return (c >= '0' && c <= '9');
 }
 
-int my_getnbr_and_advance(const char *str, int *i)
+static int my_getnbr_and_advance(const char *str, int *i)
 {
     int res = 0;
 

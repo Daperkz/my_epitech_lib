@@ -13,7 +13,7 @@
 **
 ** @author Daperkz
 ** @ingroup libdkz
-** @test ./tests/utils/
+** @test ./test/src/utils/
 ** @version 1.0
 ** @date 2026-07-05
 */
@@ -21,13 +21,39 @@
 #ifndef DKZ_UTILS_H_
     #define DKZ_UTILS_H_
 
+    /**
+    ** @brief Macro used to silence unused warnings
+    **/
     #define UNUSED(arg) ((void)arg)
 
+    /**
+    ** @brief string representing the Base 2
+    **/
     #define BASE2 "01"
+
+    /**
+    ** @brief string representing the Base 7
+    **/
     #define BASE7 "0123456"
+
+    /**
+    ** @brief string representing the Base 8
+    **/
     #define BASE8 "01234567"
+
+    /**
+    ** @brief string representing the Base 10
+    **/
     #define BASE10 "0123456789"
+
+    /**
+    ** @brief string representing the Base 15 with captial letters
+    **/
     #define BASE15CAP "0123456789ABCDEF"
+
+    /**
+    ** @brief string representing the Base 15 with lower letters
+    **/
     #define BASE15LOW "0123456789abcdef"
 
 /**

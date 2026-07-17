@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2025
 ** libdkz
 ** File description:
-** my_pow
+** my_ipow
 */
 
 long long my_ipow(int n, int p)

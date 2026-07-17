@@ -2,14 +2,12 @@
 ** EPITECH PROJECT, 2025
 ** libdkz
 ** File description:
-** my_compute_power_rec.c
-** returns the first argument raised to the power p,
-** where p is the second argument.
+** my_compute_power_rec
 */
 
-int my_compute_power_rec(int nb, int p)
+long long my_compute_power_rec(int nb, int p)
 {
-    int result;
+    long long result;
 
     if (p == 0) {
         return 1;

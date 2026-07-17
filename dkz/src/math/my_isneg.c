@@ -7,7 +7,7 @@
 ** is negative or P, if positive or null.
 */
 
-int my_isneg(int n)
+int my_isneg(double n)
 {
-    return (n << 31);
+    return ((n < 0 ? 1 : 0));
 }

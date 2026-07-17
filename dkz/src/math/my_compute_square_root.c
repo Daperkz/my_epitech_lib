@@ -2,10 +2,7 @@
 ** EPITECH PROJECT, 2025
 ** libdkz
 ** File description:
-** my_compute_square_root.c
-** returns the square root (if it is a whole number) of the number given a
-** argument. If the square root is not a whole number,
-** the function should return 0.
+** my_compute_square_root
 */
 
 int my_compute_square_root(int nb)

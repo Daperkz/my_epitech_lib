@@ -3,7 +3,6 @@
 ** libdkz
 ** File description:
 ** my_is_prime
-** returns 1 if the number is prime and 0 if not.
 */
 
 static int my_rounded_square_root(int nb)

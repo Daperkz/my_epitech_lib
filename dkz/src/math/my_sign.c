@@ -5,7 +5,7 @@
 ** my_sign
 */
 
-int my_sign(int x)
+int my_sign(double x)
 {
     if (x < 0)
         return -1;

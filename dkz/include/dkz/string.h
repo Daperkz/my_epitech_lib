@@ -13,7 +13,7 @@
 **
 ** @author Daperkz
 ** @ingroup libdkz
-** @test ./tests/string/
+** @test ./test/src/string/
 ** @version 1.0
 ** @date 2026-07-05
 */
@@ -21,6 +21,9 @@
 #ifndef DKZ_STRING_H_
     #define DKZ_STRING_H_
 
+    /**
+    ** @brief Basic Whitespaces characters grouped into one string
+    **/
     #define WHITESPACES " \t\r\n"
 
 

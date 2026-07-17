@@ -13,7 +13,7 @@
 **
 ** @author Daperkz
 ** @ingroup libdkz
-** @test ./tests/printf/
+** @test ./test/src/printf/
 ** @version 1.0
 ** @date 2026-07-05
 */
@@ -21,8 +21,19 @@
 #ifndef DKZ_PRINTF_H
     #define DKZ_PRINTF_H
 
+    /**
+    ** @brief The Standard Input file descriptor
+    **/
     #define STDIN_FD 0
+
+    /**
+    ** @brief The Standard Output file descriptor
+    **/
     #define STDOUT_FD 1
+
+    /**
+    ** @brief The Standard Error file descriptor
+    **/
     #define STDERR_FD 2
 
 /**
