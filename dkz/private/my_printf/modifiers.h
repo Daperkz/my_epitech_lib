@@ -10,7 +10,8 @@
 ** @brief Format modifiers processing helper functions.
 **
 ** @internal
-** This header provides functions to manipulate the formatted intermediate strings
+** This header provides functions to manipulate the formatted
+** intermediate strings
 ** by applying the width, precision, and flag configurations parsed from the
 ** current specifier.
 **

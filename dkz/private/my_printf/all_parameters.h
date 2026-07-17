@@ -64,13 +64,15 @@ char *parameter_x(va_list args, pf_ctx_t *coterr);
 char *parameter_xx(va_list args, pf_ctx_t *coterr);
 
 /**
-** @brief Converts double values to decimal notation with lowercase infinity/nan (%f)
+** @brief Converts double values to decimal notation with
+** lowercase infinity/nan (%f)
 ** @internal
 **/
 char *parameter_f(va_list args, pf_ctx_t *coterr);
 
 /**
-** @brief Converts double values to decimal notation with uppercase infinity/nan (%F)
+** @brief Converts double values to decimal notation with
+** uppercase infinity/nan (%F)
 ** @internal
 **/
 char *parameter_ff(va_list args, pf_ctx_t *coterr);
@@ -94,19 +96,22 @@ char *parameter_ee(va_list args, pf_ctx_t *coterr);
 char *parameter_g(va_list args, pf_ctx_t *coterr);
 
 /**
-** @brief Converts double values to general notation using shorter variant with uppercase 'E' (%G)
+** @brief Converts double values to general notation using shorter variant with
+** uppercase 'E' (%G)
 ** @internal
 **/
 char *parameter_gg(va_list args, pf_ctx_t *coterr);
 
 /**
-** @brief Converts double values to hexadecimal scientific notation with lowercase prefix (%a)
+** @brief Converts double values to hexadecimal scientific notation with
+** lowercase prefix (%a)
 ** @internal
 **/
 char *parameter_a(va_list args, pf_ctx_t *coterr);
 
 /**
-** @brief Converts double values to hexadecimal scientific notation with uppercase prefix (%A)
+** @brief Converts double values to hexadecimal scientific notation with
+** uppercase prefix (%A)
 ** @internal
 **/
 char *parameter_aa(va_list args, pf_ctx_t *coterr);
@@ -130,7 +135,8 @@ char *parameter_s(va_list args, pf_ctx_t *coterr);
 char *parameter_p(va_list args, pf_ctx_t *coterr);
 
 /**
-** @brief Stores the count of successfully written characters into the int pointer argument (%n)
+** @brief Stores the count of successfully written characters into the
+** int pointer argument (%n)
 **
 ** @internal
 ** Unlike other handlers, this does not return a formatted value. Instead, it
@@ -145,7 +151,8 @@ char *parameter_n(va_list args, pf_ctx_t *coterr);
 char *parameter_percent(va_list args, pf_ctx_t *coterr);
 
 /**
-** @brief Generates an error representation fallback when parsing a corrupted specifier sequence
+** @brief Generates an error representation fallback when parsing a
+** corrupted specifier sequence
 ** @internal
 **/
 char *error_output(char error_char, pf_ctx_t *coterr);
@@ -157,7 +164,8 @@ char *error_output(char error_char, pf_ctx_t *coterr);
 */
 
 /**
-** @brief The global dispatch table mapping specifier characters to their handlers
+** @brief The global dispatch table mapping specifier characters to
+** their handlers
 ** @internal
 **/
 extern const flag_map_t ALL_FORMAT[];

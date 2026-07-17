@@ -9,9 +9,10 @@
 ** @brief Tokenizer and parsing handler for the my_printf formatting engine.
 **
 ** @internal
-** This header contains the core parsing loop logic, analyzing format specifiers,
-** parsing width/precision parameters, handling modifiers, and routing output
-** to standard file descriptors or dynamically allocated strings.
+** This header contains the core parsing loop logic, analyzing format
+** specifiers, parsing width/precision parameters, handling modifiers,
+** and routing output to standard file descriptors
+** or dynamically allocated strings.
 **
 ** @author Daperkz
 ** @ingroup libdkz
