@@ -114,6 +114,5 @@ void *btree_get(btree_t *tree, void *ref, int (*cmp)(void *, void *));
 ** or if the key is not found.
 **/
 void *btree_pop(btree_t *tree, void *ref, int (*cmp)(void *, void *));
-//not done
 
 #endif /* !DKZ_BINARY_TREE_H_ */

@@ -194,6 +194,7 @@ DOUBLE_GRAPH_F			=	create.c	\
 BINARY_GRAPH_F			=	create.c	\
 							add.c		\
 							get.c		\
+							pop.c		\
 							destroy.c
 
 # -_- Files located in $(HASHTABLE_D) = ./src/hashtable/ -_-

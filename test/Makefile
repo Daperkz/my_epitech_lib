@@ -91,6 +91,7 @@ SRC				=	$(CONFIG_D)test_create.c						\
 					$(BTREE_D)create.c								\
 					$(BTREE_D)destroy.c								\
 					$(BTREE_D)get.c									\
+					$(BTREE_D)pop.c									\
 					$(DLL_D)add.c									\
 					$(DLL_D)create.c								\
 					$(DLL_D)destroy.c								\
