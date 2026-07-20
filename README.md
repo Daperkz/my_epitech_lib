@@ -12,12 +12,12 @@
 
 ## Key Features
 
-- ** Custom `my_printf` Implementation**: Full support for standard format specifiers (`%d`, `%i`, `%s`, `%c`, `%x`, `%X`, `%o`, `%p`, `%u`, `%f`, `%e`, `%g`, `%a`, `%n`), width/precision parsing, flag modifiers (`#`, `+`, `-`, `' '`, `0`), and floating-point conversion internals.
-- ** Advanced Data Structures**: Generic, memory-safe data structures including Linked Lists, Doubly Linked Lists, Binary Trees, Queues, Stacks, and Hash Tables.
-- ** String & Memory Utilities**: Complete suite for string searching, comparison, base conversions (`atoi`, `itoa`, `ftoa`), formatting, trimming, and safe memory operations (`memcpy`, `memmove`, `memset`).
-- ** File I/O Engine**: Helper utilities for safe file opening, size determination, and content extraction.
-- ** Math & Numerical Routines**: Custom implementations for exponential, power, square root, prime checking/finding, rounding, and sign analysis.
-- ** 100% Test Coverage**: Rigorously unit-tested using the **Criterion** testing framework with zero memory leaks and complete function validation (485/485 passing tests).
+- **Custom `my_printf` Implementation**: Full support for standard format specifiers (`%d`, `%i`, `%s`, `%c`, `%x`, `%X`, `%o`, `%p`, `%u`, `%f`, `%e`, `%g`, `%a`, `%n`), width/precision parsing, flag modifiers (`#`, `+`, `-`, `' '`, `0`), and floating-point conversion internals.
+- **Advanced Data Structures**: Generic, memory-safe data structures including Linked Lists, Doubly Linked Lists, Binary Trees, Queues, Stacks, and Hash Tables.
+- **String & Memory Utilities**: Complete suite for string searching, comparison, base conversions (`atoi`, `itoa`, `ftoa`), formatting, trimming, and safe memory operations (`memcpy`, `memmove`, `memset`).
+- **File I/O Engine**: Helper utilities for safe file opening, size determination, and content extraction.
+- **Math & Numerical Routines**: Custom implementations for exponential, power, square root, prime checking/finding, rounding, and sign analysis.
+- **100% Test Coverage**: Rigorously unit-tested using the **Criterion** testing framework with zero memory leaks and complete function validation (485/485 passing tests).
 
 ---
 
