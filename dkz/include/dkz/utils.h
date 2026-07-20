@@ -49,12 +49,12 @@
     /**
     ** @brief string representing the Base 15 with captial letters
     **/
-    #define BASE15CAP "0123456789ABCDEF"
+    #define BASE16CAP "0123456789ABCDEF"
 
     /**
     ** @brief string representing the Base 15 with lower letters
     **/
-    #define BASE15LOW "0123456789abcdef"
+    #define BASE16LOW "0123456789abcdef"
 
 /**
 ** @brief Swaps the values of two integers

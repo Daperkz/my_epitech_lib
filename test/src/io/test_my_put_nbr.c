@@ -27,7 +27,7 @@ Test(my_put_nbr_base, basic_negative_value, .init = cr_redirect_stdout)
 
 Test(my_put_nbr_base, hex_base, .init = cr_redirect_stdout)
 {
-    my_put_nbr_base(255, BASE15CAP);
+    my_put_nbr_base(255, BASE16CAP);
     cr_assert_stdout_eq_str("FF");
 }
 
