@@ -81,12 +81,26 @@ int my_put_float(double nb, int precision);
 int my_showstr(char const *str);
 
 /**
-** @brief Displays a memory area in hexadecimal format
+** @brief Displays a memory area in hexadecimal format.
 **
 ** @param[in] str The pointer to the memory area
 ** @param[in] size The number of bytes to display
 **
 ** @return @b int 0 on success
+**
+** @note
+** Each line of the output manages 16 characters and is divided into 3 columns:
+** - The hexadecimal address of the line's first character,
+** - The content in hexadecimal,
+** - The content in printable characters.
+**
+** @code
+** 00000000: 6865 7920 6775 7973 2073 686f 7720 6d65 hey guys show me$
+** 00000010: 6d20 6973 2063 6f6f 6c20 796f 7520 6361 m is cool you ca$
+** 00000020: 6e20 646f 2073 6f6d 6520 7072 6574 7479 n do some pretty$
+** 00000030: 206e 6561 7420 7374 7566 6600 0f1b 7f05  neat stuff.....$
+** 00000040: 2e00 0102 0304 0506 0708 090e 0f1b 7f    ...............$
+** @endcode
 */
 int my_showmem(char const *str, int size);
 
