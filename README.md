@@ -10,6 +10,22 @@
 
 ---
 
+## Table of Contents
+- [Key Features](#key-features)
+- [Directory Architecture](#directory-architecture)
+- [Library Modules](#library-modules)
+- [Prerequisites](#prerequisites)
+- [Build System & Compilation](#build-system--compilation)
+- [Unit Testing & Coverage](#unit-testing--coverage)
+- [API Documentation](#api-documentation)
+- [Usage Example](#usage-example)
+- [Linking `libdkz` in Your Project](#linking-libdkz-in-your-project)
+- [Memory & Safety Guarantees](#memory--safety-guarantees)
+- [Academic Context](#academic-context)
+- [License](#license)
+
+---
+
 ## Key Features
 
 - **Custom `my_printf` Implementation**: Full support for standard format specifiers (`%d`, `%i`, `%s`, `%c`, `%x`, `%X`, `%o`, `%p`, `%u`, `%f`, `%e`, `%g`, `%a`, `%n`), width/precision parsing, flag modifiers (`#`, `+`, `-`, `' '`, `0`), and floating-point conversion internals.
@@ -89,9 +105,35 @@ libdkz/
 
 ---
 
+## Prerequisites
+
+Before building `libdkz`, ensure your system has the following tools installed:
+
+- **C Compiler**: `epiclang` (default), `gcc`, or `clang` (C11 standard support)
+- **Build System**: `GNU Make` (v4.0+)
+- **Testing Framework**: [Criterion](https://github.com/Snaipe/Criterion) (required for `make tests_run`)
+- **Memory Analysis**: `Valgrind` (required for `make tests_memory_run`)
+- **Code Coverage**: `gcovr` or `lcov` (required for `make coverage`)
+- **Documentation**: `Doxygen` (required for `make docs`)
+
+---
+
 ## Build System & Compilation
 
 The project features a top-level Makefile that delegates build commands to target directories.
+
+> **Compiler Selection**: By default, the build system uses `epiclang` (Epitech's custom compiler wrapper enforcing coding style and strict diagnostics). You can customize the build using the following overrides:
+>
+> - **Compiler (`CC`)**: Easily switch to another compiler (e.g., `gcc` or `clang`) if `epiclang` is not installed on your system.
+> - **Flags (`CFLAGS` & `LDFLAGS`)**: Pass additional compiler flags or linker libraries directly from the command line.
+>
+> ```bash
+> make CC=clang CFLAGS+="-O3" LDFLAGS+="-lm"
+> # or
+> make CC=gcc CFLAGS+="-O3" LDFLAGS+="-lm"
+> ```
+>
+> ⚠️ **Warning**: Overriding compiler flags (`CFLAGS`, `LDFLAGS`) or changing target standards manually may result in build failures or undefined runtime behavior, as specific flags are required for wrapper linkage and feature macros.
 
 ### Build Commands
 
@@ -199,6 +241,34 @@ int main(void)
 ```bash
 gcc -Wall -Wextra -I./dkz/include main.c -L./dkz -ldkz -o my_app
 ```
+
+---
+
+## Linking `libdkz` in Your Project
+
+### Option A: Direct Makefile Integration
+In your project's Makefile:
+
+```makefile
+CFLAGS  += -I./path/to/libdkz/dkz/include
+LDFLAGS += -L./path/to/libdkz/dkz -ldkz
+```
+
+### Option B: git submodule
+If included as a submodule:
+
+```bash
+git submodule add https://github.com/Daperkz/my_epitech_lib.git lib/libdkz
+make -C lib/libdkz
+```
+
+---
+
+## Memory & Safety Guarantees
+
+- **Zero Memory Leaks**: Verified via Valgrind and Criterion memory wrapper tests.
+- **NULL-Pointer Resilience**: Public API functions perform defensive standard checks against `NULL` pointers to prevent segmentation faults.
+- **Mock Failure Handling**: Core modules are tested against allocation failures (`malloc` failure wrappers) to guarantee clean error returns instead of crashes.
 
 ---
 

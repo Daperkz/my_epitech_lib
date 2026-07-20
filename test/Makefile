@@ -215,8 +215,7 @@ $(OBJ_D)%.o:	$(SRC_D)%.c
 clean:
 	@rm -rf $(OBJ_D)
 
-fclean:
-	@rm -rf $(OBJ_D)
+fclean: clean
 	@rm -f $(NAME)
 	@rm -f $(COVERAGE_NAME)
 

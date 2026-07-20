@@ -16,7 +16,6 @@ LIB_D		=	$(ROOT_D)dkz/
 TEST_D		=	$(ROOT_D)test/
 DOC_D		=	$(ROOT_D)html/
 
-
 all:
 	@$(MAKE) -C $(LIB_D) --no-print-directory
 
@@ -25,7 +24,7 @@ debug:
 
 docs:
 	@$(DOXYGEN) $(DOXYFILE)
-	@echo "Documentation generated in the $(DOC_DIR)/ directory."
+	@echo "Documentation generated in the $(DOC_D)/ directory."
 
 clean:
 	@$(RM) -r $(DOC_D) latex
@@ -60,5 +59,7 @@ coverage:
 memory_coverage:
 	@$(MAKE) -C $(TEST_D) memory_coverage --no-print-directory
 
-.PHONY: all debug docs clean fclean re bestre \
-		test tests_run coverage memory_coverage
+.PHONY: all debug clean fclean re bestre 			\
+		tests tests_debug tests_run tests_memory_run \
+		coverage memory_coverage					\
+		docs
