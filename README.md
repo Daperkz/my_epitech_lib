@@ -8,6 +8,8 @@
 
 `libdkz` is a modular, high-performance C utility library developed during the **Epitech First-Year Curriculum (2025–2026)**. Originally evolving from the standard Epitech `libmy`, `libdkz` provides robust implementations of core data structures, custom I/O operations, string manipulation routines, mathematical functions, file handling, and a full-featured custom `my_printf` engine.
 
+> 📦 **Portable Architecture**: Designed for zero-dependency portability. The self-contained `dkz/` subdirectory contains its own standalone `Makefile` and headers—allowing you to drop just the `dkz/` directory into any C project without needing the parent repository, unit tests, or build harnesses.
+
 ---
 
 ## Table of Contents
@@ -28,6 +30,7 @@
 
 ## Key Features
 
+- **Portable & Self-Contained**: Copy only the `dkz/` subfolder into your source tree and build `libdkz.a` directly using `dkz/Makefile`.
 - **Custom `my_printf` Implementation**: Full support for standard format specifiers (`%d`, `%i`, `%s`, `%c`, `%x`, `%X`, `%o`, `%p`, `%u`, `%f`, `%e`, `%g`, `%a`, `%n`), width/precision parsing, flag modifiers (`#`, `+`, `-`, `' '`, `0`), and floating-point conversion internals.
 - **Advanced Data Structures**: Generic, memory-safe data structures including Linked Lists, Doubly Linked Lists, Binary Trees, Queues, Stacks, and Hash Tables.
 - **String & Memory Utilities**: Complete suite for string searching, comparison, base conversions (`atoi`, `itoa`, `ftoa`), formatting, trimming, and safe memory operations (`memcpy`, `memmove`, `memset`).
@@ -41,7 +44,7 @@
 
 ```text
 libdkz/
-├── dkz/                        # Library Source Code & Public Headers
+├── dkz/                        # Standalone / Portable Library Core
 │   ├── include/
 │   │   ├─ dkz/                # Public Library Headers
 │   │   │   ├── config.h
@@ -105,6 +108,22 @@ libdkz/
 
 ---
 
+## Standalone & Portable Usage
+
+If you only need `libdkz` inside another C project without extra test suits, documentation files, or developer tooling, simply copy the `dkz/` directory into your repository:
+
+```bash
+# Copy only the library core to your project's lib/ directory
+cp -r path/to/libdkz/dkz ./lib/dkz
+
+# Build the static library directly inside dkz/
+make -C ./lib/dkz
+```
+
+The standalone Makefile inside `dkz/` builds `libdkz.a` directly inside `dkz/` with no root dependencies required.
+
+---
+
 ## Prerequisites
 
 Before building `libdkz`, ensure your system has the following tools installed:
@@ -140,6 +159,9 @@ The project features a top-level Makefile that delegates build commands to targe
 ```bash
 # Compile the static library libdkz.a
 make
+
+# Alternatively, compile directly inside the standalone directory
+make -C dkz
 
 # Compile with debug flags (-g3, -O0, sanitizers)
 make debug
@@ -246,15 +268,32 @@ gcc -Wall -Wextra -I./dkz/include main.c -L./dkz -ldkz -o my_app
 
 ## Linking `libdkz` in Your Project
 
-### Option A: Direct Makefile Integration
-In your project's Makefile:
+### Option A: Standalone Direct Subfolder
+Copy the `dkz/` folder into your project's tree (e.g., `lib/dkz`):
 
 ```makefile
-CFLAGS  += -I./path/to/libdkz/dkz/include
-LDFLAGS += -L./path/to/libdkz/dkz -ldkz
+# In your project's Makefile:
+LIBDKZ_DIR = ./lib/dkz
+
+CFLAGS  += -I$(LIBDKZ_DIR)/include
+LDFLAGS += -L$(LIBDKZ_DIR) -ldkz
+
+# Rule to build libdkz automatically when building your app
+$(LIBDKZ_DIR)/libdkz.a:
+	$(MAKE) -C$(LIBDKZ_DIR)
+
+my_app: $(LIBDKZ_DIR)/libdkz.a $(OBJS)
+	$(CC)$(OBJS) $(LDFLAGS) -o$@
 ```
 
-### Option B: git submodule
+### Option B: Direct Compilation
+In your project's Makefile:
+
+```bash
+gcc -Wall -Wextra -I./lib/dkz/include main.c -L./lib/dkz -ldkz -o my_app
+```
+
+### Option C: git submodule
 If included as a submodule:
 
 ```bash
